@@ -84,8 +84,13 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
+//Dynamic base_url
+$root = (isset($_SERVER['HTTPS']) ? "https://" : "http://").$_SERVER['HTTP_HOST'];
+$root .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAME']);
+
 //Additional Constants
-defined('BASE_URL') OR define('BASE_URL', "http://localhost/aqilapricelist/");
+// defined('BASE_URL') OR define('BASE_URL', "http://localhost/aqilapricelist/");
+defined('BASE_URL') OR define('BASE_URL', $root);
 defined('URL_ASSET') OR define('URL_ASSET', "http://localhost/aqilapricelist/assets/");
 defined('URL_CSS') OR define('URL_CSS', "http://localhost/aqilapricelist/assets/css/");
 defined('URL_FONT') OR define('URL_FONT', "http://localhost/aqilapricelist/assets/fonts/");
