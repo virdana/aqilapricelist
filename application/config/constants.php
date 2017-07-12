@@ -91,8 +91,8 @@ $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), '', $_SERVER['SCRIPT_NAM
 //Additional Constants
 // defined('BASE_URL') OR define('BASE_URL', "http://localhost/aqilapricelist/");
 defined('BASE_URL') OR define('BASE_URL', $root);
-defined('URL_ASSET') OR define('URL_ASSET', "http://localhost/aqilapricelist/assets/");
-defined('URL_CSS') OR define('URL_CSS', "http://localhost/aqilapricelist/assets/css/");
-defined('URL_FONT') OR define('URL_FONT', "http://localhost/aqilapricelist/assets/fonts/");
-defined('URL_JS') OR define('URL_JS', "http://localhost/aqilapricelist/assets/js/");
-defined('URL_IMG') OR define('URL_IMG', "http://localhost/aqilapricelist/assets/images/");
+defined('URL_ASSET') OR define('URL_ASSET', BASE_URL."assets/");
+defined('URL_CSS') OR define('URL_CSS', URL_ASSET."css/");
+defined('URL_FONT') OR define('URL_FONT', URL_ASSET."fonts/");
+defined('URL_JS') OR define('URL_JS', URL_ASSET."js/");
+defined('URL_IMG') OR define('URL_IMG', URL_ASSET."images/");

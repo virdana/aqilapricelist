@@ -68,6 +68,9 @@ class Home extends CI_Controller {
 
         $data_db = $this->model_fadmin->get('media_cetak_desc');
         $data['data_desc'] = $data_db->row();
+        
+        $data_db = $this->model_fadmin->get('terms_conditions');
+        $data['data_terms'] = $data_db->row();
 
         $data_db = $this->model_fadmin->get('warna');
         $data_warna = $data_db->result();
@@ -78,6 +81,11 @@ class Home extends CI_Controller {
                 $data['warna_sekunder'][] = $warna;
             }
         }
+
+        /* TEST ALERT MODAL
+        $condition = array( 'keperluan' => 'konfirmasi order');
+        $data_email = $this->model_fadmin->select($condition, 'email')->row();
+        alert_modal('', $data_email->isi);*/
 
         $this->load->view("pilih_tipe_ilustrasi_themed", $data);
     }
@@ -248,8 +256,12 @@ class Home extends CI_Controller {
         unset($_SESSION['pesanan_upgrade']);
         unset($_SESSION['pesanan_media']);
 
+        $condition = array( 'keperluan' => 'konfirmasi order');
+        $data_email = $this->model_fadmin->select($condition, 'email')->row();
+
         if($confirmation) {
-            alert_success("Sukses!", "Email konfirmasi pesanan telah dikirim. Silahkan periksa kotak masuk email anda.");
+            // alert_success("Sukses!", "Email konfirmasi pesanan telah dikirim. Silahkan periksa kotak masuk email anda.");
+            alert_modal('', $data_email->isi);
         }
         else {
             alert_error("Gagal!", "Terjadi kesalahan pada proses pengiriman email. <br>Pastikan email yang anda berikan adalah email yang valid");
@@ -258,6 +270,13 @@ class Home extends CI_Controller {
 
         // $this->delete_pesanan($confirmation);
     }      
+
+    function test_modal(){
+        $condition = array( 'keperluan' => 'konfirmasi order');
+        $data_email = $this->model_fadmin->select($condition, 'email')->row();
+        alert_modal('', $data_email->isi);
+        echo $_SESSION['alert'];
+    }
 
     public function delete_pesanan($confirmation=FALSE) {
         if($confirmation) {

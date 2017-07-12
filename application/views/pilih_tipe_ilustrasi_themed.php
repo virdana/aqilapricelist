@@ -247,6 +247,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		<div id="message">
 			<?php echo $this->session->flashdata('alert');?>
+			<?php //echo($_SESSION['alert']);?>
 		</div>
 
 		<!-- banner-text -->
@@ -561,6 +562,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div> <!-- /pilihMedia -->
 
+	<?php include "modal_ketentuan_kondisi.php";?>
+
 	<div id="isiFormPemesan" class="tab-pane fade">
 		<div class="container">
 			<!-- <h3 class="w3stitle"><span>  Summary</span></h3> -->
@@ -730,33 +733,45 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<textarea name="alamat_penerima" class="text-area-dark" rows="3" placeholder="Alamat Penerima" disabled=""></textarea>
 									</div>
 								</div>
-								<div class="col-sm-6">
+
+
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="label-control"> Opsi Pengiriman</label>
+										<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
+									    	<option value="1">Ambil di lokasi</option>
+									    	<option value="2">Kirim area Malang</option>
+									    	<option value="3">Via JNE</option>
+								    	</select>
+									</div>
+								</div>
+								<div class="col-sm-4 paket-jne">
+									<div class="form-group">
+										<label class="label-control"> Paket Kurir</label>
+										<select class="form-control input-sm" name="pilihan_paket" id="pilihan_paket" disabled="true">
+									    	<option value="reg">Reguler</option>
+									    	<option value="yes">YES (Yakin Esok Sampai)</option>
+								    	</select>
+								    	<small class="text-danger" id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
+									</div>
+								</div>
+								<div class="col-sm-4 paket-jne">
 									<div class="form-group">
 										<label for="provinsi" class="label-control">Provinsi</label>
 										<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
-										<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi">
+										<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
 											<option value="" selected="" disabled="">Pilih Provinsi</option>
 											<?php get_province();?>
 										</select>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<div class="col-sm-4 paket-jne">
 									<div class="form-group">
 										<label for="kota" class="label-control">Kota</label>
 										<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
-										<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota">
+										<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
 											<option value="" selected="" disabled="">Pilih Kota</option>
 										</select>
-									</div>
-								</div>
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="label-control"> Paket Kurir</label>
-										<select class="form-control input-sm" name="pilihan_paket" id="pilihan_paket" disabled="">
-									    	<option value="reg">JNE Reguler</option>
-									    	<option value="yes">JNE YES (Yakin Esok Sampai)</option>
-								    	</select>
-								    	<small class="text-danger" id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
 									</div>
 								</div>
 							</div> 
@@ -764,7 +779,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							
 							<ul class="payment-sendbtns">
 								<li><a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Batalkan Pesanan</a></li>
-								<li><button type="submit" id="submitFormatOrder" class="btn btn-info"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
+								<!-- <li><button type="submit" id="submitFormatOrder" class="btn btn-info"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li> -->
+								<li><button type="button" id="submitFormatOrder" class="btn btn-info" data-toggle="modal" data-target="#modalTerms"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
 							</ul>
 							<div class="clearfix"> </div>
 						</form>
@@ -1300,15 +1316,33 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("input[name='background_stock']").closest("div.row").show();
 			$("input[name='background_stock']").prop("disabled", false);
 		}
+		function showHideJne(val) {
+			if(val == 3) { //pengiriman via JNE
+				$(".paket-jne").show();
+				$('.paket-jne select').prop('disabled', false);
+			}
+			else {
+				$(".paket-jne").hide();
+				$('.paket-jne select').prop('disabled', true);
+			}
+		}
 		function showHideFormPenerima() {
+			var opsiPengiriman = $('#opsiPengiriman').val();
 			// console.log( $("#tableMedia tbody tr").siblings(".media-item").length );
 			if ($("#tableMedia tbody tr").siblings(".media-item").length > 0) { // then it has siblings } else { // it doesn't }
 				$("#formPenerima").show();
-				$("#formPenerima :input").prop("disabled", false);
-				$("select[name='pilihan_paket']").prop("disabled", false);
+				$(".paket-jne").hide();
+				showHideJne(opsiPengiriman);
+				// $("#formPenerima :input").prop("disabled", false); //included select
+				// $("select[name='pilihan_paket']").prop("disabled", false);
+				$("input[name='nama_penerima']").prop("disabled", false);
+				$("input[name='no_hp_penerima']").prop("disabled", false);
+				$("textarea[name='alamat_penerima']").prop("disabled", false);
+				$("select[name='opsi_pengiriman']").prop("disabled", false);
 			} else {
+				showHideJne(opsiPengiriman);
 				$("#formPenerima").hide();
-				$("#formPenerima :input").prop("disabled", true);
+				$("#formPenerima :input").prop("disabled", true); //included select
 				$("select[name='pilihan_paket']").prop("disabled", true);
 			}
 		}
@@ -1645,6 +1679,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			maskInputMoney();
 		};
 
+		$('#checkTerms').on('click', function(e) {
+			$('#btnTerms').attr('disabled', !this.checked);
+		});
+		function submitPemesan() {
+			var checkTerms = $('#checkTerms').prop('checked');
+			if(checkTerms == true) {
+				$("#formPemesan").submit();
+			}
+		}
 		$(document).ready(function(){
 			$("#formPemesan").on("submit", function(e) {
 				e.preventDefault();
@@ -1675,12 +1718,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$.when(cekOngkir()).done(function(response, status) {
 		            var data = JSON.parse(response);
 		            var harga = data.harga_reg;
+		            var etd = data.etd_reg;
 		            console.log("Selected: "+$("#pilihan_paket :selected").val());
 
 		            if($("#pilihan_paket :selected").val() == 'yes') {
 		            	console.log("MASUK");
 		            	if(data.harga_yes != 0) {
 		            		harga = data.harga_yes;
+		            		etd = data.etd_yes;
 		            		$("#pilihan_paket option[value='yes']").prop('disabled', false).removeClass("hidden");
             				$("#pilihan_paket_alert").hide();
 		            	}
@@ -1695,7 +1740,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            }
 
 		            $("#hargaOngkir").html(harga);
-		            $("#etd").html(data.etd);
+		            $("#etd").html(etd);
 		            $("input[name='total_ongkir']").val(harga);
 		            calculateHargaTotal();
 					$("#submitFormatOrder").prop("disabled", false).removeClass("disabled");
@@ -1709,6 +1754,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#pilihan_paket").on("change", function(e) {
 				$("#formOngkir").submit();
 			});
+
+			//run notifikasi transfer
+			function runAlertModal() {
+				$('#modalAlert').modal('show');
+			}
+			<?php echo isset($_SESSION['alert']) ? "runAlertModal();" : ''?>
 		});
 	</script>
 </body>
