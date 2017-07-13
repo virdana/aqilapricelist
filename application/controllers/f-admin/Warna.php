@@ -66,7 +66,7 @@ class Warna extends CI_Controller {
         header('Location: '.  $redirect_url);
     }
 
-    public function get_warna() {
+    public function get_warna_by_id() {
         $result = array();
         $id = $this->input->post('id');
         if(!empty($id)) {
@@ -74,6 +74,27 @@ class Warna extends CI_Controller {
             $data_db = $this->model_fadmin->select($condition, 'warna');
             $result = $data_db->row();
             unset($result->id_warna);
+        }
+        echo json_encode($result);
+    }
+
+    public function get_warna_by_media() {
+        $result = array('primer' => '', 'sekunder' => '');
+        $id_media = $this->input->post('id_media');
+        // jika id_media == 0 maka warna universal akan ditampilkan
+        if($id_media != '' ) {
+            $condition = array('media_id' => $id_media);
+            $data_db = $this->model_fadmin->select($condition, 'warna');
+            $data_warna = $data_db->result_array();
+
+            foreach ($data_warna as $warna) {
+                if($warna['kategori'] == 0) {
+                    $result['primer'][] = $warna;
+                } 
+                else if($warna['kategori'] == 1) {
+                    $result['sekunder'][] = $warna;
+                }
+            }
         }
         echo json_encode($result);
     }

@@ -165,6 +165,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		    color: #bb3756;
 			padding: 10px;
 		}
+		.resp-tabs-container{
+			border-radius:15px;
+		}
 		.contact-grid.agileits {
 			border-radius:15px;
 		}
@@ -284,13 +287,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<hr>
 	<!-- blog -->
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-sm-6">
 	<div id="startOrderTabs" class="tab-content">
 
 	<div id="pilihPaket" class="tab-pane fade in active">
-		<div class="container">
+		<div class="container-fluid">
 			<h3 class="w3stitle">Pilih<span> Tipe Ilustrasi</span></h3>     
 			<div class="contact-row agileits-w3layouts">  
-				<div class="col-md-12 col-sm-12 contact-w3lsleft">
+				<div class="col-md-12 contact-w3lsleft">
 					<div class="contact-grid agileits" style="padding-left: 5px;padding-right: 20px; ">
 		
 						<div class="table-responsive">
@@ -475,495 +481,506 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div> <!-- /pilihPaket -->
 
 	<div id="pilihUpgrade" class="tab-pane fade">
-		<div class="container">
-			<!-- <h3 class="w3stitle">Upgrade<span>  Your Order</span></h3> -->
-			<div class="contact-row agileits-w3layouts">  
-				<div class="col-md-12 col-sm-12 contact-w3lsleft">
-					<div class="contact-grid agileits">
-						<div class="section-header">
-							<span class="section-title">Upgrade<b>  Your Order</b></span>
-						</div>
-						<table class="table-upgrade table table-hover">
-							<?php foreach ($data_upgrade as $upgrade) { ?>
-								<tr id="upgrade-<?=$upgrade->id_upgrade?>">
-									<td><?=$upgrade->nama_upgrade?> <p class="upgrade-desc small"><?=$upgrade->deskripsi?></p></td>
-									<td class="text-right"><div class="label label-default" title="<?='Rp '.number_format($upgrade->harga, 0, ",", ".")?>">Rp <?=shorten_number($upgrade->harga)?></div></td>
-									<td class="text-center"><a href="#" class="add-upgrade fa fa-plus-circle" title="Tambahkan <?=$upgrade->nama_upgrade?>" data-value="<?=$upgrade->id_upgrade?>" onclick="selectUpgrade(event, this);"></a></td>
-								</tr>
-							<?php } ?>
-						</table>
-						<span class="btn-group pull-right">
-							<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
-							<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
-						</span>
+		<!-- <h3 class="w3stitle">Upgrade<span>  Your Order</span></h3> -->
+		<div class="contact-row agileits-w3layouts">  
+			<div class="contact-w3lsleft">
+				<div class="contact-grid agileits">
+					<div class="section-header">
+						<span class="section-title">Upgrade<b>  Your Order</b></span>
 					</div>
+					<table class="table-upgrade table table-hover">
+						<?php foreach ($data_upgrade as $upgrade) { ?>
+							<tr id="upgrade-<?=$upgrade->id_upgrade?>">
+								<td><?=$upgrade->nama_upgrade?> <p class="upgrade-desc small"><?=$upgrade->deskripsi?></p></td>
+								<td class="text-right"><div class="label label-default" title="<?='Rp '.number_format($upgrade->harga, 0, ",", ".")?>">Rp <?=shorten_number($upgrade->harga)?></div></td>
+								<td class="text-center"><a href="#" class="add-upgrade fa fa-plus-circle" title="Tambahkan <?=$upgrade->nama_upgrade?>" data-value="<?=$upgrade->id_upgrade?>" onclick="selectUpgrade(event, this);"></a></td>
+							</tr>
+						<?php } ?>
+					</table>
+					<span class="btn-group pull-right">
+						<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
+						<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+					</span>
 				</div>
 			</div>
 		</div>
 	</div> <!-- /pilihUpgrade -->
 
 	<div id="pilihMedia" class="tab-pane fade">
-		<div class="container">
-			<!-- <h3 class="w3stitle">Choose<span>  Media</span></h3> -->
-			<div class="contact-row agileits-w3layouts">  
-				<div class="col-md-12 col-sm-12 contact-w3lsleft">
-					<div class="contact-grid agileits">
-						<div class="section-header">
-							<span class="section-title">Choose<b>  Media</b> </span>
-						</div>
-						<div class="alert alert-warning">
-							<small><?=$data_desc->deskripsi;?></small>
-						</div>
-						<table class="table-mediacetak table table-hover">
-							<tr>
-								<th>Pilihan Media Cetak</th>
-								<th class="text-center">Day</th>
-								<th class="text-center">Warna Primer/Sekunder</th>
-								<th colspan="2" class="text-center">Price</th>
-							</tr>
-							<?php foreach ($data_media as $media) { ?>
-							<tr id="media-<?=$media->id_media?>">
-								<td><?=$media->nama_media?></td>
-								<td class="text-center"><?=$media->hari?></td>
-								<td>
-									<div class="form-inline text-center">
-										<div class="form-group">
-										<?php if($media->show_warna_primer) { ?>
-											<select name="warna_primer-<?=$media->id_media?>" class="form-control input-sm" title="Warna Primer">
-											<?php foreach ($warna_primer as $primer) { ?>
-												<option value="<?=$primer->id_warna?>"><?=$primer->warna?></option>
-											<?php } ?>
-											</select>
-										<?php } ?>
-										</div>
-										<div class="form-group">
-										<?php if($media->show_warna_sekunder) { ?>
-											<select name="warna_sekunder-<?=$media->id_media?>" class="form-control input-sm" title="Warna Sekunder">
-											<?php foreach ($warna_sekunder as $sekunder) { ?>
-												<option value="<?=$sekunder->id_warna?>"><?=$sekunder->warna?></option>
-											<?php } ?>
-											</select>
-										<?php } ?>
-										</div>
-									</div>
-								</td>
-								<td class="text-right"><span class="label label-default" title="<?='Rp '.number_format($media->harga, 0, ",", ".")?>">Rp <?=shorten_number($media->harga)?></span></td>
-								<td class="text-center"><a href="#" class="add-upgrade fa fa-plus-circle" title="Tambahkan <?=$media->nama_media?>" data-value="<?=$media->id_media?>" data-harga="<?=$media->harga?>" onclick="selectMedia(event);"></a></td>
-							</tr>
-							<?php } ?>
-						</table>
-						<span class="btn-group pull-right">
-							<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-							<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
-						</span>
+		<!-- <h3 class="w3stitle">Choose<span>  Media</span></h3> -->
+		<div class="contact-row agileits-w3layouts">  
+			<div class="contact-w3lsleft">
+				<div class="contact-grid agileits">
+					<div class="section-header">
+						<span class="section-title">Choose<b>  Media</b> </span>
 					</div>
+					<div class="alert alert-warning">
+						<small><?=$data_desc->deskripsi;?></small>
+					</div>
+					<table class="table-mediacetak table table-hover">
+						<tr>
+							<th>Pilihan Media Cetak</th>
+							<th class="text-center">Day</th>
+							<th class="text-center">Warna Primer/Sekunder</th>
+							<th colspan="2" class="text-center">Price</th>
+						</tr>
+						<?php foreach ($data_media as $media) { ?>
+						<tr id="media-<?=$media->id_media?>">
+							<td><?=$media->nama_media?></td>
+							<td class="text-center"><?=$media->hari?></td>
+							<td>
+								<div class="form-inline text-center">
+									
+									<div class="form-group">
+									<?php if($media->show_warna_primer) { ?>
+										<select name="warna_primer-<?=$media->id_media?>" class="form-control input-sm" title="Warna Primer">
+										<?php foreach ($warna_primer as $primer) { 
+											if($media->tipe_warna == 1) {
+												if($primer->media_id == $media->id_media) { ?>
+												<option value="<?=$primer->id_warna?>"><?=$primer->warna?></option>
+											<?php }
+											} else if ($media->tipe_warna == 0) {
+												if($primer->media_id == 0) { ?>
+												<option value="<?=$primer->id_warna?>"><?=$primer->warna?></option>
+											<?php }
+											} 
+										} ?>
+										</select>
+									<?php } ?>
+									</div>
+									
+									<div class="form-group">
+									<?php if($media->show_warna_sekunder) { ?>
+										<select name="warna_sekunder-<?=$media->id_media?>" class="form-control input-sm" title="Warna Sekunder">
+										<?php foreach ($warna_sekunder as $sekunder) { 
+											if($media->tipe_warna == 1) {
+												if($sekunder->media_id == $media->id_media) { ?>
+												<option value="<?=$sekunder->id_warna?>"><?=$sekunder->warna?></option>
+											<?php }
+											} else if ($media->tipe_warna == 0) {
+												if($sekunder->media_id == 0) { ?>
+												<option value="<?=$sekunder->id_warna?>"><?=$sekunder->warna?></option>
+											<?php }
+											} 
+										} ?>
+										</select>
+									<?php } ?>
+									</div>
+								</div>
+							</td>
+							<td class="text-right"><span class="label label-default" title="<?='Rp '.number_format($media->harga, 0, ",", ".")?>">Rp <?=shorten_number($media->harga)?></span></td>
+							<td class="text-center"><a href="#" class="add-upgrade fa fa-plus-circle" title="Tambahkan <?=$media->nama_media?>" data-value="<?=$media->id_media?>" data-harga="<?=$media->harga?>" onclick="selectMedia(event);"></a></td>
+						</tr>
+						<?php } ?>
+					</table>
+					<span class="btn-group pull-right">
+						<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
+						<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+					</span>
 				</div>
 			</div>
 		</div>
 	</div> <!-- /pilihMedia -->
 
-	<?php include "modal_ketentuan_kondisi.php";?>
-
 	<div id="isiFormPemesan" class="tab-pane fade">
-		<div class="container">
-			<!-- <h3 class="w3stitle"><span>  Summary</span></h3> -->
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="payment-online-form-left">
-						<form id="formPemesan" action="<?php echo base_url()?>home/set_pemesan" method="post" enctype="multipart/form-data"> 
-							<div class="section-header">
-								<span class="section-title" style="margin-top: 0px;">Isi <b>Format Order</b></span>
-							</div>
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="nama_pemesan">Nama Pemesan</label>
-										<input name="nama_pemesan" class="text-box-dark" placeholder="Nama Pemesan" type="text" required="true">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="email">Email</label>
-										<input name="email" class="text-box-dark" placeholder="Email" type="email" required="true">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="no_hp">No. Hp/Whatsapp</label>
-										<input name="no_hp" class="text-box-dark" placeholder="[Isi keduanya jika berbeda]" type="text" required="">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="no_line">ID Line/Nama Line</label>
-										<input name="no_line" class="text-box-dark" placeholder="Contoh: budi123/Budi Pramono" type="text" required="">
-									</div>
-								</div> 
-							</div>
-							<hr>
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="warna_dominan">Warna Dominan Desain</label>
-										<input name="warna_dominan" class="text-box-dark" placeholder="[Nuansa warna gambar]" type="text" required="">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="tambahan_tulisan">Tambahan Tulisan</label>
-										<input name="tambahan_tulisan" class="text-box-dark" placeholder="[Contoh: Happy Birthday]" type="text" required="">
-									</div>
-								</div> 
-							</div> 
-							<div class="clearfix"></div>
-							<!-- Background Stock & Custom tidak muncul di Basic -->
-							<!-- Background Custom akan menggantikan Background Stock jika item Upgrade Background Stock dipilih -->
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="background_stock">Background (Stock)</label>
-										<input name="background_stock" class="text-box-dark" placeholder="[Tulis kode yang tertera di caption]" type="text" required="">
-										<p class="small text-right">Option on: <a href="http://instagram.com/fentroart.design">instagram.com/fentroart.design</a></p>
-									</div>
-								</div>
-							</div>
-							<?php if(isset($scope_paket->background) && $scope_paket->background) { ?>
-							<div class="row" style="display: none;">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="background_custom">Background Custom</label>
-										<textarea name="background_custom" class="text-area-dark" rows="3" placeholder=""></textarea>
-									</div>
-								</div>
-							</div> 
-							<?php } ?>
-							<!-- Request pose hanya muncul jika Medium Body dicentang -->
-							<?php if(isset($_SESSION['pesanan']['check_medium']) && $_SESSION['pesanan']['check_medium']) { ?>
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label>Request Pose</label>
-										<div class="radio">
-											<label>
-												<input type="radio" name="pose" id="radiopose1" value="1" checked="true">By Request
-											</label>
-											<label>
-												<input type="radio" name="pose" id="radiopose2" value="2">Terserah FENTROART
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-8">
-									<div class="form-group">
-										<textarea name="text_pose" id="textpose" class="text-area-dark" rows="5" placeholder="Jelaskan model pose yang anda inginkan. Lampirkan gambar/foto yang dimaksud di bagian 'Attach foto' di bawah jika anda mempunyai contoh foto/gambar pose yang dimaksud"></textarea>
-									</div>
-								</div> 
-							</div> 
-							<?php } ?>
-							<!-- Improve look hanya muncul pada paket premium -->
-							<?php if(isset($_SESSION['pesanan']['kode_paket']) && $_SESSION['pesanan']['kode_paket'] == 'premium') { ?>
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label>Improve Look</label>
-										<div class="radio">
-											<label>
-												<input type="radio" name="improve" id="radioimprove1" value="1" checked="true">By Request
-											</label>
-											<label>
-												<input type="radio" name="improve" id="radioimprove2" value="2">Terserah FENTROART
-											</label>
-											<label>
-												<input type="radio" name="improve" id="radioimprove3" value="3">Persiskan Foto
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-8">
-									<div class="form-group">
-										<textarea name="text_improve" id="textimprove" class="text-area-dark" rows="5" placeholder="Jelaskan model pakaian/jilbab/dll yang ingin di-improve diluar tampilan foto yang anda berikan"></textarea>
-									</div>
-								</div> 
-							</div> 
-							<?php } ?>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="keterangan">Keterangan Tambahan</label>
-										<textarea name="keterangan" class="text-area-dark" rows="3" placeholder="Jelaskan hal-hal yang ingin anda sampaikan diluar format yang belum kita cantumkan"></textarea>
-									</div>
-								</div>
-							</div> 
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="foto"><i class="text-danger">*</i>Upload Foto</label>
-										<!-- image-preview-filename input [CUT FROM HERE]-->
-				                        <input type="file" name="file_foto[]" id="fileFoto" class="form-control" accept="image/png, image/jpeg" multiple /> <!-- rename it -->
-									</div>
-				                    <!-- image preview -->
-									<!-- <output id="image-list"></output> -->
-									<small class="help-block text-left">Usahakan foto HD, tidak blur, tidak low-light/overlight </small>
-								</div>
-							</div>
-							
-							<div class="clearfix"> </div>
-							<hr>
-							<div id="formPenerima" style="display: none;">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="nama_penerima">Nama Penerima</label>
-										<input name="nama_penerima" class="text-box-dark" placeholder="Nama Penerima" type="text" required="true" disabled="">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="no_hp_penerima">No. HP Penerima</label>
-										<input name="no_hp_penerima" class="text-box-dark" placeholder="Nomor HP Penerima" type="number" required="true" disabled="">
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="alamat_penerima">Alamat Penerima</label>
-										<textarea name="alamat_penerima" class="text-area-dark" rows="3" placeholder="Alamat Penerima" disabled=""></textarea>
-									</div>
-								</div>
-
-
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="label-control"> Opsi Pengiriman</label>
-										<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
-									    	<option value="1">Ambil di lokasi</option>
-									    	<option value="2">Kirim area Malang</option>
-									    	<option value="3">Via JNE</option>
-								    	</select>
-									</div>
-								</div>
-								<div class="col-sm-4 paket-jne">
-									<div class="form-group">
-										<label class="label-control"> Paket Kurir</label>
-										<select class="form-control input-sm" name="pilihan_paket" id="pilihan_paket" disabled="true">
-									    	<option value="reg">Reguler</option>
-									    	<option value="yes">YES (Yakin Esok Sampai)</option>
-								    	</select>
-								    	<small class="text-danger" id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
-									</div>
-								</div>
-								<div class="col-sm-4 paket-jne">
-									<div class="form-group">
-										<label for="provinsi" class="label-control">Provinsi</label>
-										<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
-										<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
-											<option value="" selected="" disabled="">Pilih Provinsi</option>
-											<?php get_province();?>
-										</select>
-									</div>
-								</div>
-								<div class="col-sm-4 paket-jne">
-									<div class="form-group">
-										<label for="kota" class="label-control">Kota</label>
-										<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
-										<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
-											<option value="" selected="" disabled="">Pilih Kota</option>
-										</select>
-									</div>
-								</div>
-							</div> 
-							</div>
-							
-							<ul class="payment-sendbtns">
-								<li><a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Batalkan Pesanan</a></li>
-								<!-- <li><button type="submit" id="submitFormatOrder" class="btn btn-info"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li> -->
-								<li><button type="button" id="submitFormatOrder" class="btn btn-info" data-toggle="modal" data-target="#modalTerms"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
-							</ul>
-							<div class="clearfix"> </div>
-						</form>
+		<!-- <h3 class="w3stitle"><span>  Summary</span></h3> -->
+		<div class="payment-online-form-left">
+			<form id="formPemesan" action="<?php echo base_url()?>home/set_pemesan" method="post" enctype="multipart/form-data"> 
+				<div class="section-header">
+					<span class="section-title" style="margin-top: 0px;">Isi <b>Format Order</b></span>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="nama_pemesan">Nama Pemesan</label>
+							<input name="nama_pemesan" class="text-box-dark" placeholder="Nama Pemesan" type="text" required="true">
+						</div>
 					</div>
-				
-				</div>	<!-- /col-sm-6 -->
-				<div class="col-sm-6">
-						<div class="sap_tabs">
-							<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
-								<ul class="resp-tabs-list">
-									<li class="resp-tab-item hidden" aria-controls="tab_item-0"><span>Pesanan</span></li>
-									<!-- <li class="resp-tab-item" aria-controls="tab_item-1"><span>Pesanan</span></li>  -->
-								</ul>	 
-								<div class="clearfix"> </div>	
-								<div class="resp-tabs-container">
-									<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
-										<div class="agileits-login">
-											<form name="setUpgradeMedia" id="setUpgradeMedia" action="<?php echo base_url();?>home/set_upgrade_media" method="post">
-											<div class="section-header">
-												<span class="section-title" style="margin-top: 0px; margin-bottom: 10px;"><b>Summary</b></span>
-											</div>
-												<table id="tableScope" class="table">
-													<tbody>
-													<?php $sum_paket = isset($_SESSION['pesanan']['kode_paket']) ? ${$_SESSION['pesanan']['kode_paket']} : "" ?>
-													<?php if (isset($sum_paket->kode_paket)) { ?>
-														<tr id="paketPesanan">
-															<td colspan="3" style="vertical-align: middle;">
-																<div>
-																<img src="<?=URL_IMG.$sum_paket->kode_paket?>.jpg" width="85">
-																<h2 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h2>
-																</div>
-															</td>
-														</tr>
-														<tr id="descPesanan">
-															<td>
-																<b>Hard improve illustration</b>
-																<ul class="check-summary">
-																	<li class="check">Ilustrasi 1 Kepala</li>
-																	<li class="check">Warna <?=$sum_paket->color?></li>
-																	<?php if($sum_paket->softfile) { ?>
-																	<li class="check">High Quality Softfile</li>
-																	<?php } ?>
-																	<?php if($sum_paket->background) { ?>
-																	<li class="check">Background Design</li>
-																	<?php } ?>
-																</ul>
-															</td>
-															<td>&nbsp;</td>
-															<?php $medium = ($_SESSION['pesanan']['check_medium']) ? $sum_paket->medium : 0?>
-															<?php $delivery = ($_SESSION['pesanan']['delivery'] == 'b') ? $sum_paket->delivery_harga : 0?>
-															<?php $delivery_hari = ($_SESSION['pesanan']['delivery'] == 'b') ? $sum_paket->delivery_b : $sum_paket->delivery_a?>
-															<?php $harga_paket = $sum_paket->harga + $medium + $delivery;?>
-															<?php $hari_paket = $delivery_hari;?>
-															<td><h4>
-																Rp <?=number_format($harga_paket, 0, ',', '.')?>
-																</h4>
-																<input type="number" name="harga_paket" value="<?=$harga_paket?>" title="harga paket" style="display:none;">
-																<input type="number" name="hari_paket" value="<?=$hari_paket?>" title="hari paket" style="display:none;">
-															</td>
-														</tr>
-													<?php } else { ?>
-														<h3 class="text-center">Anda belum memilih paket</h3>
-													<?php } ?>
-													</tbody>
-												</table>
-												<table id="tableUpgrade" class="table">
-												<caption>Upgrade</caption>
-													<tbody>
-														<tr class="text-center">
-															<th class="text-center" style="width:50%;">Nama Item</th>
-															<th class="text-center" style="width:20%;">Jumlah</th>
-															<th class="text-center" style="width:30%;">Harga</th>
-														</tr>
-														<tr id="noItemUpgrade" class="media-item text-center">
-															<td colspan="4">Belum ada item yang dipilih</td>
-														</tr>
-													</tbody>
-												</table>
-
-												<table id="tableMedia" class="table">
-												<caption>Media Cetak</caption>
-													<tbody>
-														<tr id="header">
-															<th class="text-center" style="width:40%; vertical-align: middle;">Nama Item</th>
-															<th class="text-center" style="width:10%; vertical-align: middle;">Jumlah</th>
-															<th class="text-center" style="width:20%; vertical-align: middle;">Warna Primer/Sekunder</th>
-															<th class="text-center" style="width:30%; vertical-align: middle;">Harga</th>
-														</tr>
-														<tr id="noItemMedia" class="media-item text-center">
-															<td colspan="4">Belum ada item yang dipilih</td>
-														</tr>
-													</tbody>
-												</table>
-											</form>
-												
-											<div class="row">
-												<form id="formOngkir" action="<?php echo base_url();?>home/get_cost" method="post">
-													<!-- asal paket kurir di baris ini -->
-													<div id="infoTotal" class="col-sm-12">
-														<div class="row" style="margin-top:10px;">
-															<div class="col-sm-6">
-																Subtotal: 
-																<h4>Rp <span id="hargaSubTotal" class="money">0</span> </h4>
-															</div>
-															<div class="col-sm-6">
-																Ongkos Kirim: 
-																<h4>Rp <span  id="hargaOngkir" class="money">0</span> </h4>
-															</div>
-														</div>
-														<div class="row" style="margin-top:10px;">	
-															<div class="col-sm-12">
-																Biaya Shipping: 
-																<h4>Rp <span id="hargaShipping" class="money">0</span> </h4>
-															</div>
-														</div>
-
-														<hr style="display:block; height:1px; border:0; margin: 1em 0; padding: 0; border-top: 1px solid #bb3756;">
-														
-														<div class="row" style="margin-top:10px;">
-															<div class="col-sm-5">
-																Harga Total: 
-																<h4>Rp <span id="hargaTotal" class="money">0</span> </h4>
-															</div>
-															<div class="col-sm-4">
-																Waktu Pengerjaan: 
-																<h4> <span id="hariTotal">0</span> hari </h4>
-															</div>
-															<div class="col-sm-3">
-																ETD: 
-																<h4> <span id="etd">0</span> hari </h4>
-															</div>
-														</div>
-													</div>
-													<div class="col-sm-12 text-center">
-														<img src="<?php echo URL_IMG.'loading.svg'?>" class="ajaxLoading" title="Loading..." alt="Loading..." style="display:none; height:30px; width:30px;"> 
-														<div class="form-inline">
-															<input type="number" name="total_media_weight" class="form-control input-sm" value="0" title="total_media_weight" style="display:none;">
-															<input type="number" name="total_shipping" class="form-control input-sm" value="0" title="total harga shipping" style="display:none;">
-															<input type="text" name="total_hari" class="form-control input-sm" value="0" title="total hari" style="display:none;">
-															<input type="text" name="total_ongkir" class="form-control input-sm" value="0" title="total Ongkir" style="display:none;">
-															<input type="text" name="total_subtotal" class="form-control input-sm" value="0" title="total subTotal" style="display:none;">
-															<input type="text" name="total_harga" class="form-control input-sm" value="0" title="total harga" style="display:none;">
-														</div>
-													</div>
-													<!-- <div class="col-xs-4 text-right">
-														<div class="form-group hidden">
-															<button type="submit" class="btn btn-default btn-sm">Cek Ongkir</button>
-														</div> 
-													</div> -->
-												</form>
-											</div>
-										</div> 
-									</div>
-									<!-- <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-										<div class="login-top sign-top">
-											<div class="agileits-login">
-												<form action="#" method="post">
-													<input type="text" name="Username" placeholder="Username" required="">
-													<input type="text" class="email" name="Email" placeholder="Email" required=""/>
-													<input type="password" class="password" name="Password" placeholder="Password" required=""/>	
-													<label class="anim">
-														<input type="checkbox" class="checkbox">
-														<span> I accept the terms of use</span> 
-													</label> 
-													<div class="w3ls-submit"> 
-														<input class="register" type="submit" value="REGISTER">  
-													</div>
-												</form> 
-											</div>  
-										</div>
-									</div> -->
-								</div>	
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input name="email" class="text-box-dark" placeholder="Email" type="email" required="true">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="no_hp">No. Hp/Whatsapp</label>
+							<input name="no_hp" class="text-box-dark" placeholder="[Isi keduanya jika berbeda]" type="text" required="">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="no_line">ID Line/Nama Line</label>
+							<input name="no_line" class="text-box-dark" placeholder="Contoh: budi123/Budi Pramono" type="text" required="">
+						</div>
+					</div> 
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="warna_dominan">Warna Dominan Desain</label>
+							<input name="warna_dominan" class="text-box-dark" placeholder="[Nuansa warna gambar]" type="text" required="">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="tambahan_tulisan">Tambahan Tulisan</label>
+							<input name="tambahan_tulisan" class="text-box-dark" placeholder="[Contoh: Happy Birthday]" type="text" required="">
+						</div>
+					</div> 
+				</div> 
+				<div class="clearfix"></div>
+				<!-- Background Stock & Custom tidak muncul di Basic -->
+				<!-- Background Custom akan menggantikan Background Stock jika item Upgrade Background Stock dipilih -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="background_stock">Background (Stock)</label>
+							<input name="background_stock" class="text-box-dark" placeholder="[Tulis kode yang tertera di caption]" type="text" required="">
+							<p class="small text-right">Option on: <a href="http://instagram.com/fentroart.design">instagram.com/fentroart.design</a></p>
+						</div>
+					</div>
+				</div>
+				<?php if(isset($scope_paket->background) && $scope_paket->background) { ?>
+				<div class="row" style="display: none;">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="background_custom">Background Custom</label>
+							<textarea name="background_custom" class="text-area-dark" rows="3" placeholder=""></textarea>
+						</div>
+					</div>
+				</div> 
+				<?php } ?>
+				<!-- Request pose hanya muncul jika Medium Body dicentang -->
+				<?php if(isset($_SESSION['pesanan']['check_medium']) && $_SESSION['pesanan']['check_medium']) { ?>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Request Pose</label>
+							<div class="radio">
+								<label>
+									<input type="radio" name="pose" id="radiopose1" value="1" checked="true">By Request
+								</label>
+								<label>
+									<input type="radio" name="pose" id="radiopose2" value="2">Terserah FENTROART
+								</label>
 							</div>
-							<div class="clearfix"> </div>
-						</div>   
-					
-				</div>	<!-- /col-sm-6 -->
-			</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="form-group">
+							<textarea name="text_pose" id="textpose" class="text-area-dark" rows="5" placeholder="Jelaskan model pose yang anda inginkan. Lampirkan gambar/foto yang dimaksud di bagian 'Attach foto' di bawah jika anda mempunyai contoh foto/gambar pose yang dimaksud"></textarea>
+						</div>
+					</div> 
+				</div> 
+				<?php } ?>
+				<!-- Improve look hanya muncul pada paket premium -->
+				<?php if(isset($_SESSION['pesanan']['kode_paket']) && $_SESSION['pesanan']['kode_paket'] == 'premium') { ?>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label>Improve Look</label>
+							<div class="radio">
+								<label>
+									<input type="radio" name="improve" id="radioimprove1" value="1" checked="true">By Request
+								</label>
+								<label>
+									<input type="radio" name="improve" id="radioimprove2" value="2">Terserah FENTROART
+								</label>
+								<label>
+									<input type="radio" name="improve" id="radioimprove3" value="3">Persiskan Foto
+								</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="form-group">
+							<textarea name="text_improve" id="textimprove" class="text-area-dark" rows="5" placeholder="Jelaskan model pakaian/jilbab/dll yang ingin di-improve diluar tampilan foto yang anda berikan"></textarea>
+						</div>
+					</div> 
+				</div> 
+				<?php } ?>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="keterangan">Keterangan Tambahan</label>
+							<textarea name="keterangan" class="text-area-dark" rows="3" placeholder="Jelaskan hal-hal yang ingin anda sampaikan diluar format yang belum kita cantumkan"></textarea>
+						</div>
+					</div>
+				</div> 
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="foto"><i class="text-danger">*</i>Upload Foto</label>
+							<!-- image-preview-filename input [CUT FROM HERE]-->
+	                        <input type="file" name="file_foto[]" id="fileFoto" class="form-control" accept="image/png, image/jpeg" multiple /> <!-- rename it -->
+						</div>
+	                    <!-- image preview -->
+						<!-- <output id="image-list"></output> -->
+						<small class="help-block text-left">Usahakan foto HD, tidak blur, tidak low-light/overlight </small>
+					</div>
+				</div>
+				
+				<div class="clearfix"> </div>
+				<hr>
+				<div id="formPenerima" style="display: none;">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="nama_penerima">Nama Penerima</label>
+							<input name="nama_penerima" class="text-box-dark" placeholder="Nama Penerima" type="text" required="true" disabled="">
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label for="no_hp_penerima">No. HP Penerima</label>
+							<input name="no_hp_penerima" class="text-box-dark" placeholder="Nomor HP Penerima" type="number" required="true" disabled="">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label for="alamat_penerima">Alamat Penerima</label>
+							<textarea name="alamat_penerima" class="text-area-dark" rows="3" placeholder="Alamat Penerima" disabled=""></textarea>
+						</div>
+					</div>
+
+
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="label-control"> Opsi Pengiriman</label>
+							<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
+						    	<option value="1">Ambil di lokasi</option>
+						    	<option value="2">Kirim area Malang</option>
+						    	<option value="3">Via JNE</option>
+					    	</select>
+						</div>
+					</div>
+					<div class="col-sm-4 paket-jne">
+						<div class="form-group">
+							<label class="label-control"> Paket Kurir</label>
+							<select class="form-control input-sm" name="pilihan_paket" id="pilihan_paket" disabled="true">
+						    	<option value="reg">Reguler</option>
+						    	<option value="yes">YES (Yakin Esok Sampai)</option>
+					    	</select>
+					    	<small class="text-danger" id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
+						</div>
+					</div>
+					<div class="col-sm-4 paket-jne">
+						<div class="form-group">
+							<label for="provinsi" class="label-control">Provinsi</label>
+							<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
+							<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
+								<option value="" selected="" disabled="">Pilih Provinsi</option>
+								<?php get_province();?>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 paket-jne">
+						<div class="form-group">
+							<label for="kota" class="label-control">Kota</label>
+							<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
+							<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
+								<option value="" selected="" disabled="">Pilih Kota</option>
+							</select>
+						</div>
+					</div>
+				</div> 
+				</div>
+				
+				<ul class="payment-sendbtns">
+					<li><a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Batalkan Pesanan</a></li>
+					<!-- <li><button type="submit" id="submitFormatOrder" class="btn btn-info"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li> -->
+					<li><button type="button" id="submitFormatOrder" class="btn btn-info" data-toggle="modal" data-target="#modalTerms"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
+				</ul>
+				<div class="clearfix"> </div>
+			</form>
 		</div>
+				
 	</div> <!-- /isiFormPemesan -->
 
 	</div> <!-- /Tab Content -->
+	</div> <!-- /col-sm-6 -->
+	<div class="col-sm-6">
+		<div class="sap_tabs">
+			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+				<ul class="resp-tabs-list">
+					<li class="resp-tab-item hidden" aria-controls="tab_item-0"><span>Pesanan</span></li>
+					<!-- <li class="resp-tab-item" aria-controls="tab_item-1"><span>Pesanan</span></li>  -->
+				</ul>	 
+				<div class="clearfix"> </div>	
+				<div class="resp-tabs-container">
+					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+						<div class="agileits-login">
+							<form name="setUpgradeMedia" id="setUpgradeMedia" action="<?php echo base_url();?>home/set_upgrade_media" method="post">
+							<div class="section-header">
+								<span class="section-title" style="margin-top: 0px; margin-bottom: 10px;"><b>Summary</b></span>
+							</div>
+								<table id="tableScope" class="table">
+									<tbody>
+									<?php $sum_paket = isset($_SESSION['pesanan']['kode_paket']) ? ${$_SESSION['pesanan']['kode_paket']} : "" ?>
+									<?php if (isset($sum_paket->kode_paket)) { ?>
+										<tr id="paketPesanan">
+											<td colspan="3" style="vertical-align: middle;">
+												<div>
+												<img src="<?=URL_IMG.$sum_paket->kode_paket?>.jpg" width="85">
+												<h2 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h2>
+												</div>
+											</td>
+										</tr>
+										<tr id="descPesanan">
+											<td>
+												<b>Hard improve illustration</b>
+												<ul class="check-summary">
+													<li class="check">Ilustrasi 1 Kepala</li>
+													<li class="check">Warna <?=$sum_paket->color?></li>
+													<?php if($sum_paket->softfile) { ?>
+													<li class="check">High Quality Softfile</li>
+													<?php } ?>
+													<?php if($sum_paket->background) { ?>
+													<li class="check">Background Design</li>
+													<?php } ?>
+												</ul>
+											</td>
+											<td>&nbsp;</td>
+											<?php $medium = ($_SESSION['pesanan']['check_medium']) ? $sum_paket->medium : 0?>
+											<?php $delivery = ($_SESSION['pesanan']['delivery'] == 'b') ? $sum_paket->delivery_harga : 0?>
+											<?php $delivery_hari = ($_SESSION['pesanan']['delivery'] == 'b') ? $sum_paket->delivery_b : $sum_paket->delivery_a?>
+											<?php $harga_paket = $sum_paket->harga + $medium + $delivery;?>
+											<?php $hari_paket = $delivery_hari;?>
+											<td><h4 class="text-right">
+												Rp <?=number_format($harga_paket, 0, ',', '.')?>
+												</h4>
+												<input type="number" name="harga_paket" value="<?=$harga_paket?>" title="harga paket" style="display:none;">
+												<input type="number" name="hari_paket" value="<?=$hari_paket?>" title="hari paket" style="display:none;">
+											</td>
+										</tr>
+									<?php } else { ?>
+										<h3 class="text-center">Anda belum memilih paket</h3>
+									<?php } ?>
+									</tbody>
+								</table>
+								<table id="tableUpgrade" class="table">
+								<caption>Upgrade</caption>
+									<tbody>
+										<tr class="text-center">
+											<th class="text-center" style="width:50%;">Nama Item</th>
+											<th class="text-center" style="width:20%;">Jumlah</th>
+											<th class="text-center" style="width:30%;">Harga</th>
+										</tr>
+										<tr id="noItemUpgrade" class="media-item text-center">
+											<td colspan="4">Belum ada item yang dipilih</td>
+										</tr>
+									</tbody>
+								</table>
+
+								<table id="tableMedia" class="table">
+								<caption>Media Cetak</caption>
+									<tbody>
+										<tr id="header">
+											<th class="text-center" style="width:40%; vertical-align: middle;">Nama Item</th>
+											<th class="text-center" style="width:10%; vertical-align: middle;">Jumlah</th>
+											<th class="text-center" style="width:20%; vertical-align: middle;">Warna Primer/Sekunder</th>
+											<th class="text-center" style="width:30%; vertical-align: middle;">Harga</th>
+										</tr>
+										<tr id="noItemMedia" class="media-item text-center">
+											<td colspan="4">Belum ada item yang dipilih</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+								
+							<div class="row">
+								<form id="formOngkir" action="<?php echo base_url();?>home/get_cost" method="post">
+									<!-- asal paket kurir di baris ini -->
+									<div id="infoTotal" class="col-sm-12">
+										<div class="row">
+											<div class="col-xs-6">Subtotal:</div>
+											<div class="col-xs-6 text-right"><h4>Rp <span id="hargaSubTotal" class="money">0</span> </h4>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6">Ongkos Kirim:</div>
+											<div class="col-xs-6 text-right"><h4>Rp <span  id="hargaOngkir" class="money">0</span> </h4>
+											</div>
+										</div>
+										<div class="row">	
+											<div class="col-xs-6">Biaya Shipping:</div>
+											<div class="col-xs-6 text-right"><h4>Rp <span id="hargaShipping" class="money">0</span> </h4>
+											</div>
+										</div>
+
+										<hr style="display:block; height:1px; border:0; margin: 1em 0; padding: 0; border-top: 1px solid #bb3756;">
+										
+										<div class="row">
+											<div class="col-xs-6"><b>Harga Total:</b></div>
+											<div class="col-xs-6 text-right"><h4>Rp <span id="hargaTotal" class="money">0</span> </h4>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6"><b>Waktu Pengerjaan:</b></div>
+											<div class="col-xs-6 text-right"><h4> <span id="hariTotal">0</span> hari </h4>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-6"><b>Estimated Delivery Time</b></div>
+											<div class="col-xs-6 text-right"><h4> <span id="etd">0</span> hari </h4>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-12 text-center">
+										<img src="<?php echo URL_IMG.'loading.svg'?>" class="ajaxLoading" title="Loading..." alt="Loading..." style="display:none; height:30px; width:30px;"> 
+										<div class="form-inline">
+											<input type="number" name="total_media_weight" class="form-control input-sm" value="0" title="total_media_weight" style="display:none;">
+											<input type="number" name="total_shipping" class="form-control input-sm" value="0" title="total harga shipping" style="display:none;">
+											<input type="text" name="total_hari" class="form-control input-sm" value="0" title="total hari" style="display:none;">
+											<input type="text" name="total_ongkir" class="form-control input-sm" value="0" title="total Ongkir" style="display:none;">
+											<input type="text" name="total_subtotal" class="form-control input-sm" value="0" title="total subTotal" style="display:none;">
+											<input type="text" name="total_harga" class="form-control input-sm" value="0" title="total harga" style="display:none;">
+										</div>
+									</div>
+									<!-- <div class="col-xs-4 text-right">
+										<div class="form-group hidden">
+											<button type="submit" class="btn btn-default btn-sm">Cek Ongkir</button>
+										</div> 
+									</div> -->
+								</form>
+							</div>
+						</div> 
+					</div>
+					<!-- <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+						<div class="login-top sign-top">
+							<div class="agileits-login">
+								<form action="#" method="post">
+									<input type="text" name="Username" placeholder="Username" required="">
+									<input type="text" class="email" name="Email" placeholder="Email" required=""/>
+									<input type="password" class="password" name="Password" placeholder="Password" required=""/>	
+									<label class="anim">
+										<input type="checkbox" class="checkbox">
+										<span> I accept the terms of use</span> 
+									</label> 
+									<div class="w3ls-submit"> 
+										<input class="register" type="submit" value="REGISTER">  
+									</div>
+								</form> 
+							</div>  
+						</div>
+					</div> -->
+				</div>	
+			</div>
+			<div class="clearfix"> </div>
+		</div>   
+	
+	</div> <!-- /col-sm-6 -->	
+	</div> <!-- /row -->
+	</div>
 	<!-- //blog --> 
+	
+	<?php include "modal_ketentuan_kondisi.php";?>
 
 	<!-- copy rights start here -->
 	<div class="copyw3-agile" style="margin-top: 100px;">

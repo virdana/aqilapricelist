@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Daftar Warna</h4>
+        <h4 id="warnaModalHeader" class="modal-title">Daftar Warna Universal</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -22,6 +22,7 @@
           <form action="<?php echo base_url()?>f-admin/warna/add_warna" method="post">
             <div class="col-xs-12">
               <div class="form-group">
+                <input type="hidden" id="hiddenIdMedia" name="media_id" class="form-control input-sm" placeholder="id_media">
                 <input type="hidden" id="hiddenIdWarna" name="id_warna" class="form-control input-sm" placeholder="id_warna">
               </div>
             </div> 
@@ -57,55 +58,63 @@
         <div class="tab-content">
           <div id="warna_primer" class="tab-pane fade in active">
             <h5>Warna Primer</h5>
-            <table class="table table-striped table-condensed">
-              <tr>
-                <th>No.</th>
-                <th>Warna</th>
-                <th class="text-center">Hex</th>
-                <th>&nbsp;</th>
-              </tr>
-              <?php $i = 1; foreach ($data_primer as $primer) { ?>
-              <tr>
-                <td><?=$i;?></td>
-                <td><?=$primer->warna;?></td>
-                <td class="text-center">
-                  <span style="height:12px; width:12px; background-color:<?=$primer->hex;?>; display:inline-block; vertical-align:middle;"></span> <?=$primer->hex;?>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a href="#" onClick="editWarna(this);" data-value="<?=$primer->id_warna?>" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna <?=$primer->warna?>"><i class="fa fa-pencil"></i></a>
-                    <a href="<?=base_url()?>f-admin/warna/delete_warna/<?=$primer->id_warna?>" class="btn btn-danger btn-xs" title="Hapus warna <?=$primer->warna?>" onclick="confirmDelete(event);"><i class="fa fa-trash-o "></i></a>
-                  </div>
-                </td>
-              </tr>
-              <?php $i++; } ?>
+            <table id="tableWarnaPrimer" class="table table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Warna</th>
+                  <th class="text-center">Hex</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1; foreach ($data_primer as $primer) { ?>
+                <tr>
+                  <td><?=$i;?></td>
+                  <td><?=$primer->warna;?></td>
+                  <td class="text-center">
+                    <span style="height:12px; width:12px; background-color:<?=$primer->hex;?>; display:inline-block; vertical-align:middle;"></span> <?=$primer->hex;?>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="#" onClick="editWarna(this);" data-value="<?=$primer->id_warna?>" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna <?=$primer->warna?>"><i class="fa fa-pencil"></i></a>
+                      <a href="<?=base_url()?>f-admin/warna/delete_warna/<?=$primer->id_warna?>" class="btn btn-danger btn-xs" title="Hapus warna <?=$primer->warna?>" onclick="confirmDelete(event);"><i class="fa fa-trash-o "></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <?php $i++; } ?>
+              </tbody>
             </table>
           </div>
 
           <div id="warna_sekunder" class="tab-pane fade">
             <h5>Warna Sekunder</h5>
-            <table class="table table-striped table-condensed">
-              <tr>
-                <th>No.</th>
-                <th>Warna</th>
-                <th class="text-center">Hex</th>
-                <th>&nbsp;</th>
-              </tr>
-              <?php $i = 1; foreach ($data_sekunder as $sekunder) { ?>
-              <tr>
-                <td><?=$i;?></td>
-                <td><?=$sekunder->warna;?></td>
-                <td class="text-center">
-                  <span style="height:12px; width:12px; background-color:<?=$sekunder->hex;?>; display:inline-block; vertical-align:middle;"></span> <?=$sekunder->hex;?>
-                </td>
-                <td>
-                  <div class="btn-group">
-                    <a href="#" onClick="editWarna(this);" data-value="<?=$sekunder->id_warna?>" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna <?=$sekunder->warna?>"><i class="fa fa-pencil"></i></a>
-                    <a href="<?=base_url()?>f-admin/warna/delete_warna/<?=$sekunder->id_warna?>" class="btn btn-danger btn-xs" title="Hapus warna <?=$sekunder->warna?>" onclick="confirmDelete(event);"><i class="fa fa-trash-o "></i></a>
-                  </div>
-                </td>
-              </tr>
-              <?php $i++; } ?>
+            <table id="tableWarnaSekunder" class="table table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Warna</th>
+                  <th class="text-center">Hex</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $i = 1; foreach ($data_sekunder as $sekunder) { ?>
+                <tr>
+                  <td><?=$i;?></td>
+                  <td><?=$sekunder->warna;?></td>
+                  <td class="text-center">
+                    <span style="height:12px; width:12px; background-color:<?=$sekunder->hex;?>; display:inline-block; vertical-align:middle;"></span> <?=$sekunder->hex;?>
+                  </td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="#" onClick="editWarna(this);" data-value="<?=$sekunder->id_warna?>" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna <?=$sekunder->warna?>"><i class="fa fa-pencil"></i></a>
+                      <a href="<?=base_url()?>f-admin/warna/delete_warna/<?=$sekunder->id_warna?>" class="btn btn-danger btn-xs" title="Hapus warna <?=$sekunder->warna?>" onclick="confirmDelete(event);"><i class="fa fa-trash-o "></i></a>
+                    </div>
+                  </td>
+                </tr>
+                <?php $i++; } ?>
+              </tbody>
             </table>
           </div>
           
@@ -117,6 +126,70 @@
 </div> 
 
 <script type="text/javascript">
+  function loadWarna(id_media='', nama_media='') {
+    $('#hiddenIdMedia').val(id_media);
+
+    if(id_media == '') {
+      id_media = 0;
+      $('#warnaModalHeader').html('Daftar Warna Universal'); 
+    }
+    else {
+      $('#warnaModalHeader').html('Daftar Warna ' + nama_media); 
+    }
+
+    $.when(getWarnaByMedia(id_media)).done(function(response, status) {
+      var data = response; 
+      var primer = data.primer;
+      var sekunder = data.sekunder;
+      var htmlPrimer = '<tr><td colspan="3" class="text-center">Tidak ada data</td></tr>'; 
+      var htmlSekunder = '<tr><td colspan="3" class="text-center">Tidak ada data</td></tr>'; 
+
+      // load data warna into tabel warna primer
+      if(primer.length > 0) {
+        htmlPrimer = '';
+        $.each(primer, function(i) {
+          htmlPrimer += '<tr>'
+            + '<td>'+ (i+1) +'</td>'
+            + '<td>'+ primer[i].warna +'</td>'
+            + '<td class="text-center">'
+              + '<span style="height:12px; width:12px; background-color:'+ primer[i].hex +'; display:inline-block; vertical-align:middle;"></span>' +primer[i].hex
+            + '</td>'
+            + '<td>'
+              + '<div class="btn-group">'
+                + '<a href="#" onClick="editWarna(this);" data-value="'+ primer[i].id_warna +'" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna '+ primer[i].warna +'"><i class="fa fa-pencil"></i></a>'
+                + '<a href="<?=base_url()?>f-admin/warna/delete_warna/'+ primer[i].id_warna +'" class="btn btn-danger btn-xs" title="Hapus warna '+ primer[i].warna +'" onclick="confirmDelete(event);"><i class="fa fa-trash-o"></i></a>'
+              + '</div>'
+            + '</td>'
+          + '</tr>';
+        });
+      }
+
+      // load data warna into tabel warna sekunder
+      if(sekunder.length > 0) {
+        htmlSekunder = '';
+        $.each(sekunder, function(i) {
+          htmlSekunder += '<tr>'
+            + '<td>'+ (i+1) +'</td>'
+            + '<td>'+ sekunder[i].warna +'</td>'
+            + '<td class="text-center">'
+              + '<span style="height:12px; width:12px; background-color:'+ sekunder[i].hex +'; display:inline-block; vertical-align:middle;"></span>' +sekunder[i].hex
+            + '</td>'
+            + '<td>'
+              + '<div class="btn-group">'
+                + '<a href="#" onClick="editWarna(this);" data-value="'+ sekunder[i].id_warna +'" class="btn btn-primary btn-xs edit-warna-btn" title="Ubah warna '+ sekunder[i].warna +'"><i class="fa fa-pencil"></i></a>'
+                + '<a href="<?=base_url()?>f-admin/warna/delete_warna/'+ sekunder[i].id_warna +'" class="btn btn-danger btn-xs" title="Hapus warna '+ sekunder[i].warna +'" onclick="confirmDelete(event);"><i class="fa fa-trash-o"></i></a>'
+              + '</div>'
+            + '</td>'
+          + '</tr>';
+        });
+      }
+
+      $('#tableWarnaPrimer tbody').html(htmlPrimer);
+      $('#tableWarnaSekunder tbody').html(htmlSekunder);
+      $('#warnaModal').modal('show');
+    });
+  }
+
   //AJAX script to add/update data warna
    function addWarna(){
     //set form action (add/update) in modal based on button pressed
@@ -139,10 +212,9 @@
         $('#formWarna form').prop('action', "<?php echo base_url()?>f-admin/warna/update_warna");
         $('#formWarna').find('#hiddenIdWarna').val(id);
 
-
         $('#formWarna form').hide();
         $('.ajaxLoading').show();
-        $.when(loadDataWarna(id)).done(function(response, status) {
+        $.when(getWarnaById(id)).done(function(response, status) {
             var data = JSON.parse(response);
             $("input[name='warna']").val(data.warna);
             $("input[name='hex']").val(data.hex);
@@ -160,9 +232,9 @@
            $("#formWarna").collapse("show");
         }
     };
-  function loadDataWarna(id) {
+  function getWarnaById(id='0') {
     return $.ajax({
-        url: "<?php echo base_url().'f-admin/warna/get_warna'?>",
+        url: "<?php echo base_url().'f-admin/warna/get_warna_by_id'?>",
         type: "POST",
         data: { id: id },
         cache: false,
@@ -173,6 +245,24 @@
         error: function(response) {
             var data = JSON.parse(response);
             return data;
+        }
+    });
+  } 
+  function getWarnaByMedia(id_media='0') {
+    // jika id_media == 0 maka yang di-load adalah warna universal
+    return $.ajax({
+        url: "<?php echo base_url().'f-admin/warna/get_warna_by_media'?>",
+        type: "POST",
+        dataType: "json",
+        data: { id_media: id_media },
+        cache: false,
+        success: function(response) {
+            // var data = JSON.parse(response);
+            return response;
+        },
+        error: function(response) {
+            // var data = JSON.parse(response);
+            return response;
         }
     });
   } 

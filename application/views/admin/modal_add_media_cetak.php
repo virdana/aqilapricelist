@@ -20,7 +20,7 @@
             <input type="text" name="nama_media" class="form-control input-sm" placeholder="Nama Media Cetak" required="">
           </div>
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label class="control-label">Hari</label>
                 <select name="hari" class="form-control input-sm">
@@ -30,7 +30,7 @@
                 </select>
               </div>
             </div>  
-            <div class="col-sm-4">
+            <div class="col-sm-6">
               <div class="form-group">
                 <label class="control-label">Harga</label>
                 <div class="input-group">
@@ -39,19 +39,37 @@
                 </div>
               </div>  
             </div>
-            <div class="col-sm-4">
+          </div>  
+          <hr>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Tipe Warna Media</label>
+              <div class="radio">
+                <label title="Gunakan warna universal">
+                  <input type="radio" name="tipe_warna" id="tipe_warna_0" value="0">Warna Universal
+                </label>
+              </div>
+              <div class="radio">
+                <label title="Gunakan warna khusus media">
+                  <input type="radio" name="tipe_warna" id="tipe_warna_1" value="1">Warna Khusus Media
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <label>Tampilkan Pilihan Warna</label>
               <div class="checkbox">
-                <label>
+                <label title="Tampilkan pilihan warna primer">
                   <input type="checkbox" name="show_warna_primer" value="1">Warna Primer
                 </label>
               </div>
               <div class="checkbox">
-                <label>
+                <label title="Tampilkan pilihan warna sekunder">
                   <input type="checkbox" name="show_warna_sekunder" value="1">Warna Sekunder
                 </label>
               </div>
             </div>
-          </div>  
+          </div>
+          <hr>
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">

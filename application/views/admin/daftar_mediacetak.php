@@ -30,7 +30,7 @@
                     <div class="col-sm-12">
                       <!-- <a href="<?php echo base_url()?>f-admin/mediacetak/tambah" class="btn btn-success pull-right" title="Tambah Data" style="margin-right: 10px;"><i class="fa fa-plus"></i></a> -->
                       <a href="" data-toggle="modal" data-target="#mediaCetakModal" data-value="0" class="btn btn-theme02 pull-right" title="Tambah Data" style="margin-right: 10px;"><i class="fa fa-plus"></i> Tambah</a>
-                      <a href="" data-toggle="modal" data-target="#warnaModal" class="btn btn-theme03 pull-right" title="Daftar Warna" style="margin-right: 10px;"><i class="fa fa-paint-brush"></i> Warna</a>
+                      <a href="javascript:void(0);" onclick="loadWarna();" class="btn btn-theme03 pull-right" title="Daftar Warna Universal" style="margin-right: 10px;"><i class="fa fa-paint-brush"></i> Warna</a>
                       <h4><i class="fa fa-angle-right"></i> Daftar Media Cetak</h4>
                     </div>
                   </div>
@@ -92,6 +92,7 @@
   <!--script for datatable Media-->
   <script type="text/javascript">
     //Initialize datatables
+    var firstLoad = true;
     var table = $("#TableMain").DataTable({
       "columnDefs": [ {
               "searchable": false,
@@ -128,6 +129,7 @@
               '<span class="text-center" style="display:block;">'+showWarnaPrimer+'</span>',
               '<span class="text-center" style="display:block;">'+showWarnaSekunder+'</span>',
               '<td class="text-center"><div class="btn-group" >'+
+                  '<a href="javascript:void(0)" id="warnaBtn'+i+'" class="btn btn-theme03 btn-xs" data-toggle="modal" onclick="loadWarna('+json[i].id_media+',\''+ json[i].nama_media +'\');" title="Warna '+json[i].nama_media+'" ><i class="fa fa-paint-brush"></i></a>'+
                   '<a href="javascript:void(0)" id="updateBtn'+i+'" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#mediaCetakModal" data-value="'+json[i].id_media+'" title="Ubah '+json[i].nama_media+'" ><i class="fa fa-pencil"></i></a>'+
                   '<a href="<?php echo base_url();?>f-admin/mediacetak/delete_media/'+json[i].id_media+'" class="btn btn-danger btn-xs" title="Hapus '+json[i].nama_media+'" onclick="confirmDelete(event);"><i class="fa fa-trash-o "></i></a>'+
                  '</div>'+
@@ -180,6 +182,11 @@
               $("select[name='hari']").val(data.hari);
             } else {
               $("select[name='hari']").val('1');
+            }
+            if(data.tipe_warna > 0) {
+              $("input[id='tipe_warna_1']").prop('checked', true);
+            } else {
+              $("input[id='tipe_warna_0']").prop('checked', true);
             }
             if(data.show_warna_primer > 0) {
               $("input[name='show_warna_primer']").prop('checked', true);
