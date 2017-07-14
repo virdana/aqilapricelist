@@ -170,11 +170,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		.contact-grid.agileits {
 			border-radius:15px;
+			margin-bottom: 15px;
 		}
 		.agileits-login {
 			border-radius:15px;
 			padding-bottom: 40px;
 			color: #ffefef;
+		}
+		#isiFormPemesan {
+			margin-bottom: 15px;
 		}
 		#formPemesan .form-group {
 			margin-bottom: 5px;
@@ -289,7 +293,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- blog -->
 	<div class="container-fluid">
 	<div class="row">
-	<div class="col-sm-6">
+	<div id="colStartOrderTabs" class="col-sm-6">
 	<div id="startOrderTabs" class="tab-content">
 
 	<div id="pilihPaket" class="tab-pane fade in active">
@@ -497,10 +501,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</tr>
 						<?php } ?>
 					</table>
-					<span class="btn-group pull-right">
-						<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
-						<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
-					</span>
+					<div class="row">
+						<div class="col-sm-12">
+							<div id="upgradeNavBtn" class="btn-group pull-right">
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -573,10 +581,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</tr>
 						<?php } ?>
 					</table>
-					<span class="btn-group pull-right">
-						<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-						<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
-					</span>
+					<div class="row">
+						<div class="col-sm-12">
+							<div id="mediaNavBtn" class="btn-group pull-right">
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -805,7 +817,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	</div> <!-- /Tab Content -->
 	</div> <!-- /col-sm-6 -->
-	<div class="col-sm-6">
+	<div id="colSummarySection" class="col-sm-6">
 		<div class="sap_tabs">
 			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 				<ul class="resp-tabs-list">
@@ -932,7 +944,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-12 text-center">
+									<div class="col-sm-12 text-center" style="margin-bottom: 15px;">
 										<img src="<?php echo URL_IMG.'loading.svg'?>" class="ajaxLoading" title="Loading..." alt="Loading..." style="display:none; height:30px; width:30px;"> 
 										<div class="form-inline">
 											<input type="number" name="total_media_weight" class="form-control input-sm" value="0" title="total_media_weight" style="display:none;">
@@ -949,6 +961,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										</div> 
 									</div> -->
 								</form>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 text-center">
+									<div id="summaryNavBtn" class="btn-group">
+										<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
+										<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+									</div>
+								</div>
 							</div>
 						</div> 
 					</div>
@@ -1113,27 +1133,63 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     		$("#startOrder ul li.active").next().find("a").click(); 
     		$('#togglestartOrder').click();
     		
-    		var tabFormPemesan = $("#startOrder ul li:nth-child(4)").find("a"); 
-    		tabFormPemesan.on('shown.bs.tab', function() {
+    		$('#colStartOrderTabs').attr('class', 'col-sm-6');
+    		$('#colSummarySection').fadeIn();
+
+    		//disable Pilih Paket Tab (First tab)
+    		$("#startOrder ul li:first-child").addClass('disabled').find('a').attr('disabled', 'true').removeAttr('data-toggle');
+    		
+    		var tabFormPemesan = $("#startOrder ul li"); 
+    		var linkFormPemesan = $("#startOrder ul li").find("a"); 
+			var html = $('#summaryNavBtn').html();
+    		linkFormPemesan.on('shown.bs.tab', function() {
+    			var htmlKonfirmasi = ''
+    				+ '<p style="font-size:16px; color:white; margin-bottom:10px;">Apakah anda setuju dengan harga di atas?</p>'
+    				+'<a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default" title="Batalkan Pesanan"><i class="fa fa-remove"></i> Tidak, batalkan pesanan</a>'
+					+'<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pesanan"><i class="fa fa-check"></i> Ya, Isi form pesanan</a>';
+
+    			var nextTab = $(this).parent('li').next().find('a') || 'end';
+    			if(nextTab.attr('href') == '#isiFormPemesan') {
+    				$('#upgradeNavBtn').hide();
+    				$('#mediaNavBtn').hide();
+    				$('#summaryNavBtn').hide().html(htmlKonfirmasi).fadeIn();
+    			}
+    			else if(nextTab.length == 0) { //End of tab (Tab Form Pesanan)
+    				for(i=0; i<(tabFormPemesan.length-1); i++) {
+    					// console.log(tabFormPemesan[i]);
+    					$(tabFormPemesan[i]).addClass('disabled');
+    					$(tabFormPemesan[i]).find('a').attr('disabled', 'true').removeAttr('data-toggle');
+    				}
+    				$('#upgradeNavBtn').hide();
+    				$('#mediaNavBtn').hide();
+    				$('#summaryNavBtn').fadeOut();
+    			}
+				else {
+    				$('#upgradeNavBtn').show();
+    				$('#mediaNavBtn').show();
+    				$('#summaryNavBtn').hide().html(html).fadeIn();
+    			}
+    			// console.log($(linkFormPemesan[i]).attr('href'));
     			calculateSubTotal();
     			calculateTotalHari();
     			calculateHargaTotal();
-    			// if($("#formPenerima").is(":hidden")) { console.log("FORM PENERIMA IS HIDDEN"); }
     		});
     	});	
 		</script>
     <?php } else { ?>
     	<script type="text/javascript">
-    	var tabList = $("#startOrder ul").find("li:not(.active)");
-    	console.log(tabList);
-    	tabList.each(function(index, value) {
-    		var text = $(value).find('a').html();
-    		$(value).addClass("disabled");
-    		$(value).html("<a href='javascript:void(0)'>"+text+"</a>");
-    		// $value.append("<span>"+text+"</span>");
-    		// $(value).find("a").attr('href', 'Javacript:void(0)').removeData('toggle');
-    		// $(value).find("a").removeAttr('data-toggle');
-    	});
+			$('#colStartOrderTabs').attr('class', 'col-sm-12');
+			$('#colSummarySection').hide();
+
+	    	var tabList = $("#startOrder ul").find("li:not(.active)");
+	    	tabList.each(function(index, value) {
+	    		var text = $(value).find('a').html();
+	    		$(value).addClass("disabled");
+	    		$(value).html("<a href='javascript:void(0)'>"+text+"</a>");
+	    		// $value.append("<span>"+text+"</span>");
+	    		// $(value).find("a").attr('href', 'Javacript:void(0)').removeData('toggle');
+	    		// $(value).find("a").removeAttr('data-toggle');
+	    	});
     	</script>
     <?php } ?>
 
@@ -1572,15 +1628,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		};
 		function calculateTotalHari() {
 			var totalHari = 0;
+			var hariMediaArray = [0];
 			totalHari += parseFloat($("input[name='hari_paket']").val()) || 0;
+
 			$("#tableUpgrade tbody input[name*='upgrade-hari-']").each(function() {
 				totalHari += parseFloat($(this).val());
 				// console.log($(this).val());
 			});
 			$("#tableMedia tbody input[name*='media-hari-']").each(function() {
-				totalHari += parseFloat($(this).val());
+				hariMediaArray.push(parseFloat($(this).val()));
+				// totalHari += parseFloat($(this).val());
 				// console.log($(this).val());
 			});
+			
+			//find max value from media hari
+			hariMediaMax = Math.max.apply(null, hariMediaArray);
+			totalHari += hariMediaMax;
+
 			console.log("hariTotal " + totalHari);
 			$("input[name='total_hari']").val(totalHari);
 			$("#hariTotal").html(totalHari);
