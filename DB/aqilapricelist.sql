@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 04, 2017 at 01:06 PM
+-- Generation Time: Jul 14, 2017 at 02:59 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -77,6 +77,25 @@ INSERT INTO `det_upgrade` (`id_detail`, `upgrade_id`, `paket_id`, `versi`, `nama
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `email`
+--
+
+CREATE TABLE IF NOT EXISTS `email` (
+`id_email` int(11) NOT NULL,
+  `keperluan` varchar(100) NOT NULL,
+  `isi` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `email`
+--
+
+INSERT INTO `email` (`id_email`, `keperluan`, `isi`) VALUES
+(1, 'konfirmasi order', '<p><strong>Terima kasih sudah memilih Fentroart sebagai jasa ilustrasi digital anda.</strong></p><p>Pesanan anda akan diproses setelah anda melakukan konfirmasi pembayaran ke nomor rekening berikut:</p><p style="text-align:center"><strong>BNI -&nbsp;0348358857 / BCA - 1230529121</strong></p><p style="text-align: center;">&nbsp;</p><p style="text-align: center;">Mohon kirimkan resi transfer anda ke:&nbsp;</p><p style="text-align:center"><strong>WHATSAPP: 081586600737</strong></p><p style="text-align:center">atau</p><p style="text-align:center"><strong>LINE: @FENTROART (use @)</strong></p><p style="text-align:center"><strong>Terima Kasih :)&nbsp;</strong></p><p style="text-align:center">&nbsp;</p><p><strong>Salam -Fentroart-</strong></p>');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `media_cetak`
 --
 
@@ -90,6 +109,7 @@ CREATE TABLE IF NOT EXISTS `media_cetak` (
   `length` int(11) NOT NULL,
   `height` int(11) NOT NULL,
   `width` int(11) NOT NULL,
+  `tipe_warna` int(11) NOT NULL COMMENT '0 = Warna Universal, 1 = Berdasarkan id_media',
   `show_warna_primer` tinyint(1) NOT NULL,
   `show_warna_sekunder` tinyint(1) NOT NULL,
   `show_shipping` tinyint(1) NOT NULL COMMENT '0 = tidak kena shipping, 1 = kena shipping',
@@ -102,22 +122,22 @@ CREATE TABLE IF NOT EXISTS `media_cetak` (
 -- Dumping data for table `media_cetak`
 --
 
-INSERT INTO `media_cetak` (`id_media`, `nama_media`, `hari`, `harga`, `deskripsi_media`, `weight`, `length`, `height`, `width`, `show_warna_primer`, `show_warna_sekunder`, `show_shipping`, `harga_shipping`, `berat_shipping`, `date_add`) VALUES
-(1, 'Pigura A4 (20x30cm)', 1, 55000, '', 500, 0, 0, 0, 1, 0, 1, 5000, 720, '2017-04-02 15:07:07'),
-(2, 'Pigura A3 (30x45cm)', 1, 75000, '', 600, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(3, 'Pigura A2 (40x60cm)', 1, 135000, '', 700, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(4, 'Pigura A1 (60x80cm)', 1, 200000, '', 800, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(5, 'Uniquebox A', 2, 55000, '', 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(6, 'Uniquebox B', 2, 75000, '', 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(7, 'Uniquebox Large', 2, 125000, '', 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(8, 'Tumbler A', 1, 35000, '', 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(9, 'Tumbler B', 1, 30000, '', 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(10, 'Notebook A5', 1, 55000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(11, 'Notebook B5', 1, 65000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(12, 'Puzzle', 2, 55000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(13, 'Puzzle+Box', 2, 70000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
-(14, 'Bantal', 3, 75000, '', 0, 0, 0, 0, 1, 1, 0, 0, 0, '2017-04-02 15:07:07'),
-(15, 'Mug Only', 2, 35000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07');
+INSERT INTO `media_cetak` (`id_media`, `nama_media`, `hari`, `harga`, `deskripsi_media`, `weight`, `length`, `height`, `width`, `tipe_warna`, `show_warna_primer`, `show_warna_sekunder`, `show_shipping`, `harga_shipping`, `berat_shipping`, `date_add`) VALUES
+(1, 'Pigura A4 (20x30cm)', 1, 55000, '', 500, 0, 0, 0, 1, 1, 1, 1, 5000, 720, '2017-04-02 15:07:07'),
+(2, 'Pigura A3 (30x45cm)', 1, 75000, '', 600, 0, 0, 0, 1, 1, 1, 0, 0, 0, '2017-04-02 15:07:07'),
+(3, 'Pigura A2 (40x60cm)', 1, 135000, '', 700, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(4, 'Pigura A1 (60x80cm)', 1, 200000, '', 800, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(5, 'Uniquebox A', 2, 55000, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(6, 'Uniquebox B', 2, 75000, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(7, 'Uniquebox Large', 2, 125000, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(8, 'Tumbler A', 1, 35000, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(9, 'Tumbler B', 1, 30000, '', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(10, 'Notebook A5', 1, 55000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(11, 'Notebook B5', 1, 65000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(12, 'Puzzle', 2, 55000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(13, 'Puzzle+Box', 2, 70000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07'),
+(14, 'Bantal', 3, 75000, '', 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, '2017-04-02 15:07:07'),
+(15, 'Mug Only', 2, 35000, '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2017-04-02 15:07:07');
 
 -- --------------------------------------------------------
 
@@ -189,7 +209,7 @@ INSERT INTO `paket_ilustrasi` (`id_paket`, `nama_paket`, `kode_paket`, `deskrips
 (1, 'Basic', 'basic', 'Kepala hingga pundak, warna mono, bisa tambah tulisan. No improve on look (sesuai foto). Res. 3500x5000px jpeg file.\r\nNb: Tidak semua wajah dapat mirip menggunakan tipe ini. Karena beberapa wajah ada yang karakternya pada shadingnya', 30000, ''),
 (2, 'Standard', 'standard', 'Kepala hingga pundak, warna simpel, bisa tambah tulisan. Simple improve on look (ask cp first for custom request), 1x Revisi minor (tidak diluar briefing order) res. 3500x5000px jpeg file/30x45cm size.', 55000, ''),
 (3, 'Premium', 'premium', 'Kepala hingga pundak, warna detail, bisa tambah tulisan. Hard improve on look (ask cp first for custom request), 1x Revisi minor (tidak diluar briefing order) res. 3500x5000px jpeg file/30x45cm size.', 100000, ''),
-(4, 'Design Only', 'design', '', 0, '');
+(4, 'Design Only', 'design', 'Tidak terdapat ilustrasi wajah.\r\n\r\nOpsi ready design on instagram <a href="http://www.instagram.com/fentro.design" target="_blank">fentro.design</a>', 26000, '');
 
 -- --------------------------------------------------------
 
@@ -203,7 +223,29 @@ CREATE TABLE IF NOT EXISTS `pemesan` (
   `email` varchar(100) NOT NULL,
   `no_hp` varchar(50) NOT NULL,
   `no_line` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pemesan`
+--
+
+INSERT INTO `pemesan` (`id_pemesan`, `nama_pemesan`, `email`, `no_hp`, `no_line`) VALUES
+(1, 'Dimas', 'virdana11@gmail.com', '0812478127 / 0124715', 'virdana10'),
+(2, 'alksfjas flakjflka', 'alsd@jfhasfkjh', '0918481', 'kjashd aksd'),
+(3, 'asfmasfkj', 'kjashfkja@kjasfhkj', '0982947', 'kjhsdkjash'),
+(4, 'dsafaf', 'kjdh@kajhgakj', '09283591', 'kjshfas fakjsf'),
+(5, 'Dimas', 'virdana11@gmail.com', '0999 / 08741847', 'asdjash'),
+(6, 'Dimas Virdana', 'virdana10@gmail.com', '09715715 / 019248718', 'Virdana10'),
+(7, 'Anadriv', 'as5lang.s@gmail.com', '09185156', 'anadriv11'),
+(8, 'Dimasf', 'virdana11@gmail.com', '935891085190', 'kajsfh12489'),
+(9, 'alksdasd', 'askjd@kjhfaf', '101029', 'akjshakjsfh'),
+(10, 'anjaay', 'as5lang.s@gmail.com', '214714', 'kjashajkfh'),
+(11, '', '', '', ''),
+(12, 'aaa', 'aaa@ssss.aaa', '901841904', 'asdasdkasd'),
+(13, 'Amadas', 'asdasd@kasjfa.man', 'asdads', 'asd'),
+(14, 'kjahdskjah', 'kajsdh@ksjahfakjfh', 'ksjafhajfkh', 'askjfhakfjh'),
+(15, 'kajhfajf', 'asfahf@kshfakj.asa', 'sakfhaf', 'akjhsakjfh'),
+(16, 'Dasdasda', 'asd@samfna.com', '09124', 'kasa12');
 
 -- --------------------------------------------------------
 
@@ -220,7 +262,19 @@ CREATE TABLE IF NOT EXISTS `penerima` (
   `id_kota` int(11) NOT NULL COMMENT 'id_kota dari API Rajaongkir',
   `nama_kota` varchar(100) NOT NULL,
   `no_hp` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `penerima`
+--
+
+INSERT INTO `penerima` (`id_penerima`, `nama_penerima`, `alamat`, `id_provinsi`, `nama_provinsi`, `id_kota`, `nama_kota`, `no_hp`) VALUES
+(1, 'Anadriv', 'Jl. asjfhafjahs fkjasf kjasfjkahsf akjsfh', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '0912481948'),
+(2, 'asjfhajskfh', 'askjfhafkjhas fkajshf akjfsh', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '98171985'),
+(3, 'kjsahfjh', 'aksdhakjshjafh', 11, 'Jawa Timur', 179, 'Kediri (Kota)', '98179185'),
+(4, 'jahsgdasjd', 'asjhgdajhsd ajshdgasdhg', 11, 'Jawa Timur', 256, 'Malang (Kota)', '012871287'),
+(5, 'asdasd', '', 11, 'Jawa Timur', 247, 'Madiun (Kabupaten)', '09289184'),
+(6, 'asdasdasd', 'askfhafjkh', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '08241941');
 
 -- --------------------------------------------------------
 
@@ -232,38 +286,29 @@ CREATE TABLE IF NOT EXISTS `pesanan` (
 `id_pesanan` int(11) NOT NULL,
   `pemesan_id` int(11) NOT NULL,
   `penerima_id` int(11) NOT NULL,
+  `paket_id` int(11) NOT NULL,
   `total_harga` bigint(20) NOT NULL COMMENT 'tanpa ongkir & shipping',
   `total_hari` float NOT NULL,
   `grandtotal` bigint(20) NOT NULL COMMENT 'Total_harga + ongkir + shipping',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '0 = Dipesan; 1 = Dibayar; 2 = Dikirim; 3 = Revisi ; 4 = Selesai',
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan`
 --
 
-INSERT INTO `pesanan` (`id_pesanan`, `pemesan_id`, `penerima_id`, `total_harga`, `total_hari`, `grandtotal`, `status`, `date_add`) VALUES
-(1, 1, 1, 0, 0, 0, 1, '2017-04-01 14:01:27'),
-(2, 2, 2, 0, 0, 0, 2, '2017-04-01 14:05:01'),
-(3, 3, 3, 0, 0, 0, 0, '2017-04-01 14:06:08'),
-(4, 4, 4, 0, 0, 0, 0, '2017-04-01 14:15:23'),
-(5, 5, 5, 0, 0, 0, 0, '2017-04-01 14:19:11'),
-(6, 6, 6, 0, 0, 0, 0, '2017-04-01 14:19:53'),
-(7, 7, 7, 0, 0, 0, 0, '2017-04-01 14:28:13'),
-(8, 8, 8, 0, 0, 0, 0, '2017-04-01 14:42:59'),
-(9, 9, 9, 0, 0, 0, 0, '2017-04-01 14:52:50'),
-(10, 10, 10, 0, 0, 0, 0, '2017-04-01 15:03:16'),
-(11, 11, 11, 0, 0, 0, 0, '2017-04-01 15:03:23'),
-(12, 12, 12, 0, 0, 0, 0, '2017-04-01 15:04:16'),
-(13, 13, 13, 0, 0, 0, 0, '2017-04-01 15:04:56'),
-(14, 14, 14, 0, 0, 0, 0, '2017-04-01 15:05:29'),
-(15, 15, 15, 0, 0, 0, 0, '2017-04-01 15:06:33'),
-(16, 16, 16, 0, 0, 0, 0, '2017-04-01 15:06:48'),
-(17, 17, 0, 0, 0, 0, 0, '2017-04-03 01:57:17'),
-(18, 18, 17, 0, 0, 0, 0, '2017-04-03 03:49:58'),
-(19, 19, 18, 161100, 5, 182100, 3, '2017-04-03 05:41:32'),
-(20, 20, 19, 161100, 5.25, 182100, 1, '2017-04-03 05:44:03');
+INSERT INTO `pesanan` (`id_pesanan`, `pemesan_id`, `penerima_id`, `paket_id`, `total_harga`, `total_hari`, `grandtotal`, `status`, `date_add`) VALUES
+(1, 7, 1, 1, 281000, 6.25, 287000, 0, '2017-04-18 02:49:36'),
+(2, 8, 0, 4, 37000, 0.75, 37000, 0, '2017-04-18 07:34:56'),
+(3, 9, 2, 2, 112000, 6.5, 118000, 0, '2017-05-22 07:20:04'),
+(4, 10, 3, 3, 158000, 8.75, 166000, 0, '2017-05-22 07:27:17'),
+(5, 11, 0, 2, 55000, 5, 55000, 0, '2017-07-10 03:03:26'),
+(6, 12, 4, 2, 112000, 6.5, 122000, 0, '2017-07-10 03:05:40'),
+(7, 13, 5, 1, 162000, 5.5, 175000, 0, '2017-07-10 03:46:35'),
+(8, 14, 0, 3, 100000, 7, 100000, 0, '2017-07-10 04:18:13'),
+(9, 15, 0, 3, 100000, 7, 100000, 0, '2017-07-10 04:19:04'),
+(10, 16, 6, 2, 215500, 6, 221500, 0, '2017-07-10 07:02:21');
 
 -- --------------------------------------------------------
 
@@ -275,6 +320,7 @@ CREATE TABLE IF NOT EXISTS `pesanan_detail` (
 `id_detail_pesanan` int(11) NOT NULL,
   `pesanan_id` int(11) NOT NULL,
   `id_paket` varchar(50) NOT NULL COMMENT 'id_paket dari Rajaongkir API',
+  `medium_body` tinyint(1) NOT NULL,
   `nama_paket` varchar(255) NOT NULL,
   `warna_dominan` varchar(255) NOT NULL,
   `tambahan_tulisan` text NOT NULL,
@@ -286,7 +332,23 @@ CREATE TABLE IF NOT EXISTS `pesanan_detail` (
   `text_improve` text NOT NULL,
   `foto` text NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesanan_detail`
+--
+
+INSERT INTO `pesanan_detail` (`id_detail_pesanan`, `pesanan_id`, `id_paket`, `medium_body`, `nama_paket`, `warna_dominan`, `tambahan_tulisan`, `background_stock`, `background_custom`, `pose`, `text_pose`, `improve`, `text_improve`, `foto`, `keterangan`) VALUES
+(1, 1, 'reg', 1, 'JNE Reguler', 'hitam', 'Hello world', 'legend is here', '', 0, '', 0, '', '["7_image0_D18042017T094936.jpg"]', 'ga ada'),
+(2, 2, 'reg', 1, 'JNE Reguler', 'merah', 'kjahfa jkahf', '', '', 0, '', 0, '', '["8_image0_D18042017T143456.jpg"]', 'kjahakjshakjhf'),
+(3, 3, 'reg', 1, 'JNE Reguler', 'asdhasdka', 'kjhjkahsdajkhd', 'kjhaskjahf', '', 0, '', 0, '', '["9_image0_D22052017T142004.jpg","9_image1_D22052017T142004.jpg"]', '01924814'),
+(4, 4, 'reg', 1, 'JNE Reguler', 'askjhakjfshakj', 'kjahsfkajhsfakjh', 'kjahsfkjahfkj', '', 0, '', 2, 'Penampilan akan kita buat semenarik mungkin sesuai dengan kreasi FENTROART', '["10_image0_D22052017T142717.jpg","10_image1_D22052017T142717.jpg"]', 'asjkdhaskj ahkja hsfkjhaf'),
+(5, 5, 'reg', 1, 'JNE Reguler', '', '', '', '', 0, '', 0, '', '[]', ''),
+(6, 6, 'reg', 1, 'JNE Reguler', 'asdkhasda', 'askfjhafkjh', 'aksjfhakfj', '', 0, '', 0, '', '["12_image0_D10072017T100540.png"]', 'skfjhasfkjahf'),
+(7, 7, 'reg', 1, 'JNE Reguler', 'alsdkjaflkj', 'laskjafjk', '', '', 0, '', 0, '', '["13_image0_D10072017T104635.jpg"]', 'ksjhdfjahf'),
+(8, 8, 'reg', 1, 'JNE Reguler', 'kasjfhakjh', 'kjhasfkjh', 'kjhkjahsf', '', 0, '', 2, 'Penampilan akan kita buat semenarik mungkin sesuai dengan kreasi FENTROART', '["14_image0_D10072017T111813.jpg"]', 'aksjfhafkjh'),
+(9, 9, 'reg', 1, 'JNE Reguler', 'kasjhfakjh', 'kjhasfakjh', 'kjahskaj', '', 0, '', 1, ' asjkfhafjk', '["15_image0_D10072017T111904.jpg"]', 'asfkafjkh'),
+(10, 10, 'reg', 1, 'JNE Reguler', 'asdasdd', 'asasfasf', 'asdads', '', 0, '', 0, '', '["16_image0_D10072017T140222.jpg"]', 'asdasdd');
 
 -- --------------------------------------------------------
 
@@ -306,7 +368,22 @@ CREATE TABLE IF NOT EXISTS `pesanan_media_cetak` (
   `warna_sekunder` int(11) NOT NULL COMMENT 'id_warna',
   `harga_shipping` bigint(20) NOT NULL COMMENT 'harga shipping @media cetak',
   `berat_shipping` int(11) NOT NULL COMMENT 'berat shipping @media cetak'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesanan_media_cetak`
+--
+
+INSERT INTO `pesanan_media_cetak` (`id_pesanan_media`, `pesanan_id`, `media_id`, `jumlah`, `hari`, `harga`, `weight`, `warna_primer`, `warna_sekunder`, `harga_shipping`, `berat_shipping`) VALUES
+(1, 1, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
+(2, 1, 2, 1, 1, 75000, 600, 1, 0, 0, 0),
+(3, 1, 14, 1, 3, 75000, 0, 1, 2, 0, 0),
+(4, 3, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
+(5, 4, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
+(6, 6, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
+(7, 7, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
+(8, 7, 2, 1, 1, 75000, 600, 1, 0, 0, 0),
+(9, 10, 3, 1, 1, 135000, 700, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -321,7 +398,23 @@ CREATE TABLE IF NOT EXISTS `pesanan_upgrade` (
   `jumlah` int(11) NOT NULL DEFAULT '1',
   `hari` float NOT NULL,
   `harga` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pesanan_upgrade`
+--
+
+INSERT INTO `pesanan_upgrade` (`id_pesanan_upgrade`, `pesanan_id`, `upgrade_id`, `jumlah`, `hari`, `harga`) VALUES
+(1, 1, 1, 1, 0.25, 1000),
+(2, 1, 3, 1, 0, 30000),
+(3, 2, 1, 2, 0.5, 8000),
+(4, 2, 2, 1, 0.25, 4000),
+(5, 3, 1, 1, 0.5, 2000),
+(6, 4, 1, 1, 0.75, 3000),
+(7, 6, 1, 1, 0.5, 2000),
+(8, 7, 1, 1, 0.25, 1000),
+(9, 7, 2, 1, 0.25, 1000),
+(10, 10, 4, 1, 0, 25500);
 
 -- --------------------------------------------------------
 
@@ -351,7 +444,7 @@ INSERT INTO `scope_ilustrasi` (`id_scope`, `paket_id`, `color`, `softfile`, `bac
 (1, 1, 'Monochrome', 1, 0, 1, 100, 3, 1, 15000, 45100),
 (2, 2, 'Full Color', 1, 1, 1, 300, 5, 1, 30000, 85300),
 (3, 3, 'Full Color', 1, 1, 1, 600, 7, 1, 50000, 150600),
-(4, 4, '', 0, 0, 0, 0, 0, 0, 0, 0);
+(4, 4, 'Full Color', 0, 1, 0, 0, 1, 0, 0, 26000);
 
 -- --------------------------------------------------------
 
@@ -365,6 +458,25 @@ CREATE TABLE IF NOT EXISTS `shipping` (
   `harga` bigint(20) NOT NULL,
   `berat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `terms_conditions`
+--
+
+CREATE TABLE IF NOT EXISTS `terms_conditions` (
+`id_terms` int(11) NOT NULL,
+  `keperluan` varchar(100) NOT NULL,
+  `isi` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `terms_conditions`
+--
+
+INSERT INTO `terms_conditions` (`id_terms`, `keperluan`, `isi`) VALUES
+(1, 'Ketentuan & Kondisi', '<p><strong>Ketentuan dan Kondisi:</strong></p><ol><li>...........</li><li>.........</li><li>..........</li></ol>');
 
 -- --------------------------------------------------------
 
@@ -453,20 +565,27 @@ INSERT INTO `upgrade_order` (`id_upgrade`, `nama_upgrade`, `deskripsi_upgrade`, 
 
 CREATE TABLE IF NOT EXISTS `warna` (
 `id_warna` int(11) NOT NULL,
+  `media_id` int(11) NOT NULL COMMENT '0 = Warna Universal',
   `warna` varchar(100) NOT NULL,
   `hex` varchar(10) NOT NULL,
   `kategori` tinyint(1) NOT NULL COMMENT '0 = Primer, 1 = Sekunder'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `warna`
 --
 
-INSERT INTO `warna` (`id_warna`, `warna`, `hex`, `kategori`) VALUES
-(1, 'Hitam', '#000000', 0),
-(2, 'Abu-abu', '#D3D3D3', 1),
-(3, 'Merah', '#FF0000', 0),
-(7, 'test', '#981537', 1);
+INSERT INTO `warna` (`id_warna`, `media_id`, `warna`, `hex`, `kategori`) VALUES
+(1, 0, 'Hitam', '#000000', 0),
+(2, 0, 'Abu-abu', '#D3D3D3', 1),
+(3, 0, 'Merah', '#FF0000', 0),
+(7, 0, 'test', '#981537', 1),
+(8, 1, 'Aqua', '#00FFFF', 0),
+(9, 1, 'Crimson', '#990000', 1),
+(10, 1, 'White', '#FFFFFF', 1),
+(11, 1, 'Green', '#00FF00', 0),
+(12, 1, 'Black', '#000000', 0),
+(13, 2, 'Black', '#000000', 0);
 
 --
 -- Indexes for dumped tables
@@ -483,6 +602,12 @@ ALTER TABLE `administrator`
 --
 ALTER TABLE `det_upgrade`
  ADD PRIMARY KEY (`id_detail`);
+
+--
+-- Indexes for table `email`
+--
+ALTER TABLE `email`
+ ADD PRIMARY KEY (`id_email`);
 
 --
 -- Indexes for table `media_cetak`
@@ -557,6 +682,12 @@ ALTER TABLE `shipping`
  ADD PRIMARY KEY (`id_shipping`);
 
 --
+-- Indexes for table `terms_conditions`
+--
+ALTER TABLE `terms_conditions`
+ ADD PRIMARY KEY (`id_terms`);
+
+--
 -- Indexes for table `upgrade`
 --
 ALTER TABLE `upgrade`
@@ -595,6 +726,11 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 ALTER TABLE `det_upgrade`
 MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
+-- AUTO_INCREMENT for table `email`
+--
+ALTER TABLE `email`
+MODIFY `id_email` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `media_cetak`
 --
 ALTER TABLE `media_cetak`
@@ -618,32 +754,32 @@ MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `pemesan`
 --
 ALTER TABLE `pemesan`
-MODIFY `id_pemesan` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_pemesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `penerima`
 --
 ALTER TABLE `penerima`
-MODIFY `id_penerima` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_penerima` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `pesanan_media_cetak`
 --
 ALTER TABLE `pesanan_media_cetak`
-MODIFY `id_pesanan_media` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_pesanan_media` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `pesanan_upgrade`
 --
 ALTER TABLE `pesanan_upgrade`
-MODIFY `id_pesanan_upgrade` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id_pesanan_upgrade` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `scope_ilustrasi`
 --
@@ -654,6 +790,11 @@ MODIFY `id_scope` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 ALTER TABLE `shipping`
 MODIFY `id_shipping` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `terms_conditions`
+--
+ALTER TABLE `terms_conditions`
+MODIFY `id_terms` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `upgrade`
 --
@@ -673,7 +814,7 @@ MODIFY `id_upgrade` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `warna`
 --
 ALTER TABLE `warna`
-MODIFY `id_warna` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `id_warna` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
