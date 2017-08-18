@@ -220,35 +220,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<!-- header -->
 		<div class="header-w3layouts"> 
 			<!-- Navigation -->
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="container">
-					<div class="navbar-header page-scroll">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-							<span class="sr-only">Fentroart</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-						<h1><a class="navbar-brand" href="<?php echo base_url();?>">Fentro <span>art</span></a></h1>
-					</div> 
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse navbar-ex1-collapse">
-						<ul class="nav navbar-nav navbar-right cl-effect-15">
-							<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-							<!-- <li><a class="page-scroll" href="#home" data-hover="Home">Home</a></li> 
-							<li><a class="page-scroll" href="#services" data-hover="Services">Services</a></li>
-							<li><a class="page-scroll" href="#staff" data-hover="Our Staff">Our Staff</a></li>
-							<li><a class="page-scroll" href="#gallery" data-hover="Gallery">Gallery</a></li>
-							<li><a class="page-scroll" href="#prices" data-hover="Prices">Prices</a></li>
-							<li><a class="page-scroll" href="#blog" data-hover="Blog">Blog</a></li>
-							<li><a class="page-scroll" href="#contact" data-hover="Contact">Contact</a></li> -->
-							<!-- <li class="w3ls-navlog"><a href="#myModal2" data-toggle="modal" data-hover="Summary">Summary</a></li> -->
-						</ul>
-					</div>
-					<!-- /.navbar-collapse -->
-				</div>
-				<!-- /.container -->
-			</nav>  
 		</div>	
 		<!-- //header -->
 
@@ -257,14 +228,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<?php //echo($_SESSION['alert']);?>
 		</div>
 
-		<!-- banner-text -->
-		<div class="banner-text"> 
-			<h2>Welcome to Fentroart</h2>
-			<p>Fentroart Illustration adalah jasa ilustrasi digital.Teknik yang kami gunakan untuk menggambar adalah digital painting</p>
-			<!-- <a href="#small-dialog" class="wthree-btn popup-with-zoom-anim">Place Your Order Now!</a>  -->
-			<a id="togglestartOrder" class="page-scroll wthree-btn" href="#startOrder" data-hover="Place Your Order Now!">Place Your Order Now!</a>
-		</div> 
-		<!-- //banner-text -->   
 	</div>	
 	<!-- //banner --> 
 	
@@ -739,69 +702,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="clearfix"> </div>
 				<hr>
 				<div id="formPenerima" style="display: none;">
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="nama_penerima">Nama Penerima</label>
-							<input name="nama_penerima" class="text-box-dark" placeholder="Nama Penerima" type="text" required="true" disabled="">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="nama_penerima">Nama Penerima</label>
+								<input name="nama_penerima" class="text-box-dark" placeholder="Nama Penerima" type="text" required="true" disabled="">
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label for="no_hp_penerima">No. HP Penerima</label>
+								<input name="no_hp_penerima" class="text-box-dark" placeholder="Nomor HP Penerima" type="number" required="true" disabled="">
+							</div>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label for="no_hp_penerima">No. HP Penerima</label>
-							<input name="no_hp_penerima" class="text-box-dark" placeholder="Nomor HP Penerima" type="number" required="true" disabled="">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="alamat_penerima">Alamat Penerima</label>
+								<textarea name="alamat_penerima" class="text-area-dark" rows="3" placeholder="Alamat Penerima" disabled=""></textarea>
+							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label for="alamat_penerima">Alamat Penerima</label>
-							<textarea name="alamat_penerima" class="text-area-dark" rows="3" placeholder="Alamat Penerima" disabled=""></textarea>
-						</div>
-					</div>
 
-
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="label-control"> Opsi Pengiriman</label>
-							<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
-						    	<option value="1">Ambil di lokasi</option>
-						    	<option value="2">Kirim area Malang</option>
-						    	<option value="3">Via JNE</option>
-					    	</select>
-						</div>
-					</div>
-					<div class="col-sm-4 paket-jne">
-						<div class="form-group">
-							<label class="label-control"> Paket Kurir</label>
-							<select class="form-control input-sm" name="pilihan_paket" id="pilihan_paket" disabled="true">
-						    	<option value="reg">Reguler</option>
-						    	<option value="yes">YES (Yakin Esok Sampai)</option>
-					    	</select>
-					    	<small class="text-danger" id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
-						</div>
-					</div>
-					<div class="col-sm-4 paket-jne">
-						<div class="form-group">
-							<label for="provinsi" class="label-control">Provinsi</label>
-							<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
-							<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
-								<option value="" selected="" disabled="">Pilih Provinsi</option>
-								<?php get_province();?>
-							</select>
-						</div>
-					</div>
-					<div class="col-sm-4 paket-jne">
-						<div class="form-group">
-							<label for="kota" class="label-control">Kota</label>
-							<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
-							<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
-								<option value="" selected="" disabled="">Pilih Kota</option>
-							</select>
-						</div>
-					</div>
-				</div> 
+						<!-- Asalnya opsi pengiriman ada di sini -->
+						
+					</div> 
 				</div>
 				
 				<ul class="payment-sendbtns">
@@ -839,8 +764,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<tr id="paketPesanan">
 											<td colspan="3" style="vertical-align: middle;">
 												<div>
-												<img src="<?=URL_IMG.$sum_paket->kode_paket?>.jpg" width="85">
-												<h2 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h2>
+													<img src="<?=URL_IMG.$sum_paket->kode_paket?>.jpg" width="85">
+													<h2 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h2>
 												</div>
 											</td>
 										</tr>
@@ -876,6 +801,49 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<?php } ?>
 									</tbody>
 								</table>
+
+								<div id="formPengiriman" class="row" style="display: none;">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="label-control"> Opsi Pengiriman</label>
+											<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
+										    	<option value="1">Ambil di lokasi</option>
+										    	<option value="2">Kirim area Malang</option>
+										    	<option value="3">Via JNE</option>
+									    	</select>
+										</div>
+									</div>
+									<div class="col-sm-4 paket-jne">
+										<div class="form-group">
+											<label for="provinsi" class="label-control">Provinsi</label>
+											<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
+											<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
+												<option value="" selected="" disabled="">Pilih Provinsi</option>
+												<?php get_province();?>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4 paket-jne">
+										<div class="form-group">
+											<label for="kota" class="label-control">Kota</label>
+											<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
+											<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
+												<option value="" selected="" disabled="">Pilih Kota</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4 paket-jne">
+										<div class="form-group">
+											<label class="label-control"> Paket Kurir</label>
+											<select class="form-control input-sm" name="pilihan_paket" id="pilihanPaket" disabled="true">
+										    	<option value="reg">Reguler</option>
+										    	<option value="yes">YES (Yakin Esok Sampai)</option>
+									    	</select>
+									    	<small id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
+										</div>
+									</div>
+								 </div>
+								
 								<table id="tableUpgrade" class="table">
 								<caption>Upgrade</caption>
 									<tbody>
@@ -972,24 +940,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 						</div> 
 					</div>
-					<!-- <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
-						<div class="login-top sign-top">
-							<div class="agileits-login">
-								<form action="#" method="post">
-									<input type="text" name="Username" placeholder="Username" required="">
-									<input type="text" class="email" name="Email" placeholder="Email" required=""/>
-									<input type="password" class="password" name="Password" placeholder="Password" required=""/>	
-									<label class="anim">
-										<input type="checkbox" class="checkbox">
-										<span> I accept the terms of use</span> 
-									</label> 
-									<div class="w3ls-submit"> 
-										<input class="register" type="submit" value="REGISTER">  
-									</div>
-								</form> 
-							</div>  
-						</div>
-					</div> -->
+					
 				</div>	
 			</div>
 			<div class="clearfix"> </div>
@@ -1018,47 +969,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 	<!-- //copy right end here --> 
-	<!-- pop-up-grid -->
-	<div id="small-dialog" class="mfp-hide">
-		<div class="pop_up w3-agile">
-			
-		</div>
-	</div>
-	<!-- //pop-up-grid --> 
-	<!-- modal -->
-	<div class="modal about-modal w3-agileits fade" id="myModal" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-				</div> 
-				<div class="modal-body">
-					<img src="<?php echo URL_IMG?>img2.jpg" alt=""> 
-					<h5>Cras rutrum iaculis enim</h5>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras rutrum iaculis enim, non convallis felis mattis at. Donec fringilla lacus eu pretium rutrum. Cras aliquet congue ullamcorper. Etiam mattis eros eu ullamcorper volutpat. Proin ut dui a urna efficitur varius. uisque molestie cursus mi et congue consectetur adipiscing elit cras rutrum iaculis enim, Lorem ipsum dolor sit amet, non convallis felis mattis at. Maecenas sodales tortor ac ligula ultrices dictum et quis urna. Etiam pulvinar metus neque, eget porttitor massa vulputate. </p>
-				</div> 
-			</div>
-		</div>
-	</div>
-	<!-- //modal -->
+
 	<!-- modal Summary-->
 	<div class="modal about-modal w3-agileits fade" id="myModal2" tabindex="-1" role="dialog">
 	</div>
 	<!-- //modal -->  		 
 	
-	<!-- //scripts -->  
-	<!-- jarallax -->
-	<script src="<?php echo URL_JS?>jarallax.js"></script>
-	<script src="<?php echo URL_JS?>SmoothScroll.min.js"></script>
-	<script type="text/javascript">
-		/* init Jarallax */
-		$('.jarallax').jarallax({
-			speed: 0.5,
-			imgWidth: 1366,
-			imgHeight: 768
-		})
-	</script>
-	<!-- //jarallax --> 
 	<!-- ResponsiveTabs js -->
 	<script src="<?php echo URL_JS?>easyResponsiveTabs.js" type="text/javascript"></script>
 	<script type="text/javascript">
@@ -1071,57 +987,81 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		});
 	</script>
 	<!-- //ResponsiveTabs js --> 
-	<!-- Scrolling Nav JavaScript --> 
-    <script src="<?php echo URL_JS?>scrolling-nav.js"></script>  
-	<!-- //fixed-scroll-nav-js --> 
-	<!-- pop-up-box -->    
-	<script src="<?php echo URL_JS?>jquery.magnific-popup.js" type="text/javascript"></script>
-	<script>
-		$(document).ready(function() {
-		$('.popup-with-zoom-anim').magnificPopup({
-			type: 'inline',
-			fixedContentPos: false,
-			fixedBgPos: true,
-			overflowY: 'auto',
-			closeBtnInside: true,
-			preloader: false,
-			midClick: true,
-			removalDelay: 300,
-			mainClass: 'my-mfp-zoom-in'
-		});
-																		
-		});
-	</script> 
-	<!-- //pop-up-box -->
-	<!-- start-smooth-scrolling --> 
-	<script type="text/javascript" src="<?php echo URL_JS?>move-top.js"></script>
-	<script type="text/javascript" src="<?php echo URL_JS?>easing.js"></script>	
+
+	<!-- Jquery validate js -->
+	<script src="<?php echo URL_JS?>jquery.validate.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){		
-					event.preventDefault();
-			
-			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
-			});
-	</script>
-	<!-- //end-smooth-scrolling -->	 
-	<!-- smooth-scrolling-of-move-up -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			
+		$.validator.setDefaults( {
+			submitHandler: function () {
+				alert( "submitted!" );
+			}
+		} );
+
+		$(document).ready(function () {
+			$( "#signupForm" ).validate( {
+				rules: {
+					firstname: "required",
+					lastname: "required",
+					username: {
+						required: true,
+						minlength: 2
+					},
+					password: {
+						required: true,
+						minlength: 5
+					},
+					confirm_password: {
+						required: true,
+						minlength: 5,
+						equalTo: "#password"
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					agree: "required"
+				},
+				messages: {
+					firstname: "Please enter your firstname",
+					lastname: "Please enter your lastname",
+					username: {
+						required: "Please enter a username",
+						minlength: "Your username must consist of at least 2 characters"
+					},
+					password: {
+						required: "Please provide a password",
+						minlength: "Your password must be at least 5 characters long"
+					},
+					confirm_password: {
+						required: "Please provide a password",
+						minlength: "Your password must be at least 5 characters long",
+						equalTo: "Please enter the same password as above"
+					},
+					email: "Please enter a valid email address",
+					agree: "Please accept our policy"
+				},
+				errorElement: "em",
+				errorPlacement: function ( error, element ) {
+					// Add the `help-block` class to the error element
+					error.addClass( "help-block" );
+
+					if ( element.prop( "type" ) === "checkbox" ) {
+						error.insertAfter( element.parent( "label" ) );
+					} else {
+						error.insertAfter( element );
+					}
+				},
+				highlight: function ( element, errorClass, validClass ) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+				},
+				unhighlight: function (element, errorClass, validClass) {
+					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+				}
+			} );
 		});
 	</script>
-	<!-- //smooth-scrolling-of-move-up -->
+	<!-- //Jquery validate js --> 
+	
 	<!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -1131,7 +1071,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     	<script type="text/javascript"> 
 		$(document).ready(function(){
     		$("#startOrder ul li.active").next().find("a").click(); 
-    		$('#togglestartOrder').click();
     		
     		$('#colStartOrderTabs').attr('class', 'col-sm-6');
     		$('#colSummarySection').fadeIn();
@@ -1160,6 +1099,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     					$(tabFormPemesan[i]).addClass('disabled');
     					$(tabFormPemesan[i]).find('a').attr('disabled', 'true').removeAttr('data-toggle');
     				}
+    				$('#opsiPengiriman').attr('disabled', 'true').addClass('disabled');
+    				$('#pilihanPaket').attr('disabled', 'true').addClass('disabled');
+    				$('#provinsi').attr('disabled', 'true').addClass('disabled');
+    				$('#kota').attr('disabled', 'true').addClass('disabled');
+
     				$('#upgradeNavBtn').hide();
     				$('#mediaNavBtn').hide();
     				$('#summaryNavBtn').fadeOut();
@@ -1217,40 +1161,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	  }
     </script>
 
-    <!-- JS script for upload image preview -->
-    <!-- CURRENTLY NOT USED (USING KRAJEE) -->
-    <script>
-	/*  function handleFileSelect(evt) {
-	    var files = evt.target.files; // FileList object
-	    // Loop through the FileList and render image files as thumbnails.
-	    for (var i = 0, f; f = files[i]; i++) {
-	      // Only process image files.
-	      if (!f.type.match('image.*')) {
-	        continue;
-	      }
-	      var reader = new FileReader();
-	      // Closure to capture the file information.
-	      reader.onload = (function(theFile) {
-	        return function(e) {
-	          // Render thumbnail.
-	          var span = document.createElement('span');
-	          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-	                            '" title="', escape(theFile.name), '"/>'].join('');
-	          document.getElementById('image-list').insertBefore(span, null);
-	        };
-	      })(f);
-
-	      // Read in the image file as a data URL.
-	      reader.readAsDataURL(f);
-	    }
-	  }
-	  document.getElementById('fileFoto').addEventListener('change', handleFileSelect, false);*/
-	</script>
-
     <script type="text/javascript">
 	    function nextStartOrder(e) {
 	    	e.preventDefault();
-	    	$("#startOrder ul li.active").next().find("a").click();
+	    	//checking if opsi pengiriman via jne is selected, the check provinsi & kota selection
+    		var nextTab = $(this).parent('li').next().find('a') || 'end';
+	    	var opsiPengiriman = $('#opsiPengiriman :selected').val();
+	    	var provinsi = $('#provinsi :selected').val();
+	    	var kota = $('#kota :selected').val();
+	    	var pilihanPaket = $('#pilihanPaket :selected').val();
+	    	if(nextTab.length == 0) { //end of tab
+		    	if(opsiPengiriman == 3) { //via JNE
+		    		if(provinsi && kota && pilihanPaket) {
+		    			$("#startOrder ul li.active").next().find("a").click();
+		    		}
+		    		else {
+		    			alert('Anda belum memilih Provinsi/Kota tujuan pengiriman!');
+		    		}
+		    	}
+		    	else {
+		    		$("#startOrder ul li.active").next().find("a").click();
+		    	}
+	    	}
+	    	else {
+	    		$("#startOrder ul li.active").next().find("a").click();
+	    	}
 	    };
 	    function prevStartOrder(e) {
 	    	e.preventDefault();
@@ -1390,6 +1325,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("input[name='background_stock']").prop("disabled", false);
 		}
 		function showHideJne(val) {
+			var harga = parseFloat(0);
 			if(val == 3) { //pengiriman via JNE
 				$(".paket-jne").show();
 				$('.paket-jne select').prop('disabled', false);
@@ -1398,11 +1334,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$(".paket-jne").hide();
 				$('.paket-jne select').prop('disabled', true);
 			}
+			
+			//Set harga ongkir untuk daerah malang Rp 15.000
+			if(val == 2) { //pengiriman daerah malang
+            	harga = parseFloat(15000);
+				$("#hargaOngkir").html(harga);
+            	$("input[name='total_ongkir']").val(harga);
+            }
+            else {
+				$("#hargaOngkir").html(harga);
+            	$("input[name='total_ongkir']").val(harga);
+            }
+			calculateMediaShipping();
+            unmaskInputMoney();
+            maskInputMoney();
 		}
 		function showHideFormPenerima() {
 			var opsiPengiriman = $('#opsiPengiriman').val();
 			// console.log( $("#tableMedia tbody tr").siblings(".media-item").length );
 			if ($("#tableMedia tbody tr").siblings(".media-item").length > 0) { // then it has siblings } else { // it doesn't }
+				$("#formPengiriman").show();
 				$("#formPenerima").show();
 				$(".paket-jne").hide();
 				showHideJne(opsiPengiriman);
@@ -1414,6 +1365,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$("select[name='opsi_pengiriman']").prop("disabled", false);
 			} else {
 				showHideJne(opsiPengiriman);
+				$("#formPengiriman").hide();
 				$("#formPenerima").hide();
 				$("#formPenerima :input").prop("disabled", true); //included select
 				$("select[name='pilihan_paket']").prop("disabled", true);
@@ -1617,10 +1569,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		function calculateMediaShipping() {
 			unmaskInputMoney();
 			var totalShipping = 0;
-			$("#tableMedia tbody input[name*='media-harga_shipping-']").each(function() {
-				totalShipping += Number($(this).val());
-				// console.log($(this).val());
-			});
+			var opsiPengiriman = $('#opsiPengiriman :selected').val();
+			if(opsiPengiriman == 3) { //tambahkan shipping jika kirim Via JNE
+				$("#tableMedia tbody input[name*='media-harga_shipping-']").each(function() {
+					totalShipping += Number($(this).val());
+					// console.log($(this).val());
+				});
+			}
 			console.log("totalShipping " + totalShipping);
 			$("input[name='total_shipping']").val(totalShipping);
 			$("#hargaShipping").html(totalShipping);
@@ -1712,8 +1667,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		};*/
 		function setUpgradeMedia() { 
 			unmaskInputMoney();
-			var id_paket = $("#pilihan_paket :selected").val();
-			var nama_paket = $("#pilihan_paket :selected").html();
+			var id_paket = $("#pilihanPaket :selected").val();
+			var nama_paket = $("#pilihanPaket :selected").html();
 			var subtotal = $("input[name='total_subtotal']").val() || 0;
 			var total_harga = $("input[name='total_harga']").val() || 0;
 			var total_hari = $("input[name='total_hari']").val() || 0;
@@ -1743,7 +1698,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			unmaskInputMoney();
 			var form = $("#formOngkir");
 			var kota = $("#kota").val() || 0;
-			var id_paket = $("#pilihan_paket :selected").val();
+			var id_paket = $("#pilihanPaket :selected").val();
 			return $.ajax({
 		        url: "<?php echo base_url();?>" + "home/get_cost",
 		        type: "POST",
@@ -1771,7 +1726,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		$(document).ready(function(){
 			$("#formPemesan").on("submit", function(e) {
-				e.preventDefault();
+				e.preventDefault();				
 				$.when(setUpgradeMedia()).done(function(response, status) {
 		            var data = JSON.parse(response);
 		            console.log(data);
@@ -1782,15 +1737,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            runSetPemesan();
 	        	});
 			});
+			
 			function runSetPemesan() {
+				var arrFormPemesan = [];
+				arrFormPemesan['opsiPengiriman'] = $("#opsiPengiriman").val() || '';
+				arrFormPemesan['provinsi'] = $("#provinsi").val() || '';
+				arrFormPemesan['nama_provinsi'] = $('#provinsi :selected').html() || '';
+				arrFormPemesan['kota'] = $("#kota").val() || '';
+				arrFormPemesan['nama_kota'] = $('#kota :selected').html() || '';
+				arrFormPemesan['pilihanPaket'] = $("#pilihanPaket").val() || '';
+
+				var html = '<input type="hidden" name="opsiPengiriman" value="'+ arrFormPemesan['opsiPengiriman'] +'">'
+							+ '<input type="hidden" name="provinsi" value="'+ arrFormPemesan['provinsi'] +'">'
+							+ '<input type="hidden" name="nama_provinsi" value="'+ arrFormPemesan['nama_provinsi'] +'">'
+							+ '<input type="hidden" name="kota" value="'+ arrFormPemesan['kota'] +'">'
+							+ '<input type="hidden" name="nama_kota" value="'+ arrFormPemesan['nama_kota'] +'">'
+							+ '<input type="hidden" name="pilihanPaket" value="'+ arrFormPemesan['pilihanPaket'] +'">';
+
+				$('#formPemesan').append(html);
+
+				// console.log(html);
+				// console.log($("#formPemesan").serialize());
 				$("#formPemesan").submit();
 			};
-			/*function runSetUpgradeMedia() {
-				$.when(setUpgradeMedia()).done(function(response, status) {
-		            var data = JSON.parse(response);
-		            console.log(data);
-	        	});
-			};*/
+			
 			$("#formOngkir").on("submit", function(e) {
 				e.preventDefault();
 				$("#infoTotal").hide();
@@ -1800,24 +1770,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            var data = JSON.parse(response);
 		            var harga = data.harga_reg;
 		            var etd = data.etd_reg;
-		            console.log("Selected: "+$("#pilihan_paket :selected").val());
+		            console.log("Selected: "+$("#pilihanPaket :selected").val());
 
-		            if($("#pilihan_paket :selected").val() == 'yes') {
+		            if($("#pilihanPaket :selected").val() == 'yes') {
 		            	console.log("MASUK");
 		            	if(data.harga_yes != 0) {
 		            		harga = data.harga_yes;
 		            		etd = data.etd_yes;
-		            		$("#pilihan_paket option[value='yes']").prop('disabled', false).removeClass("hidden");
-            				$("#pilihan_paket_alert").hide();
+		            		$("#pilihanPaket option[value='yes']").prop('disabled', false).removeClass("hidden");
+            				$("#pilihanPaket_alert").hide();
 		            	}
 		            	else {
-		            		$("#pilihan_paket option[value='reg']").prop('selected', true);
-		            		$("#pilihan_paket option[value='yes']").prop('disabled', true).addClass("hidden");
-            				$("#pilihan_paket_alert").show();
+		            		$("#pilihanPaket option[value='reg']").prop('selected', true);
+		            		$("#pilihanPaket option[value='yes']").prop('disabled', true).addClass("hidden");
+            				$("#pilihanPaket_alert").show();
 		            	}
 		            } else {
-		            	$("#pilihan_paket option[value='yes']").prop('disabled', false).removeClass("hidden");
-	            		$("#pilihan_paket_alert").hide();
+		            	$("#pilihanPaket option[value='yes']").prop('disabled', false).removeClass("hidden");
+	            		$("#pilihanPaket_alert").hide();
 		            }
 
 		            $("#hargaOngkir").html(harga);
@@ -1832,7 +1802,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#kota").on("change", function(e) {
 				$("#formOngkir").submit();
 			});
-			$("#pilihan_paket").on("change", function(e) {
+			$("#pilihanPaket").on("change", function(e) {
 				$("#formOngkir").submit();
 			});
 

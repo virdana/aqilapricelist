@@ -144,9 +144,11 @@ class Home extends CI_Controller {
         echo json_encode($params);
     }   
     public function set_pemesan() {
-        echo "<pre>SESSION: -----------------------------";
-        print_r($_SESSION);
-        echo "</pre>";
+        // echo "<pre>-----------------------------";
+        // print_r($_SESSION);
+        // print_r($this->input->post());
+        // echo "</pre>";
+        // die();
         $params = $this->input->post();
         $email_pemesan = $params['email'];
         $pemesan = array(
@@ -163,9 +165,9 @@ class Home extends CI_Controller {
                     'nama_penerima' => $params['nama_penerima'],
                     'no_hp'         => $params['no_hp_penerima'],
                     'alamat'        => $params['alamat_penerima'],
-                    'id_provinsi'      => $params['provinsi'],
+                    'id_provinsi'   => $params['provinsi'],
                     'nama_provinsi' => $params['nama_provinsi'],
-                    'id_kota'          => $params['kota'],
+                    'id_kota'       => $params['kota'],
                     'nama_kota'     => $params['nama_kota']
                 );
             //Insert data penerima and get the id_penerima
@@ -443,7 +445,7 @@ class Home extends CI_Controller {
         if($_SERVER['PHP_AUTH_USER'] == 'anadriv' && $_SERVER['PHP_AUTH_PW'] == 'bluenight') {
             $data_db = $this->model_fadmin->get('pesanan', 'id_pesanan', 'DESC')->row();
             if(!empty($data_db)) {
-                $result = $this->send_order_mail($opt, 'virdana11@gmail.com', $data_db->id_pesanan);
+                $result = $this->send_order_mail($opt, 'as5lang.s@gmail.com', $data_db->id_pesanan);
             }
             else {
                 echo "Tidak ada pesanan";
@@ -474,16 +476,18 @@ class Home extends CI_Controller {
                 $config['smtp_host'] = 'mail.smtp2go.com';
                 $config['smtp_port'] = '2525'; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
                 $config['smtp_crypto'] = 'tls';
-                $config['smtp_user'] = 'fentroart@gmail.com';
-                $config['smtp_pass'] = '6jvxble4Rp0e';
+                $config['smtp_user'] = 'virdana11@gmail.com';
+                $config['smtp_pass'] = 'x96vlOONOYlB';
+                // $config['smtp_user'] = 'fentroart@gmail.com';
+                // $config['smtp_pass'] = '6jvxble4Rp0e';
                 // $config['smtp_pass'] = '12fentro34';
                 $config['charset'] = 'utf-8';
                 $config['mailtype'] = 'html';
                 $config['newline'] = "rn";
                 $this->email->initialize($config);
 
-                $this->email->from('fentroart@gmail.com', 'Fentroart');
-                $this->email->to('virdana11@gmail.com');
+                $this->email->from('noreply@fentroart.com', 'Fentroart');
+                $this->email->to($email);
                 // $this->email->cc('another@another-example.com');
                 // $this->email->bcc('them@their-example.com');
 

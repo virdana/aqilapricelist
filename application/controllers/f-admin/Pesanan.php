@@ -195,7 +195,7 @@ class Pesanan extends CI_Controller {
             ." LEFT JOIN paket_ilustrasi E ON A.paket_id = E.id_paket";
         if( !empty($requestData['search']['value']) ) {
             $sql.=" WHERE ( C.nama_pemesan LIKE '%".$requestData['search']['value']."%' "; 
-            $sql.=" WHERE ( E.nama_paket LIKE '%".$requestData['search']['value']."%' "; 
+            $sql.=" OR E.nama_paket LIKE '%".$requestData['search']['value']."%' "; 
             $sql.=" OR C.email LIKE '%".$requestData['search']['value']."%' ";
             $sql.=" OR A.total_harga LIKE '%".$requestData['search']['value']."%' ";
             $sql.=" OR A.total_hari LIKE '%".$requestData['search']['value']."%' ";
