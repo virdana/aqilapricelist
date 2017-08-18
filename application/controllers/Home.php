@@ -263,7 +263,11 @@ class Home extends CI_Controller {
 
         if($confirmation) {
             // alert_success("Sukses!", "Email konfirmasi pesanan telah dikirim. Silahkan periksa kotak masuk email anda.");
-            alert_modal('', $data_email->isi);
+            $konten_modal = "<h3 class='text-center'>Total Harga: Rp "
+                    .number_format($pesanan['grandtotal'], 2, ",", ".")
+                    ."</h3><br>"
+                    .$data_email->isi;
+            alert_modal('', $konten_modal);
         }
         else {
             alert_error("Gagal!", "Terjadi kesalahan pada proses pengiriman email. <br>Pastikan email yang anda berikan adalah email yang valid");
@@ -276,7 +280,11 @@ class Home extends CI_Controller {
     function test_modal(){
         $condition = array( 'keperluan' => 'konfirmasi order');
         $data_email = $this->model_fadmin->select($condition, 'email')->row();
-        alert_modal('', $data_email->isi);
+        $konten_modal = "<h3 class='text-center'>Total Harga: Rp "
+                    .number_format(50000, 2, ",", ".")
+                    ."</h3><br>"
+                    .$data_email->isi;
+        alert_modal('', $konten_modal);
         echo $_SESSION['alert'];
     }
 
