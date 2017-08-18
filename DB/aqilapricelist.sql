@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 14, 2017 at 02:59 PM
+-- Generation Time: Aug 18, 2017 at 11:11 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `pemesan` (
   `email` varchar(100) NOT NULL,
   `no_hp` varchar(50) NOT NULL,
   `no_line` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesan`
@@ -245,7 +245,24 @@ INSERT INTO `pemesan` (`id_pemesan`, `nama_pemesan`, `email`, `no_hp`, `no_line`
 (13, 'Amadas', 'asdasd@kasjfa.man', 'asdads', 'asd'),
 (14, 'kjahdskjah', 'kajsdh@ksjahfakjfh', 'ksjafhajfkh', 'askjfhakfjh'),
 (15, 'kajhfajf', 'asfahf@kshfakj.asa', 'sakfhaf', 'akjhsakjfh'),
-(16, 'Dasdasda', 'asd@samfna.com', '09124', 'kasa12');
+(16, 'Dasdasda', 'asd@samfna.com', '09124', 'kasa12'),
+(17, '', '', '', ''),
+(18, 'andem', 'asdn@kanfajf.vanv', '094810958109', 'kajhsakjfh'),
+(19, 'klhasfkjahfjk', 'kjhsafkj@Kjhksjahfkj', '111111111111', '11111111111111'),
+(20, 'klhasfkjahfjk', 'kjhsafkj@Kjhksjahfkj', '111111111111', '11111111111111'),
+(21, 'klhasfkjahfjk', 'kjhsafkj@Kjhksjahfkj', '111111111111', '11111111111111'),
+(22, '111111111111111', '111@111111111', '11111111111', '11111111111'),
+(23, 'asd', 'asd@asd.com', 'asd', 'asd'),
+(24, 'Dimas', 'virdana11@gmail.com', 'akjsdhaksjhdakjshd', 'kjsahfkajsfhkjh'),
+(25, 'Dimas', 'virdana11@gmail.com', 'jghgjh', 'gjhghjg'),
+(26, 'Dimas', 'virdana11@gmail.com', 'jghgjh', 'gjhghjg'),
+(27, 'Dimas', 'virdana11@gmail.com', 'jghgjh', 'gjhghjg'),
+(28, 'ajhsgasfhgh', 'virdana11@gmail.com', 'kajsfhkajfhkj', 'hkjhaskjfhkj'),
+(29, 'ajhsgasfhgh', 'virdana11@gmail.com', 'kajsfhkajfhkj', 'hkjhaskjfhkj'),
+(30, 'asajfsahsfg', 'virdana11@gmail.com', '098109811', 'lkjkjhkjhkjh'),
+(31, 'Dimas Virdana', 'as5lang.s@gmail.com', '012941094109', 'akjshajsfh'),
+(32, 'Dimas Virdana', 'virdana10@gmail.com', '0981498194', 'diamsd'),
+(33, 'Dimas', 'virdana10@gmail.com', '10192814', 'oasajfh');
 
 -- --------------------------------------------------------
 
@@ -262,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `penerima` (
   `id_kota` int(11) NOT NULL COMMENT 'id_kota dari API Rajaongkir',
   `nama_kota` varchar(100) NOT NULL,
   `no_hp` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `penerima`
@@ -274,7 +291,18 @@ INSERT INTO `penerima` (`id_penerima`, `nama_penerima`, `alamat`, `id_provinsi`,
 (3, 'kjsahfjh', 'aksdhakjshjafh', 11, 'Jawa Timur', 179, 'Kediri (Kota)', '98179185'),
 (4, 'jahsgdasjd', 'asjhgdajhsd ajshdgasdhg', 11, 'Jawa Timur', 256, 'Malang (Kota)', '012871287'),
 (5, 'asdasd', '', 11, 'Jawa Timur', 247, 'Madiun (Kabupaten)', '09289184'),
-(6, 'asdasdasd', 'askfhafjkh', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '08241941');
+(6, 'asdasdasd', 'askfhafjkh', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '08241941'),
+(7, '11111111111', '11111111111', 11, 'Jawa Timur', 179, 'Kediri (Kota)', '11111111111'),
+(8, 'asd', 'asd', 11, 'Jawa Timur', 75, 'Blitar (Kota)', '124'),
+(9, 'kashfkajshfkjashf', 'jhasfgjhagfjhagf', 11, 'Jawa Timur', 179, 'Kediri (Kota)', '987987987'),
+(10, 'kjhjhkjh', '', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '097987987'),
+(11, 'kjhjhkjh', '', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '097987987'),
+(12, 'kjhjhkjh', '', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '097987987'),
+(13, 'aksjhdajfhkjh', 'klsakfjhakjfh', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '9898798798'),
+(14, 'aksjhdajfhkjh', 'klsakfjhakjfh', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '9898798798'),
+(15, 'nmasfbamnbfmnb', 'mnbasfmnbanm', 0, 'Pilih Provinsi', 0, 'Pilih Kota', '8121'),
+(16, 'Dimas Virdana', 'Jl Pasfnasfnamsfnamsfn', 11, 'Jawa Timur', 256, 'Malang (Kota)', '09832918918'),
+(17, 'Wanna', 'kjashfkjahfkja', 11, 'Jawa Timur', 179, 'Kediri (Kota)', '09890248');
 
 -- --------------------------------------------------------
 
@@ -292,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `pesanan` (
   `grandtotal` bigint(20) NOT NULL COMMENT 'Total_harga + ongkir + shipping',
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '0 = Dipesan; 1 = Dibayar; 2 = Dikirim; 3 = Revisi ; 4 = Selesai',
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan`
@@ -308,7 +336,17 @@ INSERT INTO `pesanan` (`id_pesanan`, `pemesan_id`, `penerima_id`, `paket_id`, `t
 (7, 13, 5, 1, 162000, 5.5, 175000, 0, '2017-07-10 03:46:35'),
 (8, 14, 0, 3, 100000, 7, 100000, 0, '2017-07-10 04:18:13'),
 (9, 15, 0, 3, 100000, 7, 100000, 0, '2017-07-10 04:19:04'),
-(10, 16, 6, 2, 215500, 6, 221500, 0, '2017-07-10 07:02:21');
+(10, 16, 6, 2, 215500, 6, 221500, 1, '2017-07-10 07:02:21'),
+(11, 22, 7, 3, 205000, 8, 221000, 0, '2017-08-14 08:53:39'),
+(12, 23, 8, 3, 238000, 8.75, 244000, 1, '2017-08-14 09:03:44'),
+(13, 24, 9, 3, 158000, 8.75, 171000, 0, '2017-08-14 09:31:15'),
+(14, 25, 10, 3, 158000, 8.75, 163000, 0, '2017-08-14 09:35:05'),
+(15, 26, 11, 3, 158000, 8.75, 163000, 0, '2017-08-14 09:37:20'),
+(16, 28, 13, 3, 158000, 8.75, 163000, 0, '2017-08-14 09:47:13'),
+(17, 30, 15, 3, 158000, 8.75, 163000, 0, '2017-08-14 09:55:00'),
+(18, 31, 16, 3, 288600, 2.75, 295600, 0, '2017-08-18 02:14:53'),
+(19, 32, 17, 2, 112000, 6.5, 125000, 0, '2017-08-18 03:31:40'),
+(20, 33, 0, 4, 30000, 1.25, 30000, 0, '2017-08-18 04:08:38');
 
 -- --------------------------------------------------------
 
@@ -332,7 +370,7 @@ CREATE TABLE IF NOT EXISTS `pesanan_detail` (
   `text_improve` text NOT NULL,
   `foto` text NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan_detail`
@@ -348,7 +386,17 @@ INSERT INTO `pesanan_detail` (`id_detail_pesanan`, `pesanan_id`, `id_paket`, `me
 (7, 7, 'reg', 1, 'JNE Reguler', 'alsdkjaflkj', 'laskjafjk', '', '', 0, '', 0, '', '["13_image0_D10072017T104635.jpg"]', 'ksjhdfjahf'),
 (8, 8, 'reg', 1, 'JNE Reguler', 'kasjfhakjh', 'kjhasfkjh', 'kjhkjahsf', '', 0, '', 2, 'Penampilan akan kita buat semenarik mungkin sesuai dengan kreasi FENTROART', '["14_image0_D10072017T111813.jpg"]', 'aksjfhafkjh'),
 (9, 9, 'reg', 1, 'JNE Reguler', 'kasjhfakjh', 'kjhasfakjh', 'kjahskaj', '', 0, '', 1, ' asjkfhafjk', '["15_image0_D10072017T111904.jpg"]', 'asfkafjkh'),
-(10, 10, 'reg', 1, 'JNE Reguler', 'asdasdd', 'asasfasf', 'asdads', '', 0, '', 0, '', '["16_image0_D10072017T140222.jpg"]', 'asdasdd');
+(10, 10, 'reg', 1, 'JNE Reguler', 'asdasdd', 'asasfasf', 'asdads', '', 0, '', 0, '', '["16_image0_D10072017T140222.jpg"]', 'asdasdd'),
+(11, 11, 'yes', 1, 'YES (Yakin Esok Sampai)', '11111111111', '11111111111', '11111111111', '', 0, '', 1, '11111111111', '["22_image0_D14082017T155339.jpg"]', '11111111111'),
+(12, 12, 'reg', 1, 'Reguler', 'asd', 'asd', 'asd', '', 0, '', 1, 'asd', '["23_image0_D14082017T160344.jpg"]', 'asd'),
+(13, 13, 'reg', 1, 'Reguler', 'jaksfhkajshf', 'akjshfakjsfhkjh', 'kjahsfkjahsfkjhaf', '', 0, '', 1, 'asfasfjasf', '["24_image0_D14082017T163115.jpg"]', 'asfklahsfljkahsf'),
+(14, 14, 'reg', 1, 'Reguler', 'jhgjhg', 'jhg', 'jhgjh', '', 0, '', 1, 'jhgjhgjhgjh', '["25_image0_D14082017T163505.jpg"]', 'jhgjhghjg'),
+(15, 15, 'reg', 1, 'Reguler', 'jhgjhg', 'jhg', 'jhgjh', '', 0, '', 1, 'jhgjhgjhgjh', '["26_image0_D14082017T163720.jpg"]', 'jhgjhghjg'),
+(16, 16, 'reg', 1, 'Reguler', 'hkjhskjhkj', 'hkjhkjhk', 'jhkjhkjh', '', 0, '', 1, 'kjhkjhkjhkjh', '["28_image0_D14082017T164713.png"]', 'jhghgjhg'),
+(17, 17, 'reg', 1, 'Reguler', 'kjhkjhkjhkjhkjh', 'kjhkjhkjh', 'kjhkjhkjhjkh', '', 0, '', 1, 'jhg', '["30_image0_D14082017T165500.jpg"]', 'hjgjhgjhg'),
+(18, 18, 'yes', 1, 'YES (Yakin Esok Sampai)', 'Biru', 'Happy Coding', '?', '', 2, 'Pose akan kita buat semenarik mungkin sesuai dengan kreasi FENTROART', 2, 'Penampilan akan kita buat semenarik mungkin sesuai dengan kreasi FENTROART', '["31_image0_D18082017T091453.jpg"]', 'Tidak ada'),
+(19, 19, 'reg', 1, 'Reguler', 'askjdhasdjhkjh', 'askjhakjfhakjfh', 'kjashfakjhfakjfh', '', 0, '', 0, '', '["32_image0_D18082017T103140.jpg"]', 'ashsfuh aisfuaisfuhifauhuia'),
+(20, 20, 'reg', 1, 'Reguler', 'oiasuoaifu', 'oiuasofiu', 'oiuaosifuoiu', '', 0, '', 0, '', '["33_image0_D18082017T110838.jpg"]', 'ashfakjsfhakjsfh');
 
 -- --------------------------------------------------------
 
@@ -368,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `pesanan_media_cetak` (
   `warna_sekunder` int(11) NOT NULL COMMENT 'id_warna',
   `harga_shipping` bigint(20) NOT NULL COMMENT 'harga shipping @media cetak',
   `berat_shipping` int(11) NOT NULL COMMENT 'berat shipping @media cetak'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan_media_cetak`
@@ -383,7 +431,16 @@ INSERT INTO `pesanan_media_cetak` (`id_pesanan_media`, `pesanan_id`, `media_id`,
 (6, 6, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
 (7, 7, 1, 1, 1, 55000, 500, 1, 0, 5000, 720),
 (8, 7, 2, 1, 1, 75000, 600, 1, 0, 0, 0),
-(9, 10, 3, 1, 1, 135000, 700, 1, 0, 0, 0);
+(9, 10, 3, 1, 1, 135000, 700, 1, 0, 0, 0),
+(10, 11, 2, 1, 1, 75000, 600, 13, 0, 0, 0),
+(11, 12, 3, 1, 1, 135000, 700, 1, 0, 0, 0),
+(12, 13, 1, 1, 1, 55000, 500, 8, 9, 5000, 720),
+(13, 14, 1, 1, 1, 55000, 500, 8, 9, 5000, 720),
+(14, 15, 1, 1, 1, 55000, 500, 8, 9, 5000, 720),
+(15, 16, 1, 1, 1, 55000, 500, 8, 9, 5000, 720),
+(16, 17, 1, 1, 1, 55000, 500, 8, 9, 5000, 720),
+(17, 18, 3, 1, 1, 135000, 700, 1, 0, 0, 0),
+(18, 19, 1, 1, 1, 55000, 500, 8, 9, 5000, 720);
 
 -- --------------------------------------------------------
 
@@ -398,7 +455,7 @@ CREATE TABLE IF NOT EXISTS `pesanan_upgrade` (
   `jumlah` int(11) NOT NULL DEFAULT '1',
   `hari` float NOT NULL,
   `harga` bigint(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pesanan_upgrade`
@@ -414,7 +471,17 @@ INSERT INTO `pesanan_upgrade` (`id_pesanan_upgrade`, `pesanan_id`, `upgrade_id`,
 (7, 6, 1, 1, 0.5, 2000),
 (8, 7, 1, 1, 0.25, 1000),
 (9, 7, 2, 1, 0.25, 1000),
-(10, 10, 4, 1, 0, 25500);
+(10, 10, 4, 1, 0, 25500),
+(11, 11, 3, 1, 0, 30000),
+(12, 12, 1, 1, 0.75, 3000),
+(13, 13, 1, 1, 0.75, 3000),
+(14, 14, 1, 1, 0.75, 3000),
+(15, 15, 1, 1, 0.75, 3000),
+(16, 16, 1, 1, 0.75, 3000),
+(17, 17, 1, 1, 0.75, 3000),
+(18, 18, 1, 1, 0.75, 3000),
+(19, 19, 1, 1, 0.5, 2000),
+(20, 20, 1, 1, 0.25, 4000);
 
 -- --------------------------------------------------------
 
@@ -754,32 +821,32 @@ MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `pemesan`
 --
 ALTER TABLE `pemesan`
-MODIFY `id_pemesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+MODIFY `id_pemesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `penerima`
 --
 ALTER TABLE `penerima`
-MODIFY `id_penerima` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id_penerima` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `pesanan`
 --
 ALTER TABLE `pesanan`
-MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `pesanan_detail`
 --
 ALTER TABLE `pesanan_detail`
-MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id_detail_pesanan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `pesanan_media_cetak`
 --
 ALTER TABLE `pesanan_media_cetak`
-MODIFY `id_pesanan_media` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id_pesanan_media` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `pesanan_upgrade`
 --
 ALTER TABLE `pesanan_upgrade`
-MODIFY `id_pesanan_upgrade` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id_pesanan_upgrade` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `scope_ilustrasi`
 --

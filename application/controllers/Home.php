@@ -484,8 +484,8 @@ class Home extends CI_Controller {
                 $config['smtp_host'] = 'mail.smtp2go.com';
                 $config['smtp_port'] = '2525'; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
                 $config['smtp_crypto'] = 'tls';
-                $config['smtp_user'] = 'virdana11@gmail.com';
-                $config['smtp_pass'] = 'x96vlOONOYlB';
+                $config['smtp_user'] = 'fentroaqila@yahoo.com';
+                $config['smtp_pass'] = 'x08KaeEkAqCV';
                 // $config['smtp_user'] = 'fentroart@gmail.com';
                 // $config['smtp_pass'] = '6jvxble4Rp0e';
                 // $config['smtp_pass'] = '12fentro34';
