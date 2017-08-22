@@ -36,18 +36,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		table.table-tipeilustrasi tr td:nth-child(2),
 		table.table-tipeilustrasi tr th:nth-child(2) {
 			background-color: #f6f6f6;
+			border-right: 1px solid #ddd;
 		}
 		table.table-tipeilustrasi tr td:nth-child(3),
 		table.table-tipeilustrasi tr th:nth-child(3) {
-			background-color: #d9edf7;
+			/*background-color: #d9edf7;*/
+			background-color: #f6f6f6;
+			border-right: 1px solid #ddd;
 		}
 		table.table-tipeilustrasi tr td:nth-child(4),
 		table.table-tipeilustrasi tr th:nth-child(4) {
-			background-color: #fcf8e3;
+			/*background-color: #fcf8e3;*/
+			background-color: #f6f6f6;
+			border-right: 1px solid #ddd;
 		}
 		table.table-tipeilustrasi tr td:nth-child(5),
 		table.table-tipeilustrasi tr th:nth-child(5) {
-			background-color: #f2dede;
+			/*background-color: #f2dede;*/
+			background-color: #f6f6f6;
 		}
 		table.table-tipeilustrasi tr td p {
 			color: #333;
@@ -57,7 +63,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		table.table-upgrade, 
 		table.table-mediacetak {
-			background-color: #f7eef0;
+			background-color: white;
 			padding: 5px;
 		}
 		table.table-upgrade tr td,  
@@ -96,17 +102,19 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			color: #9c1434;
 		}
 		.nav-pills > li > a {
-			color: #9c1434;
-			border-radius:0px;
+			color: #333;
+			/*border-radius:0px;*/
 			margin-right: 20px; 
 		}
 		.nav>li>a:focus, .nav > li > a:hover {
 		    text-decoration: none;
-    		background-color: #f9dfe5;
+    		background-color: #e8f3fc;
+    		color: #333; 
 		}
 		.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
 		    color: #fff;
-			background-color: #e2456a;
+			/*background-color: #e2456a;*/
+			background-color: #337ab7;
 		}
 		.nav-pills > li > a:after {
 			transition: 0.5s all;
@@ -125,7 +133,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		.nav-pills > li > a:hover::after, .nav-pills > li > a:focus::after {
 		   	border-top: 20px inset transparent;
 		   	border-bottom: 20px inset transparent;
-			border-left: 20px solid #f9dfe5;
+			/*border-left: 20px solid #f9dfe5;*/
+			border-left: 20px solid #e8f3fc;
 			position: absolute;
 			content: "";
 			top: 0;
@@ -143,7 +152,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		.nav-pills > li.active > a::after {
 		   	border-top: 20px inset transparent;
 		   	border-bottom: 20px inset transparent;
-			border-left: 20px solid #e2456a;
+			/*border-left: 20px solid #e2456a;*/
+			border-left: 20px solid #337ab7;
 			position: absolute;
 			content: "";
 			top: 0;
@@ -153,6 +163,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			margin-top: 30px;
 			margin-bottom: 40px;
 		}
+		h3.w3stitle span{
+			color: #333;
+		}
 		div.section-header { 
 			display: block;
 		    margin-bottom: 20px;
@@ -160,22 +173,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		span.section-title {
 			font-family: 'Trochut', cursive;
 		    font-size: 2em;
-		    font-weight: 100;
-			background-color: #f8f8f8;
-		    color: #bb3756;
+		    font-weight: 700;
+			/*background-color: #eaeaea;*/
+			color: #333;
 			padding: 10px;
 		}
 		.resp-tabs-container{
-			border-radius:15px;
+			/*border-radius:15px;*/
+			background-color: #f4f4f4;
+		}
+		.contact-grid {
+			background-color: white;
 		}
 		.contact-grid.agileits {
-			border-radius:15px;
+			/*border-radius:15px;*/
 			margin-bottom: 15px;
+			background-color: #f4f4f4;
 		}
 		.agileits-login {
-			border-radius:15px;
+			/*border-radius:15px;*/
 			padding-bottom: 40px;
-			color: #ffefef;
+			color: #333;
+		}
+		.agileits-login label {
+			color: #333;
 		}
 		#isiFormPemesan {
 			margin-bottom: 15px;
@@ -192,7 +213,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			padding-bottom: 5px;
 		}
 		caption {
-			color: #fff;
+			color: #333;
 			font-weight: bolder;
 		}
 		#message {
@@ -208,9 +229,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		div#infoTotal {
 			padding: 15px;
-    		background-color: #f7eef0;
-    		color: #bb3756;
-    		border-radius: 10px;
+    		background-color: #fff;
+    		color: #333;
+    		/*border-radius: 10px;*/
+		}
+		.btn-md {
+			font-size: 16px;
 		}
 </style>
 </head>
@@ -261,10 +285,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	<div id="pilihPaket" class="tab-pane fade in active">
 		<div class="container-fluid">
-			<h3 class="w3stitle">Pilih<span> Tipe Ilustrasi</span></h3>     
+			<h3 class="w3stitle"><span>Pilih Tipe Ilustrasi</span></h3>     
 			<div class="contact-row agileits-w3layouts">  
 				<div class="col-md-12 contact-w3lsleft">
-					<div class="contact-grid agileits" style="padding-left: 5px;padding-right: 20px; ">
+					<div class="contact-grid agileits" style="padding-left: 5px;padding-right: 20px; background-color: white;">
 		
 						<div class="table-responsive">
 							<table class="table table-tipeilustrasi">
@@ -292,7 +316,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<tbody>
 								<form action="<?php echo base_url()?>home/set_pesanan" method="post">
 									<tr>
-										<td style="color: white;">Deskripsi</td>
+										<td>Deskripsi</td>
 										<td><p><?php echo isset($basic->deskripsi)?$basic->deskripsi:'-'?></p></td>
 										<td><p><?php echo isset($standard->deskripsi)?$standard->deskripsi:'-'?></p></td>
 										<td><p><?php echo isset($premium->deskripsi)?$premium->deskripsi:'-'?></p></td>
@@ -300,7 +324,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<!-- <td><p>Tidak terdapat ilustrasi wajah. Opsi ready design on Instagram <a href="http://instagram.com/fentroart.design">fentroart.design</a></p></td> -->
 									</tr>
 									<tr class="text-center">
-										<td class="text-left" style="color: white;">Color</td>
+										<td class="text-left">Color</td>
 										<td><?php echo isset($basic->color)?$basic->color:'-'?></td>
 										<td><?php echo isset($standard->color)?$standard->color:'-'?></td>
 										<td><?php echo isset($premium->color)?$premium->color:'-'?></td>
@@ -308,7 +332,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<!-- <td>Full Color</td> -->
 									</tr>
 									<tr class="text-center">
-										<td class="text-left" style="color: white;">High Quality Softfile</td>
+										<td class="text-left">High Quality Softfile</td>
 										<td><i class="fa <?php echo $basic->softfile?'fa-check':'fa-minus'?>"></i></td>
 										<td><i class="fa <?php echo $standard->softfile?'fa-check':'fa-minus'?>"></i></td>
 										<td><i class="fa <?php echo $premium->softfile?'fa-check':'fa-minus'?>"></i></td>
@@ -316,7 +340,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<!-- <td><i class="fa fa-minus"></i></td> -->
 									</tr>
 									<tr class="text-center">
-										<td class="text-left" style="color: white;">Background (Stock)</td>
+										<td class="text-left">Background (Stock)</td>
 										<td><i class="fa <?php echo $basic->background?'fa-check':'fa-minus'?>"></i></td>
 										<td><i class="fa <?php echo $standard->background?'fa-check':'fa-minus'?>"></i></td>
 										<td><i class="fa <?php echo $premium->background?'fa-check':'fa-minus'?>"></i></td>
@@ -324,7 +348,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<!-- <td><i class="fa fa-check"></i></td> -->
 									</tr>
 									<tr class="text-center">
-										<td class="text-left" style="color: white;">Kepala hingga pinggang</td>
+										<td class="text-left">Kepala hingga pinggang</td>
 										<td>
 											<?php if($basic->check_medium) { ?>
 												<div class="checkbox">
@@ -364,7 +388,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 										<!-- <td><i class="fa fa-minus"></i></td> -->
 									</tr>
 									<tr>
-										<td style="color: white;">Delivery Time</td>
+										<td>Delivery Time</td>
 										<td>
 											<div class="radio">
 												<label><input type="radio" name="delivery_basic" value="a" checked="true"><?php echo $basic->delivery_a?$basic->delivery_a:'-'?> Hari</label>
@@ -431,7 +455,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<button type="submit" name="set_btn" value="<?=$premium->kode_paket.'-'.$premium->id_paket?>" class="btn btn-warning">Select Rp <span id="price_premium" class="money"><?php echo $premium->harga?></span></button>
 										</td>
 										<td>
-											<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-warning">Select Rp <span id="price_design" class="money"><?php echo $design->harga?></span></button>
+											<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-danger">Select Rp <span id="price_design" class="money"><?php echo $design->harga?></span></button>
 										</td>
 										<!-- <td>
 											<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-danger">Select Rp 25.000</button>
@@ -453,7 +477,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="contact-w3lsleft">
 				<div class="contact-grid agileits">
 					<div class="section-header">
-						<span class="section-title">Upgrade<b>  Your Order</b></span>
+						<span class="section-title">Upgrade Your Order</span>
 					</div>
 					<table class="table-upgrade table table-hover">
 						<?php foreach ($data_upgrade as $upgrade) { ?>
@@ -467,8 +491,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="row">
 						<div class="col-sm-12">
 							<div id="upgradeNavBtn" class="btn-group pull-right">
-								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
-								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -483,13 +507,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="contact-w3lsleft">
 				<div class="contact-grid agileits">
 					<div class="section-header">
-						<span class="section-title">Choose<b>  Media</b> </span>
+						<span class="section-title">Choose Media</span>
 					</div>
-					<div class="alert alert-warning">
-						<small><?=$data_desc->deskripsi;?></small>
+					<div class="panel">
+						<div class="panel-body">
+							<?=$data_desc->deskripsi;?>
+						</div>
 					</div>
 					<table class="table-mediacetak table table-hover">
-						<tr>
+						<tr style="background-color: #807E81; color:#fff;">
 							<th>Pilihan Media Cetak</th>
 							<th class="text-center">Day</th>
 							<th class="text-center">Warna Primer/Sekunder</th>
@@ -547,8 +573,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="row">
 						<div class="col-sm-12">
 							<div id="mediaNavBtn" class="btn-group pull-right">
-								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -742,7 +768,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	</div> <!-- /Tab Content -->
 	</div> <!-- /col-sm-6 -->
-	<div id="colSummarySection" class="col-sm-6">
+	<div id="colSummarySection" class="col-sm-5">
 		<div class="sap_tabs">
 			<div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
 				<ul class="resp-tabs-list">
@@ -754,8 +780,51 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
 						<div class="agileits-login">
 							<form name="setUpgradeMedia" id="setUpgradeMedia" action="<?php echo base_url();?>home/set_upgrade_media" method="post">
+
+							<div id="formPengiriman" class="row" style="display: none;">
+									<div class="col-sm-12">
+										<div class="form-group">
+											<label class="label-control"> Opsi Pengiriman</label>
+											<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
+										    	<option value="1">Ambil di lokasi</option>
+										    	<option value="2">Kirim area Malang</option>
+										    	<option value="3">Via JNE</option>
+									    	</select>
+										</div>
+									</div>
+									<div class="col-sm-6 paket-jne">
+										<div class="form-group">
+											<label for="provinsi" class="label-control">Provinsi</label>
+											<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
+											<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
+												<option value="" selected="" disabled="">Pilih Provinsi</option>
+												<?php get_province();?>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-6 paket-jne">
+										<div class="form-group">
+											<label for="kota" class="label-control">Kota</label>
+											<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
+											<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
+												<option value="" selected="" disabled="">Pilih Kota</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-12 paket-jne">
+										<div class="form-group">
+											<label class="label-control"> Paket Kurir</label>
+											<select class="form-control input-sm" name="pilihan_paket" id="pilihanPaket" disabled="true">
+										    	<option value="reg">Reguler</option>
+										    	<option value="yes">YES (Yakin Esok Sampai)</option>
+									    	</select>
+									    	<small id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
+										</div>
+									</div>
+								 </div>
+								 
 							<div class="section-header">
-								<span class="section-title" style="margin-top: 0px; margin-bottom: 10px;"><b>Summary</b></span>
+								<span class="section-title" style="margin-top: 0px; margin-bottom: 10px;">Summary</span>
 							</div>
 								<table id="tableScope" class="table">
 									<tbody>
@@ -765,7 +834,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<td colspan="3" style="vertical-align: middle;">
 												<div>
 													<img src="<?=URL_IMG.$sum_paket->kode_paket?>.jpg" width="85">
-													<h2 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h2>
+													<h3 style="display: inline-block; margin-left: 15px;"><?=ucfirst($sum_paket->kode_paket);?></h3>
 												</div>
 											</td>
 										</tr>
@@ -801,53 +870,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<?php } ?>
 									</tbody>
 								</table>
-
-								<div id="formPengiriman" class="row" style="display: none;">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<label class="label-control"> Opsi Pengiriman</label>
-											<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
-										    	<option value="1">Ambil di lokasi</option>
-										    	<option value="2">Kirim area Malang</option>
-										    	<option value="3">Via JNE</option>
-									    	</select>
-										</div>
-									</div>
-									<div class="col-sm-4 paket-jne">
-										<div class="form-group">
-											<label for="provinsi" class="label-control">Provinsi</label>
-											<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
-											<select name="provinsi" id="provinsi" class="form-control input-sm" placeholder="Provinsi" disabled="true">
-												<option value="" selected="" disabled="">Pilih Provinsi</option>
-												<?php get_province();?>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-4 paket-jne">
-										<div class="form-group">
-											<label for="kota" class="label-control">Kota</label>
-											<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
-											<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
-												<option value="" selected="" disabled="">Pilih Kota</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-sm-4 paket-jne">
-										<div class="form-group">
-											<label class="label-control"> Paket Kurir</label>
-											<select class="form-control input-sm" name="pilihan_paket" id="pilihanPaket" disabled="true">
-										    	<option value="reg">Reguler</option>
-										    	<option value="yes">YES (Yakin Esok Sampai)</option>
-									    	</select>
-									    	<small id="pilihan_paket_alert" style="display: none;">*Tidak tersedia paket YES untuk kota ini</small>
-										</div>
-									</div>
-								 </div>
 								
 								<table id="tableUpgrade" class="table">
 								<caption>Upgrade</caption>
 									<tbody>
-										<tr class="text-center">
+										<tr class="text-center" style="background-color: #807E81; color:#fff;">
 											<th class="text-center" style="width:50%;">Nama Item</th>
 											<th class="text-center" style="width:20%;">Jumlah</th>
 											<th class="text-center" style="width:30%;">Harga</th>
@@ -861,7 +888,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<table id="tableMedia" class="table">
 								<caption>Media Cetak</caption>
 									<tbody>
-										<tr id="header">
+										<tr id="header" style="background-color: #807E81; color:#fff;">
 											<th class="text-center" style="width:40%; vertical-align: middle;">Nama Item</th>
 											<th class="text-center" style="width:10%; vertical-align: middle;">Jumlah</th>
 											<th class="text-center" style="width:20%; vertical-align: middle;">Warna Primer/Sekunder</th>
@@ -894,7 +921,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</div>
 										</div>
 
-										<hr style="display:block; height:1px; border:0; margin: 1em 0; padding: 0; border-top: 1px solid #bb3756;">
+										<hr style="display:block; height:1px; border:0; margin: 1em 0; padding: 0; border-top: 1px solid #333;">
 										
 										<div class="row">
 											<div class="col-xs-6"><b>Harga Total:</b></div>
@@ -933,8 +960,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="row">
 								<div class="col-sm-12 text-center">
 									<div id="summaryNavBtn" class="btn-group">
-										<a href="#" onclick="prevStartOrder(event);" class="btn btn-default" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-										<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+										<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
+										<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -1072,7 +1099,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		$(document).ready(function(){
     		$("#startOrder ul li.active").next().find("a").click(); 
     		
-    		$('#colStartOrderTabs').attr('class', 'col-sm-6');
+    		$('#colStartOrderTabs').attr('class', 'col-sm-7');
     		$('#colSummarySection').fadeIn();
 
     		//disable Pilih Paket Tab (First tab)
@@ -1083,9 +1110,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			var html = $('#summaryNavBtn').html();
     		linkFormPemesan.on('shown.bs.tab', function() {
     			var htmlKonfirmasi = ''
-    				+ '<p style="font-size:16px; color:white; margin-bottom:10px;">Apakah anda setuju dengan harga di atas?</p>'
-    				+'<a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default" title="Batalkan Pesanan"><i class="fa fa-remove"></i> Tidak, batalkan pesanan</a>'
-					+'<a href="#" onclick="nextStartOrder(event);" class="btn btn-info" title="Lanjut ke Form Pesanan"><i class="fa fa-check"></i> Ya, Isi form pesanan</a>';
+    				+ '<p style="font-size:16px; color:#333; margin-bottom:10px;">Apakah anda setuju dengan harga di atas? <br> <i>Notifikasi kirim resi via chat Line/Whatsapp sesuai</i></p>'
+    				+'<a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default btn-md" title="Batalkan Pesanan"><i class="fa fa-remove"></i> Tidak, batalkan pesanan</a>'
+					+'<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pesanan"><i class="fa fa-check"></i> Ya, Isi form pesanan</a>';
 
     			var nextTab = $(this).parent('li').next().find('a') || 'end';
     			if(nextTab.attr('href') == '#isiFormPemesan') {
@@ -1107,6 +1134,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     				$('#upgradeNavBtn').hide();
     				$('#mediaNavBtn').hide();
     				$('#summaryNavBtn').fadeOut();
+    				$('#colSummarySection').fadeOut();
+    				$('#colStartOrderTabs').attr('class', 'col-md-offset-3 col-md-6');
     			}
 				else {
     				$('#upgradeNavBtn').show();
@@ -1339,6 +1368,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			if(val == 2) { //pengiriman daerah malang
             	harga = parseFloat(15000);
 				$("#hargaOngkir").html(harga);
+				$("#etd").html("< 1");
             	$("input[name='total_ongkir']").val(harga);
             }
             else {
@@ -1778,16 +1808,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            		harga = data.harga_yes;
 		            		etd = data.etd_yes;
 		            		$("#pilihanPaket option[value='yes']").prop('disabled', false).removeClass("hidden");
-            				$("#pilihanPaket_alert").hide();
+            				$("#pilihan_paket_alert").hide();
 		            	}
 		            	else {
 		            		$("#pilihanPaket option[value='reg']").prop('selected', true);
 		            		$("#pilihanPaket option[value='yes']").prop('disabled', true).addClass("hidden");
-            				$("#pilihanPaket_alert").show();
+            				$("#pilihan_paket_alert").show();
 		            	}
 		            } else {
 		            	$("#pilihanPaket option[value='yes']").prop('disabled', false).removeClass("hidden");
-	            		$("#pilihanPaket_alert").hide();
+	            		$("#pilihan_paket_alert").hide();
 		            }
 
 		            $("#hargaOngkir").html(harga);

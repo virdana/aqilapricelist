@@ -8,7 +8,7 @@
     <script src="<?php echo URL_JS?>admin/jquery.nicescroll.js" type="text/javascript"></script>
 
     <!--Datatables-->
-    <script src="<?php echo URL_ASSET?>datatables/js/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="<?php echo URL_ASSET?>datatables/js/dataTables.bootstrap.min.js"></script> -->
     <script src="<?php echo URL_ASSET?>datatables/js/jquery.dataTables.js"></script>
 
     <!--custom switch-->
@@ -17,8 +17,12 @@
     <!--ckeditor-->
     <script src="<?php echo URL_JS?>../ckeditor/ckeditor.js"></script>
     <script type="text/javascript">
-        CKEDITOR.replace( 'ckeditor1' );
-        CKEDITOR.replace( 'ckeditor2' );
+        if($('#ckeditor1').length != 0) {
+            CKEDITOR.replace( 'ckeditor1' );
+        }
+        if($('#ckeditor2').length != 0) {
+            CKEDITOR.replace( 'ckeditor2' );
+        }
     </script>
 
     <!-- JS script for masking input -->
