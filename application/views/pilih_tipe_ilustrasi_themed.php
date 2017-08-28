@@ -792,7 +792,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									    	</select>
 										</div>
 									</div>
-									<div class="col-sm-6 paket-jne">
+									<div class="col-sm-4 paket-jne">
 										<div class="form-group">
 											<label for="provinsi" class="label-control">Provinsi</label>
 											<input type="text" name="nama_provinsi" id="nama_provinsi" class="form-control" title="Nama Provinsi" style="display:none;">
@@ -802,12 +802,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											</select>
 										</div>
 									</div>
-									<div class="col-sm-6 paket-jne">
+									<div class="col-sm-4 paket-jne">
 										<div class="form-group">
 											<label for="kota" class="label-control">Kota</label>
 											<input type="text" name="nama_kota" id="nama_kota" class="form-control" title="Nama Kota" style="display:none;">
 											<select name="kota" id="kota" class="form-control input-sm" placeholder="Kota" disabled="true">
 												<option value="" selected="" disabled="">Pilih Kota</option>
+											</select>
+										</div>
+									</div>
+									<div class="col-sm-4 paket-jne">
+										<div class="form-group">
+											<label for="kota" class="label-control">Kecamatan</label>
+											<input type="text" name="nama_kecamatan" id="nama_kecamatan" class="form-control" title="Nama Kecamatan" style="display:none;">
+											<select name="kecamatan" id="kecamatan" class="form-control input-sm" placeholder="Kecamatan" disabled="true">
+												<option value="" selected="" disabled="">Pilih Kecamatan</option>
 											</select>
 										</div>
 									</div>
@@ -942,6 +951,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									<div class="col-sm-12 text-center" style="margin-bottom: 15px;">
 										<img src="<?php echo URL_IMG.'loading.svg'?>" class="ajaxLoading" title="Loading..." alt="Loading..." style="display:none; height:30px; width:30px;"> 
 										<div class="form-inline">
+											<input type="number" name="json_media" class="form-control input-sm" value="" title="json_media" style="display:none;">
 											<input type="number" name="total_media_weight" class="form-control input-sm" value="0" title="total_media_weight" style="display:none;">
 											<input type="number" name="total_shipping" class="form-control input-sm" value="0" title="total harga shipping" style="display:none;">
 											<input type="text" name="total_hari" class="form-control input-sm" value="0" title="total hari" style="display:none;">
@@ -1234,11 +1244,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				// console.log("namaKota" + namaKota);
 				});
 			});
-			$("#kota").change(function(){
+	    	//GET SUBDISTRICT BY CITY
+			$("#kota").click(function(){
+			$.post("<?php echo base_url(); ?>home/get_subdistrict_by_city/"+$('#kota').val(),function(obj){
+				var namaKota = $('#kota :selected').html();
+				$('#nama_kota').val(namaKota);
+				$('#kecamatan').html(obj);
+				var namaKecamatan = $('#kecamatan :selected').html();
+				$('#nama_kecamatan').val(namaKecamatan);
+				});
+			});
+			$("#kecamatan").change(function(){
+				var namaKecamatan = $('#kecamatan :selected').html();
+				$('#nama_kecamatan').val(namaKecamatan);
+				// console.log("namaKota" + namaKota);
+			});
+			/*$("#kota").change(function(){
 				var namaKota = $('#kota :selected').html();
 				$('#nama_kota').val(namaKota);
 				// console.log("namaKota" + namaKota);
-			});
+			});*/
 			//masking money format
     		maskInputMoney();
 		});
@@ -1465,6 +1490,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	            var data = JSON.parse(response);
 	            var harga = parseInt(data.harga);
 	            var weight = parseInt(data.weight);
+	            var length = parseInt(data.length);
+	            var height = parseInt(data.height);
+	            var width = parseInt(data.width);
 	            var hari = parseInt(data.hari);
 	            var shipping = parseInt(data.harga_shipping);
 	            var beratShipping = parseInt(data.berat_shipping);
@@ -1480,11 +1508,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						+ "<span style='width:100%; height:auto; padding:1%;'>" +nama+"</span>" 
 						+"</td>"
 					+"<td>"
-						+"<input name='media-jumlah-"+id_media+"' type='number' class='form-control input-sm' min='1' value='1' data-value='"+id_media+"' oninput='calculateMedia(this, "+harga+", "+weight+", "+shipping+", "+beratShipping+")'>"
+						+"<input name='media-jumlah-"+id_media+"' type='number' class='form-control input-sm' min='1' value='1' data-value='"+id_media+"' oninput='calculateMedia(this, "+harga+", "+weight+", "+length+", "+height+", "+width+", "+shipping+", "+beratShipping+")'>"
 					+"</td>"
 					+"<td class='text-center'>"
 						+"<input name='media-harga-"+id_media+"' type='text' class='input-sm' size='4' value='" + harga + "' title='harga' style='display:none;'>"
-						+"<input name='media-weight-"+id_media+"' type='text' class='input-sm' size='4' value='" + weight + "' title='weight' style='display:none;'>"
+						+"<input name='media-weight-"+id_media+"' data-id='"+id_media+"' type='text' class='input-sm' size='4' value='" + weight + "' title='weight' style='display:none;'>"
+						+"<input name='media-length-"+id_media+"' data-id='"+id_media+"' type='text' class='input-sm' size='4' value='" + length + "' title='length' style='display:none;'>"
+						+"<input name='media-height-"+id_media+"' data-id='"+id_media+"' type='text' class='input-sm' size='4' value='" + height + "' title='height' style='display:none;'>"
+						+"<input name='media-width-"+id_media+"' data-id='"+id_media+"' type='text' class='input-sm' size='4' value='" + width + "' title='width' style='display:none;'>"
 						+"<input name='media-hari-"+id_media+"' type='text' class='input-sm' size='4' value='" + hari + "' title='hari' style='display:none;'>"
 						+"<input name='media-harga_shipping-"+id_media+"' type='text' class='input-sm' size='4' value='" + shipping + "' title='shipping' style='display:none;'>"
 						+"<input name='media-berat_shipping-"+id_media+"' type='text' class='input-sm' size='4' value='" + beratShipping + "' title='berat shipping' style='display:none;'>"
@@ -1570,13 +1601,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			calculateHargaTotal();
 			maskInputMoney();
 		};
-		function calculateMedia(e, harga, weight, shipping, beratShipping) {
+		function calculateMedia(e, harga, weight, length, height, width, shipping, beratShipping) {
 			unmaskInputMoney();
 			var jumlah = $(e).val();
 			var id = $(e).data("value");
 			$("#hargaMedia-"+id).html(jumlah * harga);
 			$("input[name='media-harga-"+id+"']").val(jumlah * harga);
 			$("input[name='media-weight-"+id+"']").val(jumlah * weight);
+			$("input[name='media-length-"+id+"']").val(jumlah * length);
+			$("input[name='media-height-"+id+"']").val(jumlah * height);
+			$("input[name='media-width-"+id+"']").val(jumlah * width);
 			$("input[name='media-harga_shipping-"+id+"']").val(jumlah * shipping);
 			$("input[name='media-berat_shipping-"+id+"']").val(jumlah * beratShipping);
 			calculateSubTotal();
@@ -1589,12 +1623,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		};
 		function calculateMediaWeight() {
 			var totalWeight = 0;
+			var groupId = '';
+			var jsonMedia = [];
 			$("#tableMedia tbody input[name*='media-weight-']").each(function() {
-				totalWeight += Number($(this).val());
+				groupId = $(this).data('id');
+				totalWeight += Number($(this).val()	);
+				arrayMedia = {
+						id_media: $(this).data('id'),
+						weight: Number( $(this).val() ),
+						length: Number( $("input[name*='media-length-"+groupId+"']").val() ),
+						height: Number( $("input[name*='media-height-"+groupId+"']").val() ),
+						width: Number( $("input[name*='media-width-"+groupId+"']").val() )
+					};
+				jsonMedia.push(arrayMedia);
 				// console.log($(this).val());
 			});
+			// alert(JSON.stringify(jsonMedia));
 			console.log("totalWeight " + totalWeight);
 			$("input[name='total_media_weight']").val(totalWeight);
+			$("input[name='json_media']").val(jsonMedia);
 		};
 		function calculateMediaShipping() {
 			unmaskInputMoney();
@@ -1728,11 +1775,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			unmaskInputMoney();
 			var form = $("#formOngkir");
 			var kota = $("#kota").val() || 0;
+			var kecamatan = $("#kecamatan").val() || 0;
 			var id_paket = $("#pilihanPaket :selected").val();
 			return $.ajax({
 		        url: "<?php echo base_url();?>" + "home/get_cost",
 		        type: "POST",
-		        data: form.serialize() + "&kota="+kota + "&pilihan_paket="+id_paket,
+		        data: form.serialize() + "&kota="+kota + "&kecamatan="+kecamatan + "&pilihan_paket="+id_paket,
 		        cache: false,
 		        success: function(response) {
 		            return response;
@@ -1777,7 +1825,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				arrFormPemesan['nama_kota'] = $('#kota :selected').html() || '';
 				arrFormPemesan['pilihanPaket'] = $("#pilihanPaket").val() || '';
 
-				var html = '<input type="hidden" name="opsiPengiriman" value="'+ arrFormPemesan['opsiPengiriman'] +'">'
+				var html = '<input type="hidden" name="opsi_pengiriman" value="'+ arrFormPemesan['opsiPengiriman'] +'">'
 							+ '<input type="hidden" name="provinsi" value="'+ arrFormPemesan['provinsi'] +'">'
 							+ '<input type="hidden" name="nama_provinsi" value="'+ arrFormPemesan['nama_provinsi'] +'">'
 							+ '<input type="hidden" name="kota" value="'+ arrFormPemesan['kota'] +'">'
@@ -1829,7 +1877,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            $("#infoTotal").show();
 	        	});
 			});
-			$("#kota").on("change", function(e) {
+			$("#kecamatan").on("change", function(e) {
 				$("#formOngkir").submit();
 			});
 			$("#pilihanPaket").on("change", function(e) {

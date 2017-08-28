@@ -151,11 +151,30 @@
       $("#pemesan_noLine").html(getPemesan[0].no_line);
 
       if(getPenerima.length > 0) {
+        var opsiPengiriman = '-';
+        var namaProvinsi = getPenerima[0].nama_provinsi;
+        var namaKota = getPenerima[0].nama_kota;
+        if (getPenerima[0].opsi_pengiriman == 1) {
+          opsiPengiriman = 'Ambil di Lokasi';
+          namaProvinsi = '-';
+          namaKota = '-';
+        }
+        else if(getPenerima[0].opsi_pengiriman == 2) {
+          opsiPengiriman = 'Kirim Area Malang';
+          namaProvinsi = '-';
+          namaKota = '-';
+        }
+        else if(getPenerima[0].opsi_pengiriman == 3) {
+          opsiPengiriman = 'JNE';
+          namaProvinsi = getPenerima[0].nama_provinsi;
+          namaKota = getPenerima[0].nama_kota;
+        }
         $("#penerima_nama").html(getPenerima[0].nama_penerima) ;
         $("#penerima_noHp").html(getPenerima[0].no_hp);
         $("#penerima_alamat").html(getPenerima[0].alamat);
-        $("#penerima_namaKota").html(getPenerima[0].nama_kota);
-        $("#penerima_namaProvinsi").html(getPenerima[0].nama_provinsi);
+        $("#opsi_pengiriman").html(opsiPengiriman);
+        $("#penerima_namaKota").html(namaKota);
+        $("#penerima_namaProvinsi").html(namaProvinsi);
         $("#detailPenerima").show();
       } else {
         $("#detailPenerima").hide();

@@ -162,13 +162,14 @@ class Home extends CI_Controller {
 
         if(isset($params['nama_penerima'])) {
             $penerima = array(
-                    'nama_penerima' => $params['nama_penerima'],
-                    'no_hp'         => $params['no_hp_penerima'],
-                    'alamat'        => $params['alamat_penerima'],
-                    'id_provinsi'   => $params['provinsi'],
-                    'nama_provinsi' => $params['nama_provinsi'],
-                    'id_kota'       => $params['kota'],
-                    'nama_kota'     => $params['nama_kota']
+                    'nama_penerima'     => $params['nama_penerima'],
+                    'no_hp'             => $params['no_hp_penerima'],
+                    'alamat'            => $params['alamat_penerima'],
+                    'id_provinsi'       => $params['provinsi'],
+                    'nama_provinsi'     => $params['nama_provinsi'],
+                    'id_kota'           => $params['kota'],
+                    'nama_kota'         => $params['nama_kota'],
+                    'opsi_pengiriman'   => $params['opsi_pengiriman']
                 );
             //Insert data penerima and get the id_penerima
             $id_penerima = $this->model_fadmin->insert_id($penerima, 'penerima');
@@ -344,14 +345,26 @@ class Home extends CI_Controller {
         }
         echo $result;
     }
+    public function get_subdistrict_by_city($kota) {
+        $result = FALSE;
+        if (isset($kota)) {
+            $result = get_subdistrict($kota);
+        }
+        echo $result;
+    }
     public function get_cost() {
         $params = $this->input->post();
         $kurir = 'jne';
-        $origin = 256; //kode Malang Kota
+        // $origin = 256; //kode Malang Kota
+        $origin = 3637; //kode Malang kecamatan Lowokwaru
         $kota = isset($params['kota']) ? $params['kota'] : 0;
+        $kecamatan = isset($params['kecamatan']) ? $params['kecamatan'] : 0;
         $weight = isset($params['total_media_weight']) ? $params['total_media_weight'] : 0;
+        $origin_type = 'subdistrict';
+        $destination_type = 'subdistrict';
 
-        $result = get_ongkir($kurir, $origin, $kota, $weight);
+        // get_ongkir($courier=NULL, $origin=NULL, $origin_type='city', $destination=NULL, $destination_type='subdistrict', $weight=NULL)
+        $result = get_ongkir($kurir, $origin, $origin_type, $kecamatan, $destination_type, $weight);
         $harga_reg = 0; $harga_yes = 0; $etd_reg = 0; $etd_yes = 0; 
         if(!empty($result['rajaongkir']['results'])) {
             foreach ($result['rajaongkir']['results'][0]['costs'] as $paket) {
@@ -481,20 +494,22 @@ class Home extends CI_Controller {
 
                 $this->load->library('email');
                 $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'mail.smtp2go.com';
-                $config['smtp_port'] = '2525'; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
+                $config['smtp_host'] = 'smtp.gmail.com';
+                $config['smtp_port'] = '587'; // 8025, 587 and 25 can also be used. Use Port 465 for SSL.
                 $config['smtp_crypto'] = 'tls';
-                $config['smtp_user'] = 'fentroaqila@yahoo.com';
-                $config['smtp_pass'] = 'x08KaeEkAqCV';
+                // $config['smtp_port'] = '587'; 
+                // $config['smtp_crypto'] = 'tls';
+                $config['smtp_user'] = 'aqila.pricelist@gmail.com';
+                $config['smtp_pass'] = 'aqilapricelist1';
                 // $config['smtp_user'] = 'fentroart@gmail.com';
                 // $config['smtp_pass'] = '6jvxble4Rp0e';
                 // $config['smtp_pass'] = '12fentro34';
-                $config['charset'] = 'utf-8';
+                $config['charset'] = 'iso-8859-1';
                 $config['mailtype'] = 'html';
-                $config['newline'] = "rn";
+                $config['newline'] = "\r\n";
                 $this->email->initialize($config);
 
-                $this->email->from('noreply@fentroart.com', 'Fentroart');
+                $this->email->from('aqila.pricelist@gmail.com', 'noreply@fentroart.com');
                 $this->email->to($email);
                 // $this->email->cc('another@another-example.com');
                 // $this->email->bcc('them@their-example.com');
@@ -505,11 +520,11 @@ class Home extends CI_Controller {
                 if($opt == "send") {
                     try {
                         $result = $this->email->send();
-                        // echo 'Message has been sent.';
+                        echo 'Message has been sent.';
                     }
                     catch(Exception $e) {
                         $result = FALSE;
-                        // echo $e->getMessage();
+                        echo $e->getMessage();
                     }
                     return $result;
                 }

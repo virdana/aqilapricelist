@@ -11,7 +11,7 @@
         <div class="row">
           <div class="col-sm-12">
             <h4>
-              <b>ID:</b> <span id="id_pesanan"></span> (Paket <span id="nama_paket">-</span>) 
+              <b>ID Order:</b> <span id="id_pesanan"></span> (Paket <span id="nama_paket">-</span>) 
               <span class="pull-right">
                 <b>Grand Total:</b> Rp <span id='grand_total' class="money"></span> (<span id="total_hari"></span> hari) 
               </span>
@@ -37,6 +37,7 @@
               <p><b>Alamat:</b> <span id="penerima_alamat"></span></p>
               <p><b>Kota:</b> <span id="penerima_namaKota"></span></p>
               <p><b>Provinsi:</b> <span id="penerima_namaProvinsi"></span></p>
+              <p><b>Metode Pengiriman:</b> <span id="opsi_pengiriman"></span></p>
             </div>
           </div>
         </div>

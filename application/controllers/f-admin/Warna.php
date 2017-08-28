@@ -79,7 +79,7 @@ class Warna extends CI_Controller {
     }
 
     public function get_warna_by_media() {
-        $result = array('primer' => '', 'sekunder' => '');
+        $result = array('primer' => [], 'sekunder' => []);
         $id_media = $this->input->post('id_media');
         // jika id_media == 0 maka warna universal akan ditampilkan
         if($id_media != '' ) {

@@ -73,19 +73,19 @@
           <div class="row">
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="control-label">Length (Panjang)</label>
+                <label class="control-label">Length (cm)</label>
                 <input type="number" name="length" class="form-control input-sm" placeholder="Length">
                 </div>
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="control-label">Width (Lebar)</label>
+                <label class="control-label">Width (cm)</label>
                 <input type="number" name="width" class="form-control input-sm" placeholder="Width">
               </div>
             </div>
             <div class="col-sm-3">
               <div class="form-group">
-                <label class="control-label">Height (Tinggi)</label>
+                <label class="control-label">Height (cm)</label>
                 <input type="number" name="height" class="form-control input-sm" placeholder="Height">
               </div>
             </div>

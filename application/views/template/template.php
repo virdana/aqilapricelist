@@ -271,13 +271,31 @@
 														</ul>
 													</td>
 													<td class="half-block__content" style="width: 50%; padding: 0 25px 0 25px; font-size: 16px; line-height: 27px; color: #969696; text-align: left; vertical-align: top;" >
-															<?php if(!empty($data_penerima)) { ?>
+															<?php if(!empty($data_penerima)) { 
+																	$opsi_pengiriman = '-';
+																	$nama_provinsi = $data_penerima->nama_provinsi;
+																	$nama_kota = $data_penerima->nama_kota;
+																	if($data_penerima->opsi_pengiriman == 1) { //Ambil di lokasi
+																		$opsi_pengiriman = 'Ambil di lokasi';
+																		$nama_provinsi = '-';
+																		$nama_kota = '-';
+																	}
+																	else if($data_penerima->opsi_pengiriman == 2) { //Kirim Area Malang
+																		$opsi_pengiriman = 'Kirim area Malang';
+																		$nama_provinsi = '-';
+																		$nama_kota = '-';
+																	}
+																	else if($data_penerima->opsi_pengiriman == 3) { //JNE
+																		$opsi_pengiriman = 'JNE';
+																	}
+																?>
 																<ul>
 																	<li><b>Nama Penerima: </b><?php echo $data_penerima->nama_penerima;?></li>
 																	<li><b>No. HP: </b><?php echo $data_penerima->no_hp;?></li>
 																	<li><b>Alamat: </b><?php echo $data_penerima->alamat;?></li>
-																	<li><b>Kota: </b><?php echo $data_penerima->nama_kota;?></li>
-																	<li><b>Provinsi: </b><?php echo $data_penerima->nama_provinsi;?></li>
+																	<li><b>Kota: </b><?php echo $nama_kota;?></li>
+																	<li><b>Provinsi: </b><?php echo $nama_provinsi;?></li>
+																	<li><b>Metode Pengiriman: </b><?php echo $opsi_pengiriman?></li>
 																</ul>
 															<?php } else { ?>
 																<span style="display: block; vertical-align: middle; text-align: center;"><i>Tidak ada penerima <br>(File ilustrasi akan dikirim ke email pemesan)</i></span>
