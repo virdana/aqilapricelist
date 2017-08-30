@@ -813,7 +813,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 									</div>
 									<div class="col-sm-4 paket-jne">
 										<div class="form-group">
-											<label for="kota" class="label-control">Kecamatan</label>
+											<label for="kecamatan" class="label-control">Kecamatan</label>
 											<input type="text" name="nama_kecamatan" id="nama_kecamatan" class="form-control" title="Nama Kecamatan" style="display:none;">
 											<select name="kecamatan" id="kecamatan" class="form-control input-sm" placeholder="Kecamatan" disabled="true">
 												<option value="" selected="" disabled="">Pilih Kecamatan</option>
@@ -1026,15 +1026,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //ResponsiveTabs js --> 
 
 	<!-- Jquery validate js -->
-	<script src="<?php echo URL_JS?>jquery.validate.min.js" type="text/javascript"></script>
+	<!-- <script src="<?php echo URL_JS?>jquery.validate.min.js" type="text/javascript"></script> -->
 	<script type="text/javascript">
-		$.validator.setDefaults( {
+		/*$.validator.setDefaults( {
 			submitHandler: function () {
 				alert( "submitted!" );
 			}
-		} );
+		} );*/
 
-		$(document).ready(function () {
+		/*$(document).ready(function () {
 			$( "#signupForm" ).validate( {
 				rules: {
 					firstname: "required",
@@ -1095,7 +1095,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
 				}
 			} );
-		});
+		});*/
 	</script>
 	<!-- //Jquery validate js --> 
 	
@@ -1208,14 +1208,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    	var opsiPengiriman = $('#opsiPengiriman :selected').val();
 	    	var provinsi = $('#provinsi :selected').val();
 	    	var kota = $('#kota :selected').val();
+	    	var kecamatan = $('#kecamatan :selected').val();
 	    	var pilihanPaket = $('#pilihanPaket :selected').val();
 	    	if(nextTab.length == 0) { //end of tab
 		    	if(opsiPengiriman == 3) { //via JNE
-		    		if(provinsi && kota && pilihanPaket) {
+		    		if(provinsi && kota && kecamatan && pilihanPaket) {
 		    			$("#startOrder ul li.active").next().find("a").click();
 		    		}
 		    		else {
-		    			alert('Anda belum memilih Provinsi/Kota tujuan pengiriman!');
+		    			alert('Anda belum memilih Provinsi/Kota/Kecamatan tujuan pengiriman!');
 		    		}
 		    	}
 		    	else {
@@ -1250,6 +1251,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				var namaKota = $('#kota :selected').html();
 				$('#nama_kota').val(namaKota);
 				$('#kecamatan').html(obj);
+				//trigger select first kecamatan option
+				$('#kecamatan option:first').trigger('change');
 				var namaKecamatan = $('#kecamatan :selected').html();
 				$('#nama_kecamatan').val(namaKecamatan);
 				});
@@ -1257,13 +1260,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$("#kecamatan").change(function(){
 				var namaKecamatan = $('#kecamatan :selected').html();
 				$('#nama_kecamatan').val(namaKecamatan);
+				$("#formOngkir").submit();
 				// console.log("namaKota" + namaKota);
 			});
-			/*$("#kota").change(function(){
-				var namaKota = $('#kota :selected').html();
-				$('#nama_kota').val(namaKota);
-				// console.log("namaKota" + namaKota);
-			});*/
+			$("#pilihanPaket").on("change", function(e) {
+				$("#formOngkir").submit();
+			});
+			
 			//masking money format
     		maskInputMoney();
 		});
@@ -1380,27 +1383,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		function showHideJne(val) {
 			var harga = parseFloat(0);
-			if(val == 3) { //pengiriman via JNE
-				$(".paket-jne").show();
-				$('.paket-jne select').prop('disabled', false);
+			$(".paket-jne").hide();
+			$('.paket-jne select').prop('disabled', true);
+			if(val == 1) { //ambil di lokasi
+				$("#hargaOngkir").html(harga);
+            	$("input[name='total_ongkir']").val(harga);
 			}
-			else {
-				$(".paket-jne").hide();
-				$('.paket-jne select').prop('disabled', true);
-			}
-			
 			//Set harga ongkir untuk daerah malang Rp 15.000
-			if(val == 2) { //pengiriman daerah malang
+			else if(val == 2) { //pengiriman daerah malang
             	harga = parseFloat(15000);
 				$("#hargaOngkir").html(harga);
 				$("#etd").html("< 1");
             	$("input[name='total_ongkir']").val(harga);
             }
-            else {
-				$("#hargaOngkir").html(harga);
-            	$("input[name='total_ongkir']").val(harga);
-            }
+			else if(val == 3) { //pengiriman via JNE
+				$(".paket-jne").show();
+				$('.paket-jne select').prop('disabled', false);
+				//reset provinsi option
+				$("#kota").trigger('click');
+			}
 			calculateMediaShipping();
+			calculateHargaTotal();
             unmaskInputMoney();
             maskInputMoney();
 		}
@@ -1419,6 +1422,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				$("textarea[name='alamat_penerima']").prop("disabled", false);
 				$("select[name='opsi_pengiriman']").prop("disabled", false);
 			} else {
+				// alert('formpenerima hide');
 				showHideJne(opsiPengiriman);
 				$("#formPengiriman").hide();
 				$("#formPenerima").hide();
@@ -1548,6 +1552,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			if(id_upgrade == 2) {
             	hideCustomBackground();
             }
+            calculateSubTotal();
             calculateHargaTotal();
 			checkSelectedUpgrade();
 		};
@@ -1564,7 +1569,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			calculateMediaShipping();
 			calculateTotalHari();
 	        checkSelectedMedia();
-			$("#formOngkir").submit(); //to recheck ongkir price
+			// $("#formOngkir").submit(); //to recheck ongkir price
 			calculateHargaTotal();
 		};
 		function checkSelectedUpgrade() {
@@ -1706,9 +1711,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			var shipping = parseFloat($("input[name='total_shipping']").val()) || 0;
 
 			var ongkir = parseFloat($("input[name='total_ongkir']").val()) || 0;
-			if($("#formPenerima").is(":hidden")) {
+			//jika tidak ada media yand terpilih (form penerima akan muncul kalau ada media yang dipilih)
+			console.log('ongkirsebelumif: '+ongkir);
+			if($("#formPengiriman").is(":hidden")) {
 				ongkir = 0;
+				$("#hargaOngkir").html(ongkir);
+				$("input[name='total_ongkir']").val(ongkir);
+				console.log('FORMPENGIRIMAN HIDDEN');
 			}
+			console.log('ongkirsesudah: '+ongkir);
 
 			hargaTotal += parseFloat(subtotal + shipping + ongkir) || 0;
 			console.log("hargaTotal " + hargaTotal);
@@ -1774,9 +1785,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		function cekOngkir() { 
 			unmaskInputMoney();
 			var form = $("#formOngkir");
-			var kota = $("#kota").val() || 0;
-			var kecamatan = $("#kecamatan").val() || 0;
+			var kota = $("#kota :selected").val() || 0;
+			var kecamatan = $("#kecamatan :selected").val() || 0;
 			var id_paket = $("#pilihanPaket :selected").val();
+			console.log('----------------');
+			console.log('Kota: '+kota);
+			console.log('Kecamatan: '+kecamatan);
+			console.log('----------------');
 			return $.ajax({
 		        url: "<?php echo base_url();?>" + "home/get_cost",
 		        type: "POST",
@@ -1823,6 +1838,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				arrFormPemesan['nama_provinsi'] = $('#provinsi :selected').html() || '';
 				arrFormPemesan['kota'] = $("#kota").val() || '';
 				arrFormPemesan['nama_kota'] = $('#kota :selected').html() || '';
+				arrFormPemesan['kecamatan'] = $("#kecamatan").val() || '';
+				arrFormPemesan['nama_kecamatan'] = $('#kecamatan :selected').html() || '';
 				arrFormPemesan['pilihanPaket'] = $("#pilihanPaket").val() || '';
 
 				var html = '<input type="hidden" name="opsi_pengiriman" value="'+ arrFormPemesan['opsiPengiriman'] +'">'
@@ -1830,6 +1847,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							+ '<input type="hidden" name="nama_provinsi" value="'+ arrFormPemesan['nama_provinsi'] +'">'
 							+ '<input type="hidden" name="kota" value="'+ arrFormPemesan['kota'] +'">'
 							+ '<input type="hidden" name="nama_kota" value="'+ arrFormPemesan['nama_kota'] +'">'
+							+ '<input type="hidden" name="kecamatan" value="'+ arrFormPemesan['kecamatan'] +'">'
+							+ '<input type="hidden" name="nama_kecamatan" value="'+ arrFormPemesan['nama_kecamatan'] +'">'
 							+ '<input type="hidden" name="pilihanPaket" value="'+ arrFormPemesan['pilihanPaket'] +'">';
 
 				$('#formPemesan').append(html);
@@ -1876,12 +1895,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					$(".ajaxLoading").hide();
 		            $("#infoTotal").show();
 	        	});
-			});
-			$("#kecamatan").on("change", function(e) {
-				$("#formOngkir").submit();
-			});
-			$("#pilihanPaket").on("change", function(e) {
-				$("#formOngkir").submit();
 			});
 
 			//run notifikasi transfer
