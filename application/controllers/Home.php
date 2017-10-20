@@ -196,7 +196,7 @@ class Home extends CI_Controller {
                 'pesanan_id'        => $id_pesanan,
                 'id_paket'          => $_SESSION['pesanan_extra']['id_paket'],
                 'nama_paket'        => $_SESSION['pesanan_extra']['nama_paket'],
-                'medium_body'        => isset($_SESSION['pesanan']['check_medium']) ? 1 : 0,
+                'medium_body'       => $_SESSION['pesanan']['check_medium'],
                 'warna_dominan'     => $params['warna_dominan'],
                 'tambahan_tulisan'  => $params['tambahan_tulisan'],
                 'background_stock'  => isset($params['background_stock']) ? $params['background_stock'] : "",

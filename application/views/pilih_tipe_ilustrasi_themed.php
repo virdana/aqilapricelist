@@ -30,52 +30,54 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 <!-- //web-fonts -->
 <style type="text/css">
-		table.table-tipeilustrasi tr td:nth-child(1) {
-			font-weight: bolder;
+		label.error {
+			color: crimson;
 		}
-		table.table-tipeilustrasi tr td:nth-child(2),
-		table.table-tipeilustrasi tr th:nth-child(2) {
-			background-color: #f6f6f6;
-			border-right: 1px solid #ddd;
+		.price-type:hover {
+			background-color: #f4f4f4;
 		}
-		table.table-tipeilustrasi tr td:nth-child(3),
-		table.table-tipeilustrasi tr th:nth-child(3) {
-			/*background-color: #d9edf7;*/
-			background-color: #f6f6f6;
-			border-right: 1px solid #ddd;
-		}
-		table.table-tipeilustrasi tr td:nth-child(4),
-		table.table-tipeilustrasi tr th:nth-child(4) {
-			/*background-color: #fcf8e3;*/
-			background-color: #f6f6f6;
-			border-right: 1px solid #ddd;
-		}
-		table.table-tipeilustrasi tr td:nth-child(5),
-		table.table-tipeilustrasi tr th:nth-child(5) {
-			/*background-color: #f2dede;*/
-			background-color: #f6f6f6;
-		}
-		table.table-tipeilustrasi tr td p {
-			color: #333;
-			padding-left: 0px;
-			white-space: normal;
-		   	width: 220px;
-		}
-		table.table-upgrade, 
-		table.table-mediacetak {
-			background-color: white;
-			padding: 5px;
-		}
-		table.table-upgrade tr td,  
-		table.table-mediacetak tr td {
-			vertical-align: middle;
-		}
-		table.table-upgrade tr td {
+		.price-title {
 			font-weight: bold;
 		}
-		table.table-upgrade tr td p,  
-		table.table-mediacetak tr td p {
-			font-weight: normal;
+		.price-image {
+			padding: 15px;
+		}
+		.price-desc {
+			min-height: 240px;
+		}
+		@media screen and (max-width: 480px) {
+			*, th {
+				font-size: 98% !important; 
+			}
+			.label {
+				font-size: 70% !important; 
+			}
+			.section-title, .add-upgrade {
+				font-size: 100% !important; 
+			}
+			.price-type {
+				margin-bottom: 10px;
+				border-radius: 10px;
+			}
+			.price-type:nth-child(1) {
+				background-color: #f4f4f4;
+			}
+			.price-type:nth-child(2) {
+				background-color: #f6fbfe;
+			}
+			.price-type:nth-child(3) {
+				background-color: #fff9e0;
+			}
+			.price-type:nth-child(4) {
+				background-color: #fff5f7;
+			}
+			.price-desc {
+				min-height: 1px;
+			}
+		}
+		.price-info {
+			padding: 10px;
+			border-top: 1px solid #ddd;
 		}
 		a.add-upgrade {
 			font-size: 25px;
@@ -86,13 +88,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			list-style:none;
 		    padding: 0;
 		}
-		ul.check-summary li{
+		/*ul.check-summary li{
 			line-height:1.3em;
 		    margin: .25em 0;
 		    padding: 0 0 0 20px;
 		    background:url(<?=URL_IMG."check.png"?>) no-repeat left top;
 		    background-size: contain; 
-		}
+		}*/
 		.thumb {
 		    height: 80px;
 		    border: 1px solid #000;
@@ -103,8 +105,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		}
 		.nav-pills > li > a {
 			color: #333;
-			/*border-radius:0px;*/
+			border-radius:0px;
 			margin-right: 20px; 
+			margin-bottom: 10px;
 		}
 		.nav>li>a:focus, .nav > li > a:hover {
 		    text-decoration: none;
@@ -112,7 +115,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     		color: #333; 
 		}
 		.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
-		    color: #fff;
+	    color: #fff;
 			/*background-color: #e2456a;*/
 			background-color: #337ab7;
 		}
@@ -131,8 +134,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			right: -20px;
 		}
 		.nav-pills > li > a:hover::after, .nav-pills > li > a:focus::after {
-		   	border-top: 20px inset transparent;
-		   	border-bottom: 20px inset transparent;
+	   	border-top: 20px inset transparent;
+	   	border-bottom: 20px inset transparent;
 			/*border-left: 20px solid #f9dfe5;*/
 			border-left: 20px solid #e8f3fc;
 			position: absolute;
@@ -266,14 +269,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	 ?>
 
 	<div id="startOrder" style="margin-top: 40px; margin-bottom: 5px;">
-		<ul class="nav nav-pills">
-		  <li class="active"><a href="#pilihPaket" data-toggle="pill">Pilih Paket</a></li>
-		  <li><a href="#pilihUpgrade" data-toggle="pill">Pilih Upgrade</a></li>
+		<ul class="nav nav-pills text-center">
+		  <li class="col-sm-2 col-xs-12 active"><a href="#pilihPaket" data-toggle="pill">Pilih Paket</a></li>
+		  <li class="col-sm-2 col-xs-12"><a href="#pilihUpgrade" data-toggle="pill">Pilih Upgrade</a></li>
 		  <?php if(isset($_SESSION['pesanan']['id_paket']) && $_SESSION['pesanan']['id_paket'] == 4) { ?>
 		  <?php } else { ?>
-		  	<li><a href="#pilihMedia" data-toggle="pill">Pilih Media Cetak</a></li>
+		  	<li class="col-sm-2 col-xs-12"><a href="#pilihMedia" data-toggle="pill">Pilih Media</a></li>
 		  <?php } ?>
-		  <li><a href="#isiFormPemesan" data-toggle="pill">Isi Form Pemesan</a></li>
+		  <li class="col-sm-2 col-xs-12"><a href="#isiFormPemesan" data-toggle="pill">Isi Form Pemesan</a></li>
 		</ul>
 	</div>
 	<hr>
@@ -289,182 +292,247 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<div class="contact-row agileits-w3layouts">  
 				<div class="col-md-12 contact-w3lsleft">
 					<div class="contact-grid agileits" style="padding-left: 5px;padding-right: 20px; background-color: white;">
-		
-						<div class="table-responsive">
-							<table class="table table-tipeilustrasi">
-								<thead>
-									<tr>
-										<th class="text-center">&nbsp;</th>
-										<th class="text-center">
-											<img src="<?php echo URL_IMG?>basic.jpg" width="220" class="">
-											<h4 class="hidden">Basic (30K)</h4>
-										</th>
-										<th class="text-center">
-											<img src="<?php echo URL_IMG?>standard.jpg" width="220" class="">
-											<h4 class="hidden">Standard (55K)</h4>
-										</th>
-										<th class="text-center">
-											<img src="<?php echo URL_IMG?>premium.jpg" width="220" class="">
-											<h4 class="hidden">Premium (100K)</h4>
-										</th>
-										<th class="text-center">
-											<img src="<?php echo URL_IMG?>design.jpg" width="220" class="">
-											<h4 class="hidden">Design Only</h4>
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-								<form action="<?php echo base_url()?>home/set_pesanan" method="post">
-									<tr>
-										<td>Deskripsi</td>
-										<td><p><?php echo isset($basic->deskripsi)?$basic->deskripsi:'-'?></p></td>
-										<td><p><?php echo isset($standard->deskripsi)?$standard->deskripsi:'-'?></p></td>
-										<td><p><?php echo isset($premium->deskripsi)?$premium->deskripsi:'-'?></p></td>
-										<td><p><?php echo isset($design->deskripsi)?$design->deskripsi:'-'?></p></td>
-										<!-- <td><p>Tidak terdapat ilustrasi wajah. Opsi ready design on Instagram <a href="http://instagram.com/fentroart.design">fentroart.design</a></p></td> -->
-									</tr>
-									<tr class="text-center">
-										<td class="text-left">Color</td>
-										<td><?php echo isset($basic->color)?$basic->color:'-'?></td>
-										<td><?php echo isset($standard->color)?$standard->color:'-'?></td>
-										<td><?php echo isset($premium->color)?$premium->color:'-'?></td>
-										<td><?php echo isset($design->color)?$design->color:'-'?></td>
-										<!-- <td>Full Color</td> -->
-									</tr>
-									<tr class="text-center">
-										<td class="text-left">High Quality Softfile</td>
-										<td><i class="fa <?php echo $basic->softfile?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $standard->softfile?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $premium->softfile?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $design->softfile?'fa-check':'fa-minus'?>"></i></td>
-										<!-- <td><i class="fa fa-minus"></i></td> -->
-									</tr>
-									<tr class="text-center">
-										<td class="text-left">Background (Stock)</td>
-										<td><i class="fa <?php echo $basic->background?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $standard->background?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $premium->background?'fa-check':'fa-minus'?>"></i></td>
-										<td><i class="fa <?php echo $design->background?'fa-check':'fa-minus'?>"></i></td>
-										<!-- <td><i class="fa fa-check"></i></td> -->
-									</tr>
-									<tr class="text-center">
-										<td class="text-left">Kepala hingga pinggang</td>
-										<td>
-											<?php if($basic->check_medium) { ?>
-												<div class="checkbox">
-												    <label> <input type="checkbox" name="check_medium_basic" id="check_medium_basic" data-value="<?php echo $basic->medium?$basic->medium:0?>" >Rp <?php echo isset($basic->medium) ? number_format($basic->medium,0,',','.'):'-'; ?> </label>
+						<form action="<?php echo base_url()?>home/set_pesanan" method="post">
+							<div class="row">
+								<div class="col-md-3 price-type" style="padding:10px;">
+										<div class="col-md-12">
+											<!-- <h2>Basic</h2> -->
+										</div>
+										<div class="col-md-12 text-center price-image">
+											<img src="http://localhost/github/aqilapricelist/assets/images/basic.jpg" height="220">
+										</div>
+										<div class="col-md-12 price-info price-desc">
+											<p class="price-title">Deskripsi</p>
+											<p><?php echo isset($basic->deskripsi)?$basic->deskripsi:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Color</p>
+											<p class="text-center"><?php echo isset($basic->color)?$basic->color:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">High Quality Softfile</p>
+											<p class="text-center"><i class="fa <?php echo $basic->softfile?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Background (Stock)</p>
+											<p class="text-center"><i class="fa <?php echo $basic->background?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Kepala Hingga Pinggang</p>
+											<div class="text-center">
+												<?php if($basic->check_medium) { ?>
+	                        <div class="checkbox">
+	                            <label> <input type="checkbox" name="check_medium_basic" id="check_medium_basic" data-value="<?php echo $basic->medium?$basic->medium:0?>" >Rp <?php echo isset($basic->medium) ? number_format($basic->medium,0,',','.'):'-'; ?> </label>
+	                        </div>
+	                      <?php } else { ?>
+	                        <i class="fa fa-minus"></i>
+	                      <?php } ?>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Delivery Time</p>
+											<div class="center-block">
+												<div style="margin: auto; width: fit-content">
+													<div class="radio">
+		                        <label><input type="radio" name="delivery_basic" value="a" checked="true"><?php echo $basic->delivery_a?$basic->delivery_a:'-'?> Hari</label>
+		                      </div>
+		                      <div class="radio">
+		                        <label><input type="radio" name="delivery_basic" id="delivery_basic" value="b" data-value="<?php echo $basic->delivery_harga?$basic->delivery_harga:0?>">
+		                        <?php echo $basic->delivery_b?$basic->delivery_b:'-'?> Hari <?php echo isset($basic->delivery_harga)?
+		                        "(+Rp ".number_format($basic->delivery_harga,0,',','.').")":''?> </label>
+		                      </div>
 												</div>
-											<?php } else { ?>
-												<i class="fa fa-minus">
-											<?php } ?>
-										</td>
-										<td>
-										<?php if($standard->check_medium) { ?>
-												<div class="checkbox">
-												    <label> <input type="checkbox" name="check_medium_standard" id="check_medium_standard" data-value="<?php echo $standard->medium?$standard->medium:0?>">Rp <?php echo isset($standard->medium) ? number_format($standard->medium,0,',','.'):'-'; ?> </label>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<div class="text-center">
+												<button type="submit" name="set_btn" value="<?=$basic->kode_paket.'-'.$basic->id_paket?>" class="btn btn-default">Select Rp <span id="price_basic" class="money"><?php echo $basic->harga?></span></button>
+											</div>
+										</div>
+								</div>
+								<div class="col-md-3 price-type" style="padding:10px;">
+										<div class="col-md-12">
+											<!-- <h2>Standard</h2> -->
+										</div>
+										<div class="col-md-12 text-center price-image">
+											<img src="http://localhost/github/aqilapricelist/assets/images/standard.jpg" height="220">
+										</div>
+										<div class="col-md-12 price-info price-desc">
+											<p class="price-title">Deskripsi</p>
+											<p><?php echo isset($standard->deskripsi)?$standard->deskripsi:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Color</p>
+											<p class="text-center"><?php echo isset($standard->color)?$standard->color:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">High Quality Softfile</p>
+											<p class="text-center"><i class="fa <?php echo $standard->softfile?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Background (Stock)</p>
+											<p class="text-center"><i class="fa <?php echo $standard->background?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Kepala Hingga Pinggang</p>
+											<div class="text-center">
+												<?php if($standard->check_medium) { ?>
+	                        <div class="checkbox">
+	                            <label> <input type="checkbox" name="check_medium_standard" id="check_medium_standard" data-value="<?php echo $standard->medium?$standard->medium:0?>">Rp <?php echo isset($standard->medium) ? number_format($standard->medium,0,',','.'):'-'; ?> </label>
+	                        </div>
+	                      <?php } else { ?>
+	                        <i class="fa fa-minus"></i>
+	                      <?php } ?>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Delivery Time</p>
+											<div class="center-block">
+												<div style="margin: auto; width: fit-content">
+													<div class="radio">
+		                        <label><input type="radio" name="delivery_standard" value="a" checked="true">
+		                        <?php echo $standard->delivery_a?$standard->delivery_a:'-'?> Hari</label>
+		                      </div>
+		                      <div class="radio">
+		                        <label><input type="radio" name="delivery_standard" id="delivery_standard" value="b" data-value="<?php echo $standard->delivery_harga?$standard->delivery_harga:0?>">
+		                        <?php echo $standard->delivery_b?$standard->delivery_b:'-'?> Hari <?php echo isset($standard->delivery_harga)?
+		                        "(+Rp ".number_format($standard->delivery_harga,0,',','.').")":''?>
+		                        </label>
+		                      </div>
 												</div>
-											<?php } else { ?>
-												<i class="fa fa-minus">
-											<?php } ?>
-										</td>
-										<td>
-											<?php if($premium->check_medium) { ?>
-												<div class="checkbox">
-												    <label> <input type="checkbox" name="check_medium_premium" id="check_medium_premium" data-value="<?php echo $premium->medium?$premium->medium:0?>" >Rp <?php echo isset($premium->medium) ? number_format($premium->medium,0,',','.'):'-'; ?> </label>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<div class="text-center">
+												<button type="submit" name="set_btn" value="<?=$standard->kode_paket.'-'.$standard->id_paket?>" class="btn btn-info">Select Rp <span id="price_standard" class="money"> <?php echo $standard->harga?></span></button>
+											</div>
+										</div>
+								</div>
+								<div class="col-md-3 price-type" style="padding:10px;">
+										<div class="col-md-12">
+											<!-- <h2>Premium</h2> -->
+										</div>
+										<div class="col-md-12 text-center price-image">
+											<img src="http://localhost/github/aqilapricelist/assets/images/premium.jpg" height="220">
+										</div>
+										<div class="col-md-12 price-info price-desc">
+											<p class="price-title">Deskripsi</p>
+											<p><?php echo isset($premium->deskripsi)?$premium->deskripsi:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Color</p>
+											<p class="text-center"><?php echo isset($premium->color)?$premium->color:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">High Quality Softfile</p>
+											<p class="text-center"><i class="fa <?php echo $premium->softfile?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Background (Stock)</p>
+											<p class="text-center"><i class="fa <?php echo $premium->background?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Kepala Hingga Pinggang</p>
+											<div class="text-center">
+												<?php if($premium->check_medium) { ?>
+	                        <div class="checkbox">
+	                            <label> <input type="checkbox" name="check_medium_premium" id="check_medium_premium" data-value="<?php echo $premium->medium?$premium->medium:0?>" >Rp <?php echo isset($premium->medium) ? number_format($premium->medium,0,',','.'):'-'; ?> </label>
+	                        </div>
+	                      <?php } else { ?>
+	                        <i class="fa fa-minus"></i>
+	                      <?php } ?>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Delivery Time</p>
+											<div class="center-block">
+												<div style="margin: auto; width: fit-content">
+													<div class="radio">
+		                        <label><input type="radio" name="delivery_premium" value="a" checked="true">
+		                        <?php echo $premium->delivery_a?$premium->delivery_a:'-'?> Hari</label>
+		                      </div>
+		                      <div class="radio">
+		                        <label><input type="radio" name="delivery_premium" id="delivery_premium" value="b" data-value="<?php echo $premium->delivery_harga?$premium->delivery_harga:0?>">
+		                        <?php echo $premium->delivery_b?$premium->delivery_b:'-'?> Hari <?php echo isset($premium->delivery_harga)?
+		                        "(+Rp ".number_format($premium->delivery_harga,0,',','.').")":''?>
+		                        </label>
+		                      </div>
 												</div>
-											<?php } else { ?>
-												<i class="fa fa-minus">
-											<?php } ?>
-										</td>
-										<td>
-											<?php if($design->check_medium) { ?>
-												<div class="checkbox">
-												    <label> <input type="checkbox" name="check_medium_design" id="check_medium_design" data-value="<?php echo $design->medium?$design->medium:0?>" >Rp <?php echo isset($design->medium) ? number_format($design->medium,0,',','.'):'-'; ?> </label>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<div class="text-center">
+												<button type="submit" name="set_btn" value="<?=$premium->kode_paket.'-'.$premium->id_paket?>" class="btn btn-warning">Select Rp <span id="price_premium" class="money"><?php echo $premium->harga?></span></button>
+											</div>
+										</div>
+								</div>
+								<div class="col-md-3 price-type" style="padding:10px;">
+										<div class="col-md-12">
+											<!-- <h2>Design Only</h2> -->
+										</div>
+										<div class="col-md-12 text-center price-image">
+											<img src="http://localhost/github/aqilapricelist/assets/images/design.jpg" height="220">
+										</div>
+										<div class="col-md-12 price-info price-desc">
+											<p class="price-title">Deskripsi</p>
+											<p><?php echo isset($design->deskripsi)?$design->deskripsi:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Color</p>
+											<p class="text-center"><?php echo isset($design->color)?$design->color:'-'?></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">High Quality Softfile</p>
+											<p class="text-center"><i class="fa <?php echo $design->softfile?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Background (Stock)</p>
+											<p class="text-center"><i class="fa <?php echo $design->background?'fa-check':'fa-minus'?>"></i></p>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Kepala Hingga Pinggang</p>
+											<div class="text-center">
+												<?php if($basic->check_medium) { ?>
+	                        <div class="checkbox">
+	                            <label> <input type="checkbox" name="check_medium_basic" id="check_medium_basic" data-value="<?php echo $basic->medium?$basic->medium:0?>" >Rp <?php echo isset($basic->medium) ? number_format($basic->medium,0,',','.'):'-'; ?> </label>
+	                        </div>
+	                      <?php } else { ?>
+	                        <i class="fa fa-minus"></i>
+	                      <?php } ?>
+											</div>
+										</div>
+										<div class="col-md-12 price-info">
+											<p class="price-title">Delivery Time</p>
+											<div class="center-block">
+												<div style="margin: auto; width: fit-content">
+													<div class="radio">
+		                        <label><input type="radio" name="delivery_design" value="a" checked="true">
+		                        <?php echo $design->delivery_a?$design->delivery_a:'-'?> Hari</label>
+		                      </div>
+		                      <?php if(!empty($design->delivery_b)) { ?>
+		                      <div class="radio">
+		                        <label><input type="radio" name="delivery_design" id="delivery_design" value="b" data-value="<?php echo $design->delivery_harga?$design->delivery_harga:0?>">
+		                        <?php echo $design->delivery_b?$design->delivery_b:'-'?> Hari <?php echo isset($design->delivery_harga)?
+		                        "(+Rp ".number_format($design->delivery_harga,0,',','.').")":''?>
+		                        </label>
+		                      </div>
+		                      <?php } ?>
+		                      <div class="radio" style="visibility: hidden">
+		                      	<label><input type="radio" checked="false">
+		                        <?php echo $design->delivery_a?$design->delivery_a:'-'?> Hari</label>
+		                      </div>
 												</div>
-											<?php } else { ?>
-												<i class="fa fa-minus">
-											<?php } ?>
-										</td>
-										<!-- <td><i class="fa fa-minus"></i></td> -->
-									</tr>
-									<tr>
-										<td>Delivery Time</td>
-										<td>
-											<div class="radio">
-												<label><input type="radio" name="delivery_basic" value="a" checked="true"><?php echo $basic->delivery_a?$basic->delivery_a:'-'?> Hari</label>
 											</div>
-											<div class="radio">
-												<label><input type="radio" name="delivery_basic" id="delivery_basic" value="b" data-value="<?php echo $basic->delivery_harga?$basic->delivery_harga:0?>">
-												<?php echo $basic->delivery_b?$basic->delivery_b:'-'?> Hari <?php echo isset($basic->delivery_harga)?
-												"(+Rp ".number_format($basic->delivery_harga,0,',','.').")":''?> </label>
+										</div>
+										<div class="col-md-12 price-info">
+											<div class="text-center">
+												<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-danger">Select Rp <span id="price_design" class="money"><?php echo $design->harga?></span></button>
 											</div>
-										</td>
-										<td>
-											<div class="radio">
-												<label><input type="radio" name="delivery_standard" value="a" checked="true">
-												<?php echo $standard->delivery_a?$standard->delivery_a:'-'?> Hari</label>
-											</div>
-											<div class="radio">
-												<label><input type="radio" name="delivery_standard" id="delivery_standard" value="b" data-value="<?php echo $standard->delivery_harga?$standard->delivery_harga:0?>">
-												<?php echo $standard->delivery_b?$standard->delivery_b:'-'?> Hari <?php echo isset($standard->delivery_harga)?
-												"(+Rp ".number_format($standard->delivery_harga,0,',','.').")":''?>
-												</label>
-											</div>
-										</td>
-										<td>
-											<div class="radio">
-												<label><input type="radio" name="delivery_premium" value="a" checked="true">
-												<?php echo $premium->delivery_a?$premium->delivery_a:'-'?> Hari</label>
-											</div>
-											<div class="radio">
-												<label><input type="radio" name="delivery_premium" id="delivery_premium" value="b" data-value="<?php echo $premium->delivery_harga?$premium->delivery_harga:0?>">
-												<?php echo $premium->delivery_b?$premium->delivery_b:'-'?> Hari <?php echo isset($premium->delivery_harga)?
-												"(+Rp ".number_format($premium->delivery_harga,0,',','.').")":''?>
-												</label>
-											</div>
-										</td>
-										<td>
-											<div class="radio">
-												<label><input type="radio" name="delivery_design" value="a" checked="true">
-												<?php echo $design->delivery_a?$design->delivery_a:'-'?> Hari</label>
-											</div>
-											<?php if(!empty($design->delivery_b)) { ?>
-											<div class="radio">
-												<label><input type="radio" name="delivery_design" id="delivery_design" value="b" data-value="<?php echo $design->delivery_harga?$design->delivery_harga:0?>">
-												<?php echo $design->delivery_b?$design->delivery_b:'-'?> Hari <?php echo isset($design->delivery_harga)?
-												"(+Rp ".number_format($design->delivery_harga,0,',','.').")":''?>
-												</label>
-											</div>
-											<?php } ?>
-										</td>
-										<!-- <td>
-											<div class="radio">
-												<label><input type="radio" name="delivery_design" value="a" checked="true">1 Hari</label>
-											</div>
-										</td> -->
-									</tr>
-									<tr class="text-center">
-										<td>&nbsp;</td>
-										<td>
-											<button type="submit" name="set_btn" value="<?=$basic->kode_paket.'-'.$basic->id_paket?>" class="btn btn-default">Select Rp <span id="price_basic" class="money"><?php echo $basic->harga?></span></button>
-										</td>
-										<td>
-											<button type="submit" name="set_btn" value="<?=$standard->kode_paket.'-'.$standard->id_paket?>" class="btn btn-info">Select Rp <span id="price_standard" class="money"> <?php echo $standard->harga?></span></button>
-										</td>
-										<td>
-											<button type="submit" name="set_btn" value="<?=$premium->kode_paket.'-'.$premium->id_paket?>" class="btn btn-warning">Select Rp <span id="price_premium" class="money"><?php echo $premium->harga?></span></button>
-										</td>
-										<td>
-											<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-danger">Select Rp <span id="price_design" class="money"><?php echo $design->harga?></span></button>
-										</td>
-										<!-- <td>
-											<button type="submit" name="set_btn" value="<?=$design->kode_paket.'-'.$design->id_paket?>" class="btn btn-danger">Select Rp 25.000</button>
-										</td> -->
-									</tr>
-								</form>
-								</tbody>
-							</table>
-						</div>
+										</div>
+								</div>
+								
+							</div>
+						</form>
 					</div> 
 				</div> 
 			</div>
@@ -490,9 +558,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</table>
 					<div class="row">
 						<div class="col-sm-12">
-							<div id="upgradeNavBtn" class="btn-group pull-right">
-								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Paket"><i class="fa fa-arrow-left"></i> Kembali</a>
-								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke pilihan Media Cetak">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+							<div id="upgradeNavBtn" class="pull-right">
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Paket" style="margin:5px"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke pilihan Media Cetak" style="margin:5px">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -518,7 +586,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<tr style="background-color: #807E81; color:#fff;">
 							<th>Pilihan Media Cetak</th>
 							<th class="text-center">Day</th>
-							<th class="text-center">Warna Primer/Sekunder</th>
+							<th class="text-center">Warna Primer / Sekunder</th>
 							<th colspan="2" class="text-center">Price</th>
 						</tr>
 						<?php foreach ($data_media as $media) { ?>
@@ -572,9 +640,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					</table>
 					<div class="row">
 						<div class="col-sm-12">
-							<div id="mediaNavBtn" class="btn-group pull-right">
-								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+							<div id="mediaNavBtn" class="pull-right">
+								<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade" style="margin:5px"><i class="fa fa-arrow-left"></i> Kembali</a>
+								<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan" style="margin:5px">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -717,9 +785,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<div class="form-group">
 							<label for="foto"><i class="text-danger">*</i>Upload Foto</label>
 							<!-- image-preview-filename input [CUT FROM HERE]-->
-	                        <input type="file" name="file_foto[]" id="fileFoto" class="form-control" accept="image/png, image/jpeg" multiple /> <!-- rename it -->
+              <input type="file" name="file_foto[]" id="fileFoto" class="form-control" accept="image/png, image/jpeg" multiple /> <!-- rename it -->
 						</div>
-	                    <!-- image preview -->
+            <!-- image preview -->
 						<!-- <output id="image-list"></output> -->
 						<small class="help-block text-left">Usahakan foto HD, tidak blur, tidak low-light/overlight </small>
 					</div>
@@ -756,9 +824,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				
 				<ul class="payment-sendbtns">
-					<li><a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default"><i class="glyphicon glyphicon-trash"></i> Batalkan Pesanan</a></li>
+					<li><a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default" style="margin:3px;"><i class="glyphicon glyphicon-trash"></i> Batalkan Pesanan</a></li>
 					<!-- <li><button type="submit" id="submitFormatOrder" class="btn btn-info"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li> -->
-					<li><button type="button" id="submitFormatOrder" class="btn btn-info" data-toggle="modal" data-target="#modalTerms"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
+					<li><button type="button" id="submitFormatOrder" class="btn btn-info" data-toggle="modal" data-target="#modalTerms"  style="margin:3px;"><i class="glyphicon glyphicon-send"></i> Submit Format Order</button></li>
 				</ul>
 				<div class="clearfix"> </div>
 			</form>
@@ -787,7 +855,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<label class="label-control"> Opsi Pengiriman</label>
 											<select class="form-control input-sm" name="opsi_pengiriman" id="opsiPengiriman" disabled="" onchange="showHideJne(this.value);">
 										    	<option value="1">Ambil di lokasi</option>
-										    	<option value="2">Kirim area Malang</option>
+										    	<option value="2">Kirim area kota Malang</option>
 										    	<option value="3">Via JNE</option>
 									    	</select>
 										</div>
@@ -851,13 +919,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<td>
 												<b>Hard improve illustration</b>
 												<ul class="check-summary">
-													<li class="check">Ilustrasi 1 Kepala</li>
-													<li class="check">Warna <?=$sum_paket->color?></li>
+													<li class="check"><i class="fa fa-check text-success"></i> Ilustrasi 1 Kepala</li>
+													<li class="check"><i class="fa fa-check text-success"></i> Warna <?=$sum_paket->color?></li>
 													<?php if($sum_paket->softfile) { ?>
-													<li class="check">High Quality Softfile</li>
+													<li class="check"><i class="fa fa-check text-success"></i> High Quality Softfile</li>
 													<?php } ?>
 													<?php if($sum_paket->background) { ?>
-													<li class="check">Background Design</li>
+													<li class="check"><i class="fa fa-check text-success"></i> Background Design</li>
 													<?php } ?>
 												</ul>
 											</td>
@@ -969,9 +1037,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</div>
 							<div class="row">
 								<div class="col-sm-12 text-center">
-									<div id="summaryNavBtn" class="btn-group">
-										<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade"><i class="fa fa-arrow-left"></i> Kembali</a>
-										<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan">Lanjutkan <i class="fa fa-arrow-right"></i></a>
+									<div id="summaryNavBtn" class="">
+										<a href="#" onclick="prevStartOrder(event);" class="btn btn-default btn-md" title="Kembali ke pilihan Upgrade" style="margin:5px"><i class="fa fa-arrow-left"></i> Kembali</a>
+										<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pemesan" style="margin:5px">Lanjutkan <i class="fa fa-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -986,7 +1054,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div> <!-- /col-sm-6 -->	
 	</div> <!-- /row -->
 	</div>
-	<!-- //blog --> 
+	<!-- //blog --> 	
 	
 	<?php include "modal_ketentuan_kondisi.php";?>
 
@@ -1026,7 +1094,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!-- //ResponsiveTabs js --> 
 
 	<!-- Jquery validate js -->
-	<!-- <script src="<?php echo URL_JS?>jquery.validate.min.js" type="text/javascript"></script> -->
+	<script src="<?php echo URL_JS?>jquery.validate.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		/*$.validator.setDefaults( {
 			submitHandler: function () {
@@ -1106,59 +1174,60 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     
     <?php if (isset($_SESSION['pesanan']['id_paket'])) { ?>
     	<script type="text/javascript"> 
-		$(document).ready(function(){
-    		$("#startOrder ul li.active").next().find("a").click(); 
-    		
-    		$('#colStartOrderTabs').attr('class', 'col-sm-7');
-    		$('#colSummarySection').fadeIn();
+				$(document).ready(function(){
+		    		$("#startOrder ul li.active").next().find("a").click(); 
+		    		
+		    		$('#colStartOrderTabs').attr('class', 'col-sm-7');
+		    		$('#colSummarySection').fadeIn();
 
-    		//disable Pilih Paket Tab (First tab)
-    		$("#startOrder ul li:first-child").addClass('disabled').find('a').attr('disabled', 'true').removeAttr('data-toggle');
-    		
-    		var tabFormPemesan = $("#startOrder ul li"); 
-    		var linkFormPemesan = $("#startOrder ul li").find("a"); 
-			var html = $('#summaryNavBtn').html();
-    		linkFormPemesan.on('shown.bs.tab', function() {
-    			var htmlKonfirmasi = ''
-    				+ '<p style="font-size:16px; color:#333; margin-bottom:10px;">Apakah anda setuju dengan harga di atas? <br> <i>Notifikasi kirim resi via chat Line/Whatsapp sesuai</i></p>'
-    				+'<a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default btn-md" title="Batalkan Pesanan"><i class="fa fa-remove"></i> Tidak, batalkan pesanan</a>'
-					+'<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pesanan"><i class="fa fa-check"></i> Ya, Isi form pesanan</a>';
+		    		//disable Pilih Paket Tab (First tab)
+		    		$("#startOrder ul li:first-child").addClass('disabled').find('a').attr('disabled', 'true').removeAttr('data-toggle');
+		    		//disable Isi Form Pesanan tab (Last tab)
+		    		$("#startOrder ul li:last-child").addClass('disabled').find('a').attr('disabled', 'true').removeAttr('data-toggle');
+		    		
+		    		var tabFormPemesan = $("#startOrder ul li"); 
+		    		var linkFormPemesan = $("#startOrder ul li").find("a"); 
+						var html = $('#summaryNavBtn').html();
+		    		linkFormPemesan.on('shown.bs.tab', function() {
+		    			var htmlKonfirmasi = ''
+		    				+'<a href="<?php echo base_url();?>home/batalkan_pesanan" class="btn btn-default btn-md" title="Batalkan Pesanan" style="margin:5px"><i class="fa fa-remove"></i> Tidak, batalkan pesanan</a>'
+							+'<a href="#" onclick="nextStartOrder(event);" class="btn btn-info btn-md" title="Lanjut ke Form Pesanan" style="margin:5px"><i class="fa fa-check"></i> Ya, Isi form pemesan</a>';
 
-    			var nextTab = $(this).parent('li').next().find('a') || 'end';
-    			if(nextTab.attr('href') == '#isiFormPemesan') {
-    				$('#upgradeNavBtn').hide();
-    				$('#mediaNavBtn').hide();
-    				$('#summaryNavBtn').hide().html(htmlKonfirmasi).fadeIn();
-    			}
-    			else if(nextTab.length == 0) { //End of tab (Tab Form Pesanan)
-    				for(i=0; i<(tabFormPemesan.length-1); i++) {
-    					// console.log(tabFormPemesan[i]);
-    					$(tabFormPemesan[i]).addClass('disabled');
-    					$(tabFormPemesan[i]).find('a').attr('disabled', 'true').removeAttr('data-toggle');
-    				}
-    				$('#opsiPengiriman').attr('disabled', 'true').addClass('disabled');
-    				$('#pilihanPaket').attr('disabled', 'true').addClass('disabled');
-    				$('#provinsi').attr('disabled', 'true').addClass('disabled');
-    				$('#kota').attr('disabled', 'true').addClass('disabled');
+		    			var nextTab = $(this).parent('li').next().find('a') || 'end';
+		    			if(nextTab.attr('href') == '#isiFormPemesan') {
+		    				$('#upgradeNavBtn').hide();
+		    				$('#mediaNavBtn').hide();
+		    				$('#summaryNavBtn').hide().html(htmlKonfirmasi).fadeIn();
+		    			}
+		    			else if(nextTab.length == 0) { //End of tab (Tab Form Pesanan)
+		    				for(i=0; i<(tabFormPemesan.length-1); i++) {
+		    					// console.log(tabFormPemesan[i]);
+		    					$(tabFormPemesan[i]).addClass('disabled');
+		    					$(tabFormPemesan[i]).find('a').attr('disabled', 'true').removeAttr('data-toggle');
+		    				}
+		    				$('#opsiPengiriman').attr('disabled', 'true').addClass('disabled');
+		    				$('#pilihanPaket').attr('disabled', 'true').addClass('disabled');
+		    				$('#provinsi').attr('disabled', 'true').addClass('disabled');
+		    				$('#kota').attr('disabled', 'true').addClass('disabled');
 
-    				$('#upgradeNavBtn').hide();
-    				$('#mediaNavBtn').hide();
-    				$('#summaryNavBtn').fadeOut();
-    				$('#colSummarySection').fadeOut();
-    				$('#colStartOrderTabs').attr('class', 'col-md-offset-3 col-md-6');
-    			}
-				else {
-    				$('#upgradeNavBtn').show();
-    				$('#mediaNavBtn').show();
-    				$('#summaryNavBtn').hide().html(html).fadeIn();
-    			}
-    			// console.log($(linkFormPemesan[i]).attr('href'));
-    			calculateSubTotal();
-    			calculateTotalHari();
-    			calculateHargaTotal();
-    		});
-    	});	
-		</script>
+		    				$('#upgradeNavBtn').hide();
+		    				$('#mediaNavBtn').hide();
+		    				$('#summaryNavBtn').fadeOut();
+		    				$('#colSummarySection').fadeOut();
+		    				$('#colStartOrderTabs').attr('class', 'col-md-offset-3 col-md-6');
+		    			}
+						else {
+		    				$('#upgradeNavBtn').show();
+		    				$('#mediaNavBtn').show();
+		    				$('#summaryNavBtn').hide().html(html).fadeIn();
+		    			}
+		    			// console.log($(linkFormPemesan[i]).attr('href'));
+		    			calculateSubTotal();
+		    			calculateTotalHari();
+		    			calculateHargaTotal();
+		    		});
+		    	});	
+				</script>
     <?php } else { ?>
     	<script type="text/javascript">
 			$('#colStartOrderTabs').attr('class', 'col-sm-12');
@@ -1204,24 +1273,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	    function nextStartOrder(e) {
 	    	e.preventDefault();
 	    	//checking if opsi pengiriman via jne is selected, the check provinsi & kota selection
-    		var nextTab = $(this).parent('li').next().find('a') || 'end';
+    		// var nextTab = $(this).parent('li').next().find('a') || 'end';
+    		var nextTab = $("#startOrder ul li.active").nextAll() || 'end';
 	    	var opsiPengiriman = $('#opsiPengiriman :selected').val();
 	    	var provinsi = $('#provinsi :selected').val();
 	    	var kota = $('#kota :selected').val();
 	    	var kecamatan = $('#kecamatan :selected').val();
 	    	var pilihanPaket = $('#pilihanPaket :selected').val();
-	    	if(nextTab.length == 0) { //end of tab
-		    	if(opsiPengiriman == 3) { //via JNE
-		    		if(provinsi && kota && kecamatan && pilihanPaket) {
-		    			$("#startOrder ul li.active").next().find("a").click();
-		    		}
-		    		else {
-		    			alert('Anda belum memilih Provinsi/Kota/Kecamatan tujuan pengiriman!');
-		    		}
-		    	}
-		    	else {
-		    		$("#startOrder ul li.active").next().find("a").click();
-		    	}
+	    	if(nextTab.length == 1) { //end of tab
+	    		var userConfirm = false;
+	    		//jika pilihan tipe ilustrasinya adalah design only maka:
+	    		<?php if(isset($_SESSION['pesanan']['id_paket']) && $_SESSION['pesanan']['id_paket'] == 4) { ?>
+	    			userConfirm = confirm('Apakah anda yakin dengan pesanan anda? \n(Klik ya untuk melanjutkan ke form pemesan)');
+    			<?php } else { ?>
+    				if($('#formPengiriman').is(':visible')) {
+	    				userConfirm = confirm('Lanjutkan pemesanan dengan opsi pengiriman \"'+ $('#opsiPengiriman :selected').text() +'\"?');
+    				} else {
+	    				userConfirm = confirm('Lanjutkan pemesanan dengan opsi pengiriman via email? \n(anda belum memilih media cetak)');
+    				}
+
+    			<?php } ?>
+	    		if(userConfirm) {
+	    			//enable last tab and add data-toggle
+	    			$("#startOrder ul li:last-child").removeClass('disabled').find('a').attr('disabled', 'false').attr('data-toggle', 'pill');
+	    			if(opsiPengiriman == 3) { //via JNE
+			    		if(provinsi && kota && kecamatan && pilihanPaket) {
+			    			$("#startOrder ul li.active").next().find("a").click();
+			    		}
+			    		else {
+			    			alert('Anda belum memilih Provinsi/Kota/Kecamatan tujuan pengiriman!');
+			    		}
+			    	}
+			    	else {
+			    		$("#startOrder ul li.active").next().find("a").click();
+			    		//scroll to top after click lanjutkan button
+			    		$('html, body').animate({scrollTop: 0}, 'fast');
+			    	}
+	    		}
 	    	}
 	    	else {
 	    		$("#startOrder ul li.active").next().find("a").click();
@@ -1234,27 +1322,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 	    $(document).ready(function(){
 	    	//GET CITY BY PROVINCE
-			$("#provinsi").click(function(){
-			$.post("<?php echo base_url(); ?>home/get_city_by_province/"+$('#provinsi').val(),function(obj){
-				var namaProvinsi = $('#provinsi :selected').html();
-				$('#nama_provinsi').val(namaProvinsi);
-				$('#kota').html(obj);
-				var namaKota = $('#kota :selected').html();
-				$('#nama_kota').val(namaKota);
-				// console.log("namaProvinsi" + namaProvinsi);
-				// console.log("namaKota" + namaKota);
+			$("#provinsi").change(function(){
+				$.post("<?php echo base_url(); ?>home/get_city_by_province/"+$('#provinsi').val(),function(obj){
+					var namaProvinsi = $('#provinsi :selected').html();
+					$('#nama_provinsi').val(namaProvinsi);
+					$('#kota').html(obj);
+					var namaKota = $('#kota :selected').html();
+					$('#nama_kota').val(namaKota);
+					// console.log("namaProvinsi" + namaProvinsi);
+					// console.log("namaKota" + namaKota);
 				});
 			});
 	    	//GET SUBDISTRICT BY CITY
-			$("#kota").click(function(){
-			$.post("<?php echo base_url(); ?>home/get_subdistrict_by_city/"+$('#kota').val(),function(obj){
-				var namaKota = $('#kota :selected').html();
-				$('#nama_kota').val(namaKota);
-				$('#kecamatan').html(obj);
-				//trigger select first kecamatan option
-				$('#kecamatan option:first').trigger('change');
-				var namaKecamatan = $('#kecamatan :selected').html();
-				$('#nama_kecamatan').val(namaKecamatan);
+			$("#kota").change(function(){
+				$.post("<?php echo base_url(); ?>home/get_subdistrict_by_city/"+$('#kota').val(),function(obj){
+					var namaKota = $('#kota :selected').html();
+					$('#nama_kota').val(namaKota);
+					$('#kecamatan').html(obj);
+					//trigger select first kecamatan option
+					$('#kecamatan option:first').trigger('change');
+					var namaKecamatan = $('#kecamatan :selected').html();
+					$('#nama_kecamatan').val(namaKecamatan);
 				});
 			});
 			$("#kecamatan").change(function(){
@@ -1812,13 +1900,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			$('#btnTerms').attr('disabled', !this.checked);
 		});
 		function submitPemesan() {
+	  	if(!$('#formPemesan').valid()) {
+		  		$('#modalTerms').modal('hide');
+		  		$('#checkTerms').prop('checked', false);
+		  	}
+
 			var checkTerms = $('#checkTerms').prop('checked');
 			if(checkTerms == true) {
 				$("#formPemesan").submit();
 			}
 		}
 		$(document).ready(function(){
-			$("#formPemesan").on("submit", function(e) {
+			$("#formPemesan").validate({
+		  submitHandler: function(form) {
+		    $.when(setUpgradeMedia()).done(function(response, status) {
+		            var data = JSON.parse(response);
+		            console.log(data);
+		            // $('.ajaxLoading').hide();
+		            // $('#formWarna form').show();
+		            // runSetUpgradeMedia();
+		            $("#formPemesan").unbind();
+		            runSetPemesan(form);
+	        	});
+		    // form.submit();
+		  }
+		 });
+			/*$("#formPemesan").on("submit", function(e) {
 				e.preventDefault();				
 				$.when(setUpgradeMedia()).done(function(response, status) {
 		            var data = JSON.parse(response);
@@ -1829,9 +1936,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		            $("#formPemesan").unbind();
 		            runSetPemesan();
 	        	});
-			});
+			});*/
 			
-			function runSetPemesan() {
+			function runSetPemesan(form) {
 				var arrFormPemesan = [];
 				arrFormPemesan['opsiPengiriman'] = $("#opsiPengiriman").val() || '';
 				arrFormPemesan['provinsi'] = $("#provinsi").val() || '';
@@ -1851,11 +1958,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							+ '<input type="hidden" name="nama_kecamatan" value="'+ arrFormPemesan['nama_kecamatan'] +'">'
 							+ '<input type="hidden" name="pilihanPaket" value="'+ arrFormPemesan['pilihanPaket'] +'">';
 
-				$('#formPemesan').append(html);
+				$(form).append(html);
 
 				// console.log(html);
 				// console.log($("#formPemesan").serialize());
-				$("#formPemesan").submit();
+				$(form).submit();
 			};
 			
 			$("#formOngkir").on("submit", function(e) {
